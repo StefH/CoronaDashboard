@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AzureFunctionStack.cs" />
+    <Compile Remove="BlobCollection.cs" />
+    <Compile Remove="MimeTypeMap.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pulumi.Azure" Version="3.8.0" />
+    <PackageReference Include="Pulumi.Azure.Constants" Version="0.0.4" />
+    <PackageReference Include="Pulumi.Azure.Extensions" Version="0.3.0" />
+  </ItemGroup>
+
+
+</Project>

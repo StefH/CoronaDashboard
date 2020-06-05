@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30028.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FC5168F6-FAC5-402B-AD3C-3A41518243E0}"
+	ProjectSection(SolutionItems) = preProject
+		publish.cmd = publish.cmd
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{E42A73AC-5034-441B-973B-CC6D3319FC82}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines-pulumi.yml = azure-pipelines-pulumi.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pulumi.Azure.StaticWebsite", "src\Pulumi\Pulumi.Azure.StaticWebsite.csproj", "{5026E9EE-FC52-492C-8AA6-A6082ABD056D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoronaDashboard", "src\CoronaDashboard\CoronaDashboard.csproj", "{FACF4494-A3FA-4C99-BC82-2963285ED02C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5026E9EE-FC52-492C-8AA6-A6082ABD056D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5026E9EE-FC52-492C-8AA6-A6082ABD056D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5026E9EE-FC52-492C-8AA6-A6082ABD056D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5026E9EE-FC52-492C-8AA6-A6082ABD056D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACF4494-A3FA-4C99-BC82-2963285ED02C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACF4494-A3FA-4C99-BC82-2963285ED02C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACF4494-A3FA-4C99-BC82-2963285ED02C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACF4494-A3FA-4C99-BC82-2963285ED02C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5026E9EE-FC52-492C-8AA6-A6082ABD056D} = {E42A73AC-5034-441B-973B-CC6D3319FC82}
+		{FACF4494-A3FA-4C99-BC82-2963285ED02C} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C027DADB-BF11-4991-9D14-30D4A14A4C38}
+	EndGlobalSection
+EndGlobal

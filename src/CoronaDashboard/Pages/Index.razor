@@ -1,0 +1,72 @@
+﻿@page "/"
+@*<Chart @ref="IntakeCount" Type="ChartType.Bar" TItem="int" />*@
+@*<BarChart @ref="IntakeCount" TItem="int" />*@
+    
+<Row>
+    <Column ColumnSize="ColumnSize.Is6.Is12.OnMobile">
+        <Card Margin="Margin.Is4">
+            <CardHeader>Aantal opnames per dag</CardHeader>
+            @*<CardImage Source="doctor.svg"  ></CardImage>*@
+            <CardBody>
+                <CardText>
+                    Aantal mensen met COVID-19 dat per dag op een intensive care-afdeling van een ziekenhuis is opgenomen.
+                </CardText>
+                <br/>
+                <LineChart @ref="IntakeCount" TItem="int" Options="@Options"/>
+                <CardText>
+                    <div>Periode: @IntakeCountDates</div>
+                    <div>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></div>
+                </CardText>
+            </CardBody>
+        </Card>
+    </Column>
+    @*<Column ColumnSize="ColumnSize.Is6.Is12.OnMobile">
+        <Card Margin="Margin.Is4.OnY">
+            <CardImage Source="assets/images/gallery/2.jpg" Alt="Placeholder image">
+            </CardImage>
+            <CardBody>
+                <CardTitle Size="5">Card title</CardTitle>
+                <CardText>
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </CardText>
+            </CardBody>
+            <ListGroup Flush="true">
+                <ListGroupItem>Cras justo odio</ListGroupItem>
+                <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
+            </ListGroup>
+            <CardBody>
+                <CardLink Source="#">Card link</CardLink>
+                <CardLink Source="#">Another link</CardLink>
+            </CardBody>
+        </Card>
+    </Column>*@
+    @*<Column ColumnSize="ColumnSize.Is4.OnTablet.Is3.OnWidescreen.Is12.OnMobile">
+        <Card Margin="Margin.Is4.OnY">
+            <CardImage Source="assets/images/gallery/3.jpg" Alt="Placeholder image">
+            </CardImage>
+            <CardBody>
+                <CardText>
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </CardText>
+            </CardBody>
+        </Card>
+    </Column>*@
+    @*<Column ColumnSize="ColumnSize.Is4.OnTablet.Is3.OnWidescreen.Is12.OnMobile">
+        <Card Margin="Margin.Is4.OnY">
+            <CardBody>
+                <CardTitle Size="5">Card title</CardTitle>
+                <CardSubtitle>Support card subtitle</CardSubtitle>
+
+            </CardBody>
+            <CardImage Source="assets/images/gallery/12.jpg" Alt="Placeholder image">
+            </CardImage>
+            <CardBody>
+                <CardText>
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </CardText>
+                <CardLink Source="#">Card link</CardLink>
+                <CardLink Source="#">Another link</CardLink>
+            </CardBody>
+        </Card>
+    </Column>*@
+</Row>
