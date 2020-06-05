@@ -29,10 +29,8 @@ namespace CoronaDashboard.Services
 
             var set = new LineChartDataset<int>
             {
-                //Label = label,
                 Fill = false,
                 BorderColor = new List<string> { Color.Blue },
-                ShowLine = true,
                 PointRadius = 0,
                 Data = data.Select(d => d.Value).ToList()
             };
