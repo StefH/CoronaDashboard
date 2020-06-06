@@ -10,7 +10,20 @@ namespace CoronaDashboard.Pages
         [Inject]
         IChartService ChartService { get; set; }
 
-        private LineChartOptions Options = new LineChartOptions
+        private LineChartOptions LineChartOptions = new LineChartOptions
+        {
+            Animation = new Animation { Duration = 0, Easing = "linear" },
+            Legend = new Legend
+            {
+                Display = false
+            },
+            Tooltips = new Tooltips
+            {
+                Enabled = true
+            }
+        };
+
+        private BarChartOptions BarChartOptions = new BarChartOptions
         {
             Animation = new Animation { Duration = 0, Easing = "linear" },
             Legend = new Legend
@@ -24,6 +37,8 @@ namespace CoronaDashboard.Pages
         };
 
         LineChart<double> IntakeCount;
+        BarChart<long> AgeDistribution;
+
         string IntakeCountDates;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -36,8 +51,11 @@ namespace CoronaDashboard.Pages
 
         async Task HandleRedraw()
         {
-            IntakeCountDates = await ChartService.HandleRedraw("Intake Count", IntakeCount, api => api.GetIntakeCountAsync());
-            StateHasChanged();
+            IntakeCountDates = await ChartService.GetIntakeCount("Intake Count", IntakeCount);
+
+            await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
+
+            //StateHasChanged();
         }
     }
 }

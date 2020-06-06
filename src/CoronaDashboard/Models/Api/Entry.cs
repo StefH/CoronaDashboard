@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoronaDashboard.Models
+namespace CoronaDashboard.Models.Api
 {
     public class Entry
     {
