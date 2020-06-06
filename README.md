@@ -1,2 +1,10 @@
-# CoronaDashboard
-Een [Corona Dashboard](https://stefh.github.io/CoronaDashboard/) gebaseerd op cijfers van Nederland gemaakt in Blazor
+# Corona Dashboard
+Een [Corona Dashboard](https://stefh.github.io/CoronaDashboard/) gebaseerd op cijfers van Stichting NICE gemaakt met Blazor en Blazorise.
+
+### Referenties
+- https://stichting-nice.nl/
+- https://coronadashboard.rijksoverheid.nl/
+
+### Technologieën
+- [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
+- [Blazorise](https://bootstrapdemo.blazorise.com/)
