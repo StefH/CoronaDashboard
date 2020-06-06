@@ -11,8 +11,6 @@ namespace CoronaDashboard.Services
 {
     public class ChartService : IChartService
     {
-        private const string DateFormat = "dd-MM-yyyy";
-
         private readonly IDataServiceFactory _factory;
 
         public ChartService(IDataServiceFactory factory)
@@ -27,7 +25,7 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            await chart.AddLabel(grouped.Select(d => d.Date.ToString(DateFormat)).ToArray());
+            await chart.AddLabel(grouped.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
 
             var set = new LineChartDataset<double>
             {

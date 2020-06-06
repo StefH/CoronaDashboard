@@ -7,8 +7,13 @@ namespace CoronaDashboard.Utils
     {
         private static readonly CultureInfo CultureNederland = new CultureInfo("NL-nl");
 
-        private const string DateFormat = "dd-MM-yyyy";
-        private const string LongDateFormat = "d MMMM yyyy";
+        private const string DateFormat = "dd-MMM";
+        private const string LongDateFormat = "d MMM yyyy";
+
+        public static string ToShortDate(DateTime date)
+        {
+            return date.ToString(DateFormat, CultureNederland);
+        }
 
         public static string ToLongDate(DateTime date)
         {
