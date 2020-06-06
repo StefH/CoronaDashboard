@@ -40,20 +40,21 @@ namespace CoronaDashboard.Services
 
             await chart.Update();
 
-            return $"{DateUtils.ToLongDate(grouped.First().Date)} t/m {DateUtils.ToLongDate(grouped.Last().Date)}";
+            return $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}";
         }
 
         private List<Entry> GroupByDays(ICollection<Entry> data, int days = 3)
         {
             long batchPeriod = TimeSpan.TicksPerDay * days;
-            var batches = data
+
+            return data
                 .GroupBy(entry => entry.Date.Ticks / batchPeriod)
                 .Select(grouping => new Entry
                 {
-                    Date = grouping.Select(e => e.Date).Min(),
+                    Date = grouping.Select(e => e.Date).Max(),
                     Value = Math.Round(grouping.Select(e => e.Value).Average(), 1)
-                });
-            return batches.ToList();
+                })
+                .ToList();
         }
     }
 }
