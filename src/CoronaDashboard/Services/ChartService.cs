@@ -56,7 +56,7 @@ namespace CoronaDashboard.Services
 
             var ICVerlatenSet = new BarChartDataset<long>
             {
-                Label = "Ziekenhuis levend verlaten",
+                //Label = "Ziekenhuis levend verlaten",
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartGreen),
                 BorderWidth = 1,
                 Data = age.ICVerlaten
@@ -65,7 +65,7 @@ namespace CoronaDashboard.Services
 
             var ICVerlatenNogOpVerpleegafdelingSet = new BarChartDataset<long>
             {
-                Label = "Nog opgenomen op verpleegafdeling",
+                //Label = "Nog opgenomen op verpleegafdeling",
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartBlue),
                 BorderWidth = 1,
                 Data = age.ICVerlatenNogOpVerpleegafdeling
@@ -74,7 +74,7 @@ namespace CoronaDashboard.Services
 
             var nogOpgenomenSet = new BarChartDataset<long>
             {
-                Label = "Nog opgenomen op de IC",
+                //Label = "Nog opgenomen op de IC",
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartYellow),
                 Data = age.NogOpgenomen
             };
@@ -82,7 +82,7 @@ namespace CoronaDashboard.Services
 
             var overledenSet = new BarChartDataset<long>
             {
-                Label = "Overleden bij IC opname",
+                //Label = "Overleden bij IC opname",
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartRed),
                 Data = age.Overleden
             };
