@@ -23,7 +23,7 @@ namespace CoronaDashboard.Pages
             }
         };
 
-        LineChart<int> IntakeCount;
+        LineChart<double> IntakeCount;
         string IntakeCountDates;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

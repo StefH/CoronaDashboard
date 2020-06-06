@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
 using CoronaDashboard.Models;
+using CoronaDashboard.Utils;
 
 namespace CoronaDashboard.Services
 {
@@ -19,26 +20,40 @@ namespace CoronaDashboard.Services
             _factory = factory;
         }
 
-        public async Task<string> HandleRedraw(string label, LineChart<int> chart, Func<IStichtingNice, Task<List<Entry>>> func)
+        public async Task<string> HandleRedraw(string label, LineChart<double> chart, Func<IStichtingNice, Task<List<Entry>>> func)
         {
             var data = await func(_factory.GetClient());
+            var grouped = GroupByDays(data);
 
             await chart.Clear();
 
-            await chart.AddLabel(data.Select(d => d.Date.ToString(DateFormat)).ToArray());
+            await chart.AddLabel(grouped.Select(d => d.Date.ToString(DateFormat)).ToArray());
 
-            var set = new LineChartDataset<int>
+            var set = new LineChartDataset<double>
             {
                 Fill = false,
                 BorderColor = new List<string> { Color.Blue },
-                PointRadius = 0,
-                Data = data.Select(d => d.Value).ToList()
+                PointRadius = 2,
+                Data = grouped.Select(d => d.Value).ToList()
             };
             await chart.AddDataSet(set);
 
             await chart.Update();
 
-            return $"{data.First().Date.ToString(DateFormat)} t/m {data.Last().Date.ToString(DateFormat)}";
+            return $"{DateUtils.ToLongDate(grouped.First().Date)} t/m {DateUtils.ToLongDate(grouped.Last().Date)}";
+        }
+
+        private List<Entry> GroupByDays(ICollection<Entry> data, int days = 3)
+        {
+            long batchPeriod = TimeSpan.TicksPerDay * days;
+            var batches = data
+                .GroupBy(entry => entry.Date.Ticks / batchPeriod)
+                .Select(grouping => new Entry
+                {
+                    Date = grouping.Select(e => e.Date).Min(),
+                    Value = Math.Round(grouping.Select(e => e.Value).Average(), 1)
+                });
+            return batches.ToList();
         }
     }
 }

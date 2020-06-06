@@ -3,17 +3,18 @@
 @*<BarChart @ref="IntakeCount" TItem="int" />*@
     
 <Row>
-    <Column ColumnSize="ColumnSize.Is6.Is12.OnMobile">
+    <Column ColumnSize="ColumnSize.Is6.OnDesktop.Is6.OnTablet.Is12.OnMobile">
         <Card Margin="Margin.Is4">
             <CardHeader>
-                <img src="images/doctor.png" width="48" height="48" />&nbsp;<b>Aantal opnames per dag</b>
+                @*<img src="images/doctor.png" width="48" height="48" />&nbsp;<b>*@
+                Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag.<br/>Dit cijfer is een gemiddelde van de afgelopen drie dagen.
             </CardHeader>
             <CardBody>
                 <CardText>
-                    Aantal mensen met COVID-19 dat per dag op een intensive care-afdeling van een ziekenhuis is opgenomen.
+                    Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag.
                 </CardText>
                 <br/>
-                <LineChart @ref="IntakeCount" TItem="int" Options="@Options"/>
+                <LineChart @ref="IntakeCount" TItem="double" Options="@Options"/>
                 <CardText>
                     <div>Periode: @IntakeCountDates</div>
                     <div>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></div>
