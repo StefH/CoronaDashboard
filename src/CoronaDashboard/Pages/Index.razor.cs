@@ -23,12 +23,12 @@ namespace CoronaDashboard.Pages
             }
         };
 
-        private BarChartOptions BarChartOptions = new BarChartOptions
+        private BarChartOptions AgeBarChartOptions = new BarChartOptions
         {
             Animation = new Animation { Duration = 0, Easing = "linear" },
             Legend = new Legend
             {
-                Display = false
+                Display = true
             },
             Tooltips = new Tooltips
             {

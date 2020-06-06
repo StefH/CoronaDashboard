@@ -32,8 +32,11 @@
                     Deze grafiek toont de leeftijdsverdeling per vijf-jaars categorie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.
                 </CardText>
                 <br />
-                <BarChart @ref="AgeDistribution" TItem="long" Options="@BarChartOptions" />
-                <div style="color: #DCA0A0;" ><b>Overleden</b></div>
+                <BarChart @ref="AgeDistribution" TItem="long" Options="@AgeBarChartOptions" />
+                @*<div style="color: @AppColors.Green">X</div><div><b>Het aantal IC patiënten dat het ziekenhuis levend heeft verlaten.</b></div>
+                <div style="color: @AppColors.Blue">X</div><div><b>Overleden</b>Het aantal patiënten dat de IC levend verlaten heeft maar nog in het ziekenhuis ligt.</div>
+                <div style="color: @AppColors.Yellow">X</div><div><b>Het aantal patiënten dat nog op de IC is opgenomen.</b></div>
+                <div style="color: @AppColors.Red">X</div><div><b>Het aantal patiënten dat bij IC opname is overleden.</b></div>*@
             </CardBody>
         </Card>
     </Column>

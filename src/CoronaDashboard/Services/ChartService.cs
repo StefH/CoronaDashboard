@@ -33,7 +33,7 @@ namespace CoronaDashboard.Services
             var set = new LineChartDataset<double>
             {
                 Fill = false,
-                BorderColor = new List<string> { Color.Blue },
+                BorderColor = new List<string> { AppColors.LineChartBlue },
                 PointRadius = 2,
                 Data = grouped.Select(d => d.Value).ToList()
             };
@@ -54,41 +54,36 @@ namespace CoronaDashboard.Services
 
             await chart.AddLabel(age.Leeftijdsverdeling.ToArray());
 
-            var nogOpgenomenSet = new BarChartDataset<long>
-            {
-                //BorderColor = new List<string> { Color.Blue },
-                //BackgroundColor = new List<string> { Color.Red },
-                BorderWidth = 1,
-                Data = age.NogOpgenomen
-            };
-            await chart.AddDataSet(nogOpgenomenSet);
-
-            var ICVerlatenNogOpVerpleegafdelingSet = new BarChartDataset<long>
-            {
-                //BorderColor = new List<string> { Color.Blue },
-                //BackgroundColor = new List<string> { Color.Red },
-                BorderWidth = 1,
-                Data = age.ICVerlatenNogOpVerpleegafdeling
-            };
-            await chart.AddDataSet(ICVerlatenNogOpVerpleegafdelingSet);
-
             var ICVerlatenSet = new BarChartDataset<long>
             {
-                //BorderColor = new List<string> { Color.Blue },
-                //BackgroundColor = new List<string> { Color.Red },
+                Label = "Ziekenhuis levend verlaten",
+                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartGreen),
                 BorderWidth = 1,
                 Data = age.ICVerlaten
             };
             await chart.AddDataSet(ICVerlatenSet);
 
-            List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
-            List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
+            var ICVerlatenNogOpVerpleegafdelingSet = new BarChartDataset<long>
+            {
+                Label = "Nog opgenomen op verpleegafdeling",
+                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartBlue),
+                BorderWidth = 1,
+                Data = age.ICVerlatenNogOpVerpleegafdeling
+            };
+            await chart.AddDataSet(ICVerlatenNogOpVerpleegafdelingSet);
+
+            var nogOpgenomenSet = new BarChartDataset<long>
+            {
+                Label = "Nog opgenomen op de IC",
+                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartYellow),
+                Data = age.NogOpgenomen
+            };
+            await chart.AddDataSet(nogOpgenomenSet);
 
             var overledenSet = new BarChartDataset<long>
             {
-                //BorderColor = borderColors,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string) Color.Red),
-                //BorderWidth = 1,
+                Label = "Overleden bij IC opname",
+                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartRed),
                 Data = age.Overleden
             };
             await chart.AddDataSet(overledenSet);
