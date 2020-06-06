@@ -1,6 +1,6 @@
 {
-  "name": "CoronaDashboard",
-  "short_name": "CoronaDashboard",
+  "name": "Corona Dashboard",
+  "short_name": "Corona Dashboard",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
