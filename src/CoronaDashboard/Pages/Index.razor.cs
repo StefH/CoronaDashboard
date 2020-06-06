@@ -55,7 +55,7 @@ namespace CoronaDashboard.Pages
 
             await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
 
-            //StateHasChanged();
+            StateHasChanged();
         }
     }
 }

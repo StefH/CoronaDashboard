@@ -1,10 +1,10 @@
 ﻿@page "/"
 @*<Chart @ref="IntakeCount" Type="ChartType.Bar" TItem="int" />*@
 @*<BarChart @ref="IntakeCount" TItem="int" />*@
-    
+
 <Row>
     <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
-        <Card Margin="Margin.Is1.OnMobile.Is3.OnAll" >
+        <Card Margin="Margin.Is1.OnMobile.Is3.OnAll">
             <CardHeader>
                 @*<img src="images/doctor.png" width="48" height="48" />&nbsp;<b>*@
                 Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.
@@ -13,8 +13,8 @@
                 <CardText>
                     Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag.
                 </CardText>
-                <br/>
-                <LineChart @ref="IntakeCount" TItem="double" Options="@LineChartOptions"/>
+                <br />
+                <LineChart @ref="IntakeCount" TItem="double" Options="@LineChartOptions" />
                 <CardText>
                     <div>Periode: @IntakeCountDates</div>
                     <div>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></div>
@@ -33,40 +33,40 @@
                 </CardText>
                 <br />
                 <BarChart @ref="AgeDistribution" TItem="long" Options="@AgeBarChartOptions" />
-                @*<div style="color: @AppColors.Green">X</div><div><b>Het aantal IC patiënten dat het ziekenhuis levend heeft verlaten.</b></div>
-                <div style="color: @AppColors.Blue">X</div><div><b>Overleden</b>Het aantal patiënten dat de IC levend verlaten heeft maar nog in het ziekenhuis ligt.</div>
-                <div style="color: @AppColors.Yellow">X</div><div><b>Het aantal patiënten dat nog op de IC is opgenomen.</b></div>
-                <div style="color: @AppColors.Red">X</div><div><b>Het aantal patiënten dat bij IC opname is overleden.</b></div>*@
+                <CardText>
+                    <div>Periode: @IntakeCountDates</div>
+                    <div>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></div>
+                </CardText>
             </CardBody>
         </Card>
     </Column>
     @*<Column ColumnSize="ColumnSize.Is4.OnTablet.Is3.OnWidescreen.Is12.OnMobile">
-        <Card Margin="Margin.Is4.OnY">
-            <CardImage Source="assets/images/gallery/3.jpg" Alt="Placeholder image">
-            </CardImage>
-            <CardBody>
-                <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                </CardText>
-            </CardBody>
-        </Card>
-    </Column>*@
+            <Card Margin="Margin.Is4.OnY">
+                <CardImage Source="assets/images/gallery/3.jpg" Alt="Placeholder image">
+                </CardImage>
+                <CardBody>
+                    <CardText>
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </CardText>
+                </CardBody>
+            </Card>
+        </Column>*@
     @*<Column ColumnSize="ColumnSize.Is4.OnTablet.Is3.OnWidescreen.Is12.OnMobile">
-        <Card Margin="Margin.Is4.OnY">
-            <CardBody>
-                <CardTitle Size="5">Card title</CardTitle>
-                <CardSubtitle>Support card subtitle</CardSubtitle>
+            <Card Margin="Margin.Is4.OnY">
+                <CardBody>
+                    <CardTitle Size="5">Card title</CardTitle>
+                    <CardSubtitle>Support card subtitle</CardSubtitle>
 
-            </CardBody>
-            <CardImage Source="assets/images/gallery/12.jpg" Alt="Placeholder image">
-            </CardImage>
-            <CardBody>
-                <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                </CardText>
-                <CardLink Source="#">Card link</CardLink>
-                <CardLink Source="#">Another link</CardLink>
-            </CardBody>
-        </Card>
-    </Column>*@
+                </CardBody>
+                <CardImage Source="assets/images/gallery/12.jpg" Alt="Placeholder image">
+                </CardImage>
+                <CardBody>
+                    <CardText>
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </CardText>
+                    <CardLink Source="#">Card link</CardLink>
+                    <CardLink Source="#">Another link</CardLink>
+                </CardBody>
+            </Card>
+        </Column>*@
 </Row>
