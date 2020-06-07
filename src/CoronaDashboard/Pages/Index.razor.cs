@@ -28,7 +28,7 @@ namespace CoronaDashboard.Pages
             Animation = new Animation { Duration = 0, Easing = "linear" },
             Legend = new Legend
             {
-                Display = true
+                Display = false
             },
             Tooltips = new Tooltips
             {

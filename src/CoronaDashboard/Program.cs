@@ -4,9 +4,12 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using CoronaDashboard.Localization;
+//using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 
 namespace CoronaDashboard
 {
@@ -17,6 +20,7 @@ namespace CoronaDashboard
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            // Blazorise
             builder.Services
                 .AddBlazorise(options =>
                 {
@@ -24,6 +28,10 @@ namespace CoronaDashboard
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
+
+            // Localization
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
+            builder.Services.AddSingleton(typeof(IStringLocalizer), typeof(StringLocalizer<Resources>));
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl/covid-19/public/") });
 

@@ -6,11 +6,11 @@ namespace CoronaDashboard.Constants
     {
         public static string Red = "#DCA0A0";
 
-        public static string Blue = "#9CC2E8";
+        public static string Blue = "#9BC2E6";
 
-        public static string Green = "#B3CFB9";
+        public static string Green = "#A9D08E";
 
-        public static string Yellow = "#E7C2A0";
+        public static string Yellow = "#FFD966";
 
         public static ChartColor LineChartBlue = ChartColor.FromRgba(50, 150, 200, 1f);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
+using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Models.Api;
 using CoronaDashboard.Utils;
@@ -56,7 +57,7 @@ namespace CoronaDashboard.Services
 
             var ICVerlatenSet = new BarChartDataset<long>
             {
-                Label = "Ziekenhuis levend verlaten",
+                Label = Resources.AgeDistribution_Label_Gezond,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartGreen),
                 BorderWidth = 1,
                 Data = age.ICVerlaten
@@ -65,7 +66,7 @@ namespace CoronaDashboard.Services
 
             var ICVerlatenNogOpVerpleegafdelingSet = new BarChartDataset<long>
             {
-                Label = "Nog opgenomen op verpleegafdeling",
+                Label = Resources.AgeDistribution_Label_Verpleegafdeling,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartBlue),
                 BorderWidth = 1,
                 Data = age.ICVerlatenNogOpVerpleegafdeling
@@ -74,7 +75,7 @@ namespace CoronaDashboard.Services
 
             var nogOpgenomenSet = new BarChartDataset<long>
             {
-                Label = "Nog opgenomen op de IC",
+                Label = Resources.AgeDistribution_Label_IC,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartYellow),
                 Data = age.NogOpgenomen
             };
@@ -82,8 +83,8 @@ namespace CoronaDashboard.Services
 
             var overledenSet = new BarChartDataset<long>
             {
-                Label = "Overleden bij IC opname",
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartRed),
+                Label = Resources.AgeDistribution_Label_Overleden,
+                //BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartRed),
                 Data = age.Overleden
             };
             await chart.AddDataSet(overledenSet);
