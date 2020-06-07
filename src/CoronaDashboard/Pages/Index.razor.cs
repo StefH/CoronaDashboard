@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
@@ -10,7 +11,7 @@ namespace CoronaDashboard.Pages
         [Inject]
         IChartService ChartService { get; set; }
 
-        private LineChartOptions LineChartOptions = new LineChartOptions
+        LineChartOptions LineChartOptions = new LineChartOptions
         {
             Animation = new Animation { Duration = 0, Easing = "linear" },
             Legend = new Legend
@@ -23,7 +24,7 @@ namespace CoronaDashboard.Pages
             }
         };
 
-        private BarChartOptions AgeBarChartOptions = new BarChartOptions
+        BarChartOptions AgeBarChartOptions = new BarChartOptions
         {
             Animation = new Animation { Duration = 0, Easing = "linear" },
             Legend = new Legend
@@ -33,9 +34,22 @@ namespace CoronaDashboard.Pages
             Tooltips = new Tooltips
             {
                 Enabled = true
+            },
+            Scales = new Scales
+            {
+                XAxes = new List<Axe>
+                {
+                    new Axe { Type = "" }
+                },
+                YAxes = new List<Axe>
+                {
+                    new Axe { Type = "" }
+                }
             }
         };
 
+        string AgeBarChartOptionsAsJson = @"{ ""animation"":{""duration"":0},""legend"":{""display"":false},""scales"":{""xAxes"":[{""stacked"":true}],""yAxes"":[{""stacked"":true}]} }";
+        
         LineChart<double> IntakeCount;
         BarChart<long> AgeDistribution;
 

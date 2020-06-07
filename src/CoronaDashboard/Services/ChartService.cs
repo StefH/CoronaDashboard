@@ -59,7 +59,7 @@ namespace CoronaDashboard.Services
             {
                 Label = Resources.AgeDistribution_Label_Gezond,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartGreen),
-                BorderWidth = 1,
+                //BorderWidth = 1,
                 Data = age.ICVerlaten
             };
             await chart.AddDataSet(ICVerlatenSet);
@@ -68,7 +68,7 @@ namespace CoronaDashboard.Services
             {
                 Label = Resources.AgeDistribution_Label_Verpleegafdeling,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartBlue),
-                BorderWidth = 1,
+                //BorderWidth = 1,
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
             await chart.AddDataSet(ICVerlatenNogOpVerpleegafdelingSet);
