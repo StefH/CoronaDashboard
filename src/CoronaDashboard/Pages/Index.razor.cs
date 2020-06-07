@@ -53,7 +53,7 @@ namespace CoronaDashboard.Pages
         LineChart<double> IntakeCount;
         BarChart<long> AgeDistribution;
 
-        string IntakeCountDates;
+        string IntakeCountDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

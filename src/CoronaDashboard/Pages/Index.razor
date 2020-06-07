@@ -1,93 +1,58 @@
 ﻿@page "/"
-@*<Chart @ref="IntakeCount" Type="ChartType.Bar" TItem="int" />*@
-@*<BarChart @ref="IntakeCount" TItem="int" />*@
 
-@inject IStringLocalizer Localizer
-
-<Row>
-    <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
+<Container Fluid="true">
+    <div class="card-deck">
         <Card Margin="Margin.Is1.OnMobile.Is3.OnAll">
             <CardHeader>
-                @*<img src="images/doctor.png" width="48" height="48" />&nbsp;<b>*@
-                Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.
+                <CardText Alignment="TextAlignment.Left">
+                    Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.
+                </CardText>
             </CardHeader>
             <CardBody>
                 <CardText>
                     Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag.
                 </CardText>
-                <br />
-                <LineChart @ref="IntakeCount" TItem="double" Options="@LineChartOptions" />
-                <CardText Style="font-size: 0.9em">
-                    <div>Periode: @IntakeCountDates</div>
-                    <div>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></div>
-                </CardText>
+                <CardText><br /></CardText>
+                <CardText><LineChart @ref="IntakeCount" TItem="double" Options="@LineChartOptions" /></CardText>
+                @*<br />*@
+
             </CardBody>
+            <CardFooter>
+                <CardText><small class="text-muted">Periode: @IntakeCountDates</small></CardText>
+                <CardText><small class="text-muted">Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
+            </CardFooter>
         </Card>
-    </Column>
-    <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
         <Card Margin="Margin.Is1.OnMobile.Is3.OnAll">
             <CardHeader>
-                Leeftijdsdistributie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.<br />
+                <CardText Alignment="TextAlignment.Left">
+                    Leeftijdsdistributie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.
+                </CardText>
             </CardHeader>
             <CardBody>
-                <CardText>
-                    Deze grafiek toont de leeftijdsverdeling per vijf-jaars categorie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.
+                <CardText>Deze grafiek toont de leeftijdsverdeling per vijf-jaars categorie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.</CardText>
+                <CardText><br /></CardText>
+                <CardText><BarChart @ref="AgeDistribution" TItem="long" OptionsJsonString="@AgeBarChartOptionsAsJson" /></CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Green">██</span>
+                    @Resources.AgeDistribution_Label_Gezond
                 </CardText>
-                <br />
-                <BarChart @ref="AgeDistribution" TItem="long" OptionsJsonString="@AgeBarChartOptionsAsJson" />
-                <Row Style="font-size: 0.8em">
-                    <Column ColumnSize="ColumnSize.Is12">
-                        <span style="color: @AppColors.Green">██</span>
-                        @Resources.AgeDistribution_Label_Gezond
-                    </Column>
-                    <Column ColumnSize="ColumnSize.Is12">
-                        <span style="color: @AppColors.Blue">██</span>
-                        @Resources.AgeDistribution_Label_Verpleegafdeling
-                    </Column>
-                    <Column ColumnSize="ColumnSize.Is12">
-                        <span style="color: @AppColors.Yellow">██</span>
-                        @Resources.AgeDistribution_Label_IC
-                    </Column>
-                    <Column ColumnSize="ColumnSize.Is12">
-                        <span style="color: lightgray">██</span>
-                        @Resources.AgeDistribution_Label_Overleden
-                    </Column>
-                </Row>
-                <br />
-                <CardText Style="font-size: 0.9em">
-                    <div>Periode: @IntakeCountDates</div>
-                    <div>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></div>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Blue">██</span>
+                    @Resources.AgeDistribution_Label_Verpleegafdeling
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Yellow">██</span>
+                    @Resources.AgeDistribution_Label_IC
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: lightgray">██</span>
+                    @Resources.AgeDistribution_Label_Overleden
                 </CardText>
             </CardBody>
+            <CardFooter>
+                <CardText><small class="text-muted">Periode: @IntakeCountDates</small></CardText>
+                <CardText><small class="text-muted">Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
+            </CardFooter>
         </Card>
-    </Column>
-    @*<Column ColumnSize="ColumnSize.Is4.OnTablet.Is3.OnWidescreen.Is12.OnMobile">
-            <Card Margin="Margin.Is4.OnY">
-                <CardImage Source="assets/images/gallery/3.jpg" Alt="Placeholder image">
-                </CardImage>
-                <CardBody>
-                    <CardText>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </CardText>
-                </CardBody>
-            </Card>
-        </Column>*@
-    @*<Column ColumnSize="ColumnSize.Is4.OnTablet.Is3.OnWidescreen.Is12.OnMobile">
-            <Card Margin="Margin.Is4.OnY">
-                <CardBody>
-                    <CardTitle Size="5">Card title</CardTitle>
-                    <CardSubtitle>Support card subtitle</CardSubtitle>
-
-                </CardBody>
-                <CardImage Source="assets/images/gallery/12.jpg" Alt="Placeholder image">
-                </CardImage>
-                <CardBody>
-                    <CardText>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </CardText>
-                    <CardLink Source="#">Card link</CardLink>
-                    <CardLink Source="#">Another link</CardLink>
-                </CardBody>
-            </Card>
-        </Column>*@
-</Row>
+    </div>
+</Container>

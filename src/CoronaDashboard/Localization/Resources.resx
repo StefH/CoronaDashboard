@@ -127,6 +127,6 @@
     <value>Overleden bij IC opname</value>
   </data>
   <data name="AgeDistribution_Label_Verpleegafdeling" xml:space="preserve">
-    <value>De IC levend verlaten heeft maar ligt nog in het ziekenhuis</value>
+    <value>Nog opgenomen op de verpleegafdeling</value>
   </data>
 </root>

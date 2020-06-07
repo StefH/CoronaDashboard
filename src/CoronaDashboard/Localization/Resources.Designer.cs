@@ -88,7 +88,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to De IC levend verlaten heeft maar ligt nog in het ziekenhuis.
+        ///   Looks up a localized string similar to Nog opgenomen op de verpleegafdeling.
         /// </summary>
         internal static string AgeDistribution_Label_Verpleegafdeling {
             get {
