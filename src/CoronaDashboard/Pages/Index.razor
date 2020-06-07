@@ -35,21 +35,25 @@
                 </CardText>
                 <br />
                 <BarChart @ref="AgeDistribution" TItem="long" Options="@AgeBarChartOptions" />
-                <CardText>
-                    <span style="float: left; clear: none;">
-                        <span style="color: @AppColors.Green">███</span>
-                        <span>@Resources.AgeDistribution_Label_Gezond</span>
-                        &nbsp;
-                        <span style="color: @AppColors.Yellow">███</span>
-                        <span>@Resources.AgeDistribution_Label_Verpleegafdeling</span>
-                        &nbsp;
-                        <span style="color: @AppColors.Blue">███</span>
-                        @Resources.AgeDistribution_Label_IC
-                        &nbsp;
-                        <span style="color: lightgray">███</span>
-                        @Resources.AgeDistribution_Label_Overleden
-                    </span>
-                    <br/>
+                <CardText Style="font-size: 0.7em">
+                    <Row>
+                        <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
+                            <span style="color: @AppColors.Green">██</span>
+                            @Resources.AgeDistribution_Label_Gezond
+                        </Column>
+                        <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
+                            <span style="color: @AppColors.Yellow">██</span>
+                            @Resources.AgeDistribution_Label_Verpleegafdeling
+                        </Column>
+                        <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
+                            <span style="color: @AppColors.Blue">██</span>
+                            @Resources.AgeDistribution_Label_IC
+                        </Column>
+                        <Column ColumnSize="ColumnSize.Is12.OnMobile.Is12.OnTablet.Is12.OnDesktop.Is6.OnWidescreen.Is6.OnFullHD">
+                            <span style="color: lightgray">██</span>
+                            @Resources.AgeDistribution_Label_Overleden
+                        </Column>
+                    </Row>
                 </CardText>
                 <br />
                 <CardText>

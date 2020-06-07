@@ -121,12 +121,12 @@
     <value>Ziekenhuis levend verlaten</value>
   </data>
   <data name="AgeDistribution_Label_IC" xml:space="preserve">
-    <value>Nog opgenomen op de IC</value>
+    <value>Nog op de IC</value>
   </data>
   <data name="AgeDistribution_Label_Overleden" xml:space="preserve">
     <value>Overleden bij IC opname</value>
   </data>
   <data name="AgeDistribution_Label_Verpleegafdeling" xml:space="preserve">
-    <value>Nog opgenomen op verpleegafdeling</value>
+    <value>Nog op verpleegafdeling</value>
   </data>
 </root>

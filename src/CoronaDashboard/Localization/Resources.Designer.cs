@@ -70,7 +70,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nog opgenomen op de IC.
+        ///   Looks up a localized string similar to Nog op de IC.
         /// </summary>
         internal static string AgeDistribution_Label_IC {
             get {
@@ -88,7 +88,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nog opgenomen op verpleegafdeling.
+        ///   Looks up a localized string similar to Nog op verpleegafdeling.
         /// </summary>
         internal static string AgeDistribution_Label_Verpleegafdeling {
             get {
