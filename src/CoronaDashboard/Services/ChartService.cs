@@ -55,39 +55,36 @@ namespace CoronaDashboard.Services
 
             await chart.AddLabel(age.Leeftijdsverdeling.ToArray());
 
-            var ICVerlatenSet = new BarChartDataset<long>
+            var overleden = new BarChartDataset<long>
             {
-                Label = Resources.AgeDistribution_Label_Gezond,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartGreen),
-                //BorderWidth = 1,
-                Data = age.ICVerlaten
+                Label = Resources.AgeDistribution_Label_Overleden,
+                Data = age.Overleden
             };
-            await chart.AddDataSet(ICVerlatenSet);
+            await chart.AddDataSet(overleden);
 
-            var ICVerlatenNogOpVerpleegafdelingSet = new BarChartDataset<long>
-            {
-                Label = Resources.AgeDistribution_Label_Verpleegafdeling,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartBlue),
-                //BorderWidth = 1,
-                Data = age.ICVerlatenNogOpVerpleegafdeling
-            };
-            await chart.AddDataSet(ICVerlatenNogOpVerpleegafdelingSet);
-
-            var nogOpgenomenSet = new BarChartDataset<long>
+            var ic = new BarChartDataset<long>
             {
                 Label = Resources.AgeDistribution_Label_IC,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartYellow),
                 Data = age.NogOpgenomen
             };
-            await chart.AddDataSet(nogOpgenomenSet);
+            await chart.AddDataSet(ic);
 
-            var overledenSet = new BarChartDataset<long>
+            var verpleegafdeling = new BarChartDataset<long>
             {
-                Label = Resources.AgeDistribution_Label_Overleden,
-                //BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartRed),
-                Data = age.Overleden
+                Label = Resources.AgeDistribution_Label_Verpleegafdeling,
+                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartBlue),
+                Data = age.ICVerlatenNogOpVerpleegafdeling
             };
-            await chart.AddDataSet(overledenSet);
+            await chart.AddDataSet(verpleegafdeling);
+
+            var gezond = new BarChartDataset<long>
+            {
+                Label = Resources.AgeDistribution_Label_Gezond,
+                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.BarChartGreen),
+                Data = age.ICVerlaten
+            };
+            await chart.AddDataSet(gezond);
 
             await chart.Update();
         }

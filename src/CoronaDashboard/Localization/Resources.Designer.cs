@@ -61,7 +61,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ziekenhuis levend verlaten.
+        ///   Looks up a localized string similar to Het ziekenhuis levend verlaten.
         /// </summary>
         internal static string AgeDistribution_Label_Gezond {
             get {
@@ -70,7 +70,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nog op de IC.
+        ///   Looks up a localized string similar to Nog opgenomen op de IC.
         /// </summary>
         internal static string AgeDistribution_Label_IC {
             get {
@@ -88,7 +88,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nog op verpleegafdeling.
+        ///   Looks up a localized string similar to De IC levend verlaten heeft maar ligt nog in het ziekenhuis.
         /// </summary>
         internal static string AgeDistribution_Label_Verpleegafdeling {
             get {
