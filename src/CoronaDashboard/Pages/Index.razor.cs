@@ -58,47 +58,31 @@ namespace CoronaDashboard.Pages
         {
             if (firstRender)
             {
-                await HandleRedraw();
+                await GetDataAsyncAndUpdateViewAsync();
             }
         }
 
-        async Task HandleRedraw()
+        async Task GetDataAsyncAndUpdateViewAsync()
         {
-            var t1 = Task.Run(async () =>
+            var tasks = new[]
             {
-                IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
-                StateHasChanged();
-            });
+                Task.Run(async () =>
+                {
+                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
+                    StateHasChanged();
+                }),
 
-            var t2 = Task.Run(async () =>
-            {
-                DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
-                StateHasChanged();
-            });
+                Task.Run(async () =>
+                {
+                    DiedAndSurvivorsCumulativeDates =
+                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
+                    StateHasChanged();
+                }),
 
-            var t3 = Task.Run(async () =>
-            {
-                await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
-            });
+                ChartService.GetAgeDistributionStatusAsync(AgeDistribution)
+            };
 
-            await Task.WhenAll(t1, t2, t3);
-
-            //await Task.Run(async () =>
-            //{
-            //    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
-            //    StateHasChanged();
-            //});
-
-            //await Task.Run(async () =>
-            //{
-            //    DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
-            //    StateHasChanged();
-            //});
-
-            //await Task.Run(async () =>
-            //{
-            //    await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
-            //});
+            await Task.WhenAll(tasks);
         }
     }
 }
