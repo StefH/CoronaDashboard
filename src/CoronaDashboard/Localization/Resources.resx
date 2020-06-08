@@ -130,16 +130,16 @@
     <value>Aantal IC opnamen</value>
   </data>
   <data name="DiedAndSurvivorsCumulative_BodyText" xml:space="preserve">
-    <value>Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status.</value>
+    <value>Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
   <data name="DiedAndSurvivorsCumulative_Header" xml:space="preserve">
-    <value>Het cumulatief aantal patiënten met verdachte of bewezen COVID-19 per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
+    <value>Het cumulatief aantal patiënten met verdachte of bewezen COVID-19 per dag.</value>
   </data>
   <data name="IntakeCount_BodyText" xml:space="preserve">
-    <value>Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag.</value>
+    <value>Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
   <data name="IntakeCount_Header" xml:space="preserve">
-    <value>Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
+    <value>Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag.</value>
   </data>
   <data name="IntakeCount_X" xml:space="preserve">
     <value>Datum</value>
