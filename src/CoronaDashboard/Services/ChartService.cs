@@ -32,7 +32,6 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                PointRadius = 2,
                 Data = grouped.Select(d => d.Value).ToList()
             };
             await chart.AddDataSet(set);

@@ -133,7 +133,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal IC opnamen.
+        ///   Looks up a localized string similar to Datum.
         /// </summary>
         internal static string IntakeCount_X {
             get {
@@ -142,7 +142,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datum.
+        ///   Looks up a localized string similar to Aantal IC opnamen.
         /// </summary>
         internal static string IntakeCount_Y {
             get {

@@ -142,10 +142,10 @@
     <value>Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
   <data name="IntakeCount_X" xml:space="preserve">
-    <value>Aantal IC opnamen</value>
+    <value>Datum</value>
   </data>
   <data name="IntakeCount_Y" xml:space="preserve">
-    <value>Datum</value>
+    <value>Aantal IC opnamen</value>
   </data>
   <data name="Label_Gezond" xml:space="preserve">
     <value>Het ziekenhuis levend verlaten</value>
