@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Text.Json;
 using System.Threading.Tasks;
 using Blazorise.Charts;
+using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -11,25 +12,47 @@ namespace CoronaDashboard.Pages
         [Inject]
         IChartService ChartService { get; set; }
 
-        LineChartOptions LineChartOptions = new LineChartOptions
+        string IntakeCountChartOptionsAsJson
         {
-            Animation = new Animation { Duration = 0, Easing = "linear" },
-            Legend = new Legend
+            get
             {
-                Display = false
-            },
-            Tooltips = new Tooltips
-            {
-                Enabled = true
+                var value = new
+                {
+                    animation = new { duration = 0 },
+                    legend = new { display = false },
+                    scales = new
+                    {
+                        xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
+                        yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
+                    }
+                };
+                return JsonSerializer.Serialize(value);
             }
-        };
+        }
+        string AgeDistributionChartOptionsAsJson
+        {
+            get
+            {
+                var value = new
+                {
+                    animation = new { duration = 0 },
+                    legend = new { display = false },
+                    scales = new
+                    {
+                        xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.AgeDistribution_X } } },
+                        yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.AgeDistribution_Y } } }
+                    }
+                };
+                return JsonSerializer.Serialize(value);
+            }
+        }
 
-        const string AgeBarChartOptionsAsJson = @"{ ""animation"":{""duration"":0},""legend"":{""display"":false},""scales"":{""xAxes"":[{""stacked"":true}],""yAxes"":[{""stacked"":true}]} }";
-        
+        LineChart<double> DiedAndSurvivorsCumulative;
         LineChart<double> IntakeCount;
         BarChart<int> AgeDistribution;
 
         string IntakeCountDates = "...";
+        string DiedAndSurvivorsCumulativeDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -41,9 +64,11 @@ namespace CoronaDashboard.Pages
 
         async Task HandleRedraw()
         {
-            IntakeCountDates = await ChartService.GetIntakeCount("Intake Count", IntakeCount);
+            IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
 
             await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
+
+            DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
 
             StateHasChanged();
         }

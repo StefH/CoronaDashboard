@@ -11,7 +11,9 @@ namespace ConsoleApp
         {
             var dataService = new DataService(new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl") });
 
-            var result = await dataService.GetAgeDistributionStatusAsync();
+            var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
+
+            var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
 
             int x = 0;
         }

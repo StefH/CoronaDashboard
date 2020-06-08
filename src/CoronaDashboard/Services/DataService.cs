@@ -5,7 +5,6 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.Models;
-using CoronaDashboard.Models.Api;
 
 namespace CoronaDashboard.Services
 {
@@ -18,19 +17,26 @@ namespace CoronaDashboard.Services
             _httpClient = httpClient;
         }
 
-        public Task<List<Entry>> GetIntakeCountAsync()
+        public Task<List<Entry<int>>> GetIntakeCountAsync()
         {
-            return _httpClient.GetFromJsonAsync<List<Entry>>("/covid-19/public/intake-count");
+            return _httpClient.GetFromJsonAsync<List<Entry<int>>>("/covid-19/public/intake-count");
         }
 
         public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
         {
             var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>("/covid-19/public/age-distribution-status");
 
-            return Map(result);
+            return MapAgeDistribution(result);
         }
 
-        private static AgeDistribution Map(JsonElement[][][] data)
+        public async Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
+        {
+            var result = await _httpClient.GetFromJsonAsync<Entry<int>[][]>("/covid-19/public/died-and-survivors-cumulative");
+
+            return MapDiedAndSurvivorsCumulative(result);
+        }
+
+        private static AgeDistribution MapAgeDistribution(JsonElement[][][] data)
         {
             return new AgeDistribution
             {
@@ -39,6 +45,16 @@ namespace CoronaDashboard.Services
                 ICVerlatenNogOpVerpleegafdeling = data[1].Select(x => x[1].GetInt32()).ToList(),
                 ICVerlaten = data[2].Select(x => x[1].GetInt32()).ToList(),
                 Overleden = data[3].Select(x => x[1].GetInt32()).ToList()
+            };
+        }
+
+        private static DiedAndSurvivorsCumulative MapDiedAndSurvivorsCumulative(Entry<int>[][] data)
+        {
+            return new DiedAndSurvivorsCumulative
+            {
+                Overleden = data[0].ToList(),
+                Verlaten = data[1].ToList(),
+                NogOpVerpleegafdeling = data[2].ToList(),
             };
         }
     }

@@ -4,16 +4,12 @@
     <div class="card-deck">
         <Card Margin="Margin.Is1.OnMobile.Is3.OnAll">
             <CardHeader>
-                <CardText Alignment="TextAlignment.Left">
-                    Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen.
-                </CardText>
+                <CardText Alignment="TextAlignment.Left">@Resources.IntakeCount_Header</CardText>
             </CardHeader>
             <CardBody>
-                <CardText>
-                    Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag.
-                </CardText>
+                <CardText>@Resources.IntakeCount_BodyText</CardText>
                 <CardText><br /></CardText>
-                <CardText><LineChart @ref="IntakeCount" TItem="double" Options="@LineChartOptions" /></CardText>
+                <CardText><LineChart @ref="IntakeCount" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
@@ -22,29 +18,55 @@
         </Card>
         <Card Margin="Margin.Is1.OnMobile.Is3.OnAll">
             <CardHeader>
-                <CardText Alignment="TextAlignment.Left">
-                    Leeftijdsdistributie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.
-                </CardText>
+                <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
             </CardHeader>
             <CardBody>
-                <CardText>Deze grafiek toont de leeftijdsverdeling per vijf-jaars categorie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.</CardText>
+                <CardText>@Resources.DiedAndSurvivorsCumulative_BodyText</CardText>
                 <CardText><br /></CardText>
-                <CardText><BarChart @ref="AgeDistribution" TItem="int" OptionsJsonString="@AgeBarChartOptionsAsJson" /></CardText>
+                <CardText><LineChart @ref="DiedAndSurvivorsCumulative" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
-                    @Resources.AgeDistribution_Label_Gezond
+                    @Resources.Label_Gezond
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Blue">██</span>
-                    @Resources.AgeDistribution_Label_Verpleegafdeling
-                </CardText>
-                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
-                    <span style="color: @AppColors.Yellow">██</span>
-                    @Resources.AgeDistribution_Label_IC
+                    @Resources.Label_Verpleegafdeling
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: lightgray">██</span>
-                    @Resources.AgeDistribution_Label_Overleden
+                    @Resources.Label_Overleden
+                </CardText>
+            </CardBody>
+            <CardFooter>
+                <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
+            </CardFooter>
+        </Card>
+    </div>
+    <div class="card-deck">
+        <Card Margin="Margin.Is1.OnMobile.Is3.OnAll">
+            <CardHeader>
+                <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
+            </CardHeader>
+            <CardBody>
+                <CardText>@Resources.AgeDistribution_BodyText</CardText>
+                <CardText><br /></CardText>
+                <CardText><BarChart @ref="AgeDistribution" TItem="int" OptionsJsonString="@AgeDistributionChartOptionsAsJson" /></CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Green">██</span>
+                    @Resources.Label_Gezond
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Blue">██</span>
+                    @Resources.Label_Verpleegafdeling
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Yellow">██</span>
+                    @Resources.Label_IC
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: lightgray">██</span>
+                    @Resources.Label_Overleden
                 </CardText>
             </CardBody>
             <CardFooter>
@@ -52,5 +74,6 @@
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
+        <Card Style="visibility: hidden" Margin="Margin.Is1.OnMobile.Is3.OnAll"></Card>
     </div>
 </Container>
