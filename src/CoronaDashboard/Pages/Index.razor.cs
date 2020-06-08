@@ -64,13 +64,41 @@ namespace CoronaDashboard.Pages
 
         async Task HandleRedraw()
         {
-            IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
+            var t1 = Task.Run(async () =>
+            {
+                IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
+                StateHasChanged();
+            });
 
-            await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
+            var t2 = Task.Run(async () =>
+            {
+                DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
+                StateHasChanged();
+            });
 
-            DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
+            var t3 = Task.Run(async () =>
+            {
+                await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
+            });
 
-            StateHasChanged();
+            await Task.WhenAll(t1, t2, t3);
+
+            //await Task.Run(async () =>
+            //{
+            //    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
+            //    StateHasChanged();
+            //});
+
+            //await Task.Run(async () =>
+            //{
+            //    DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
+            //    StateHasChanged();
+            //});
+
+            //await Task.Run(async () =>
+            //{
+            //    await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
+            //});
         }
     }
 }
