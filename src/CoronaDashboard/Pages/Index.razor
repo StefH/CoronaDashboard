@@ -14,8 +14,6 @@
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText><LineChart @ref="IntakeCount" TItem="double" Options="@LineChartOptions" /></CardText>
-                @*<br />*@
-
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
@@ -31,7 +29,7 @@
             <CardBody>
                 <CardText>Deze grafiek toont de leeftijdsverdeling per vijf-jaars categorie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst.</CardText>
                 <CardText><br /></CardText>
-                <CardText><BarChart @ref="AgeDistribution" TItem="long" OptionsJsonString="@AgeBarChartOptionsAsJson" /></CardText>
+                <CardText><BarChart @ref="AgeDistribution" TItem="int" OptionsJsonString="@AgeBarChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.AgeDistribution_Label_Gezond

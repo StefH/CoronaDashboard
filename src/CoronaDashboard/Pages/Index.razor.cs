@@ -24,34 +24,10 @@ namespace CoronaDashboard.Pages
             }
         };
 
-        BarChartOptions AgeBarChartOptions = new BarChartOptions
-        {
-            Animation = new Animation { Duration = 0, Easing = "linear" },
-            Legend = new Legend
-            {
-                Display = false
-            },
-            Tooltips = new Tooltips
-            {
-                Enabled = true
-            },
-            Scales = new Scales
-            {
-                XAxes = new List<Axe>
-                {
-                    new Axe { Type = "" }
-                },
-                YAxes = new List<Axe>
-                {
-                    new Axe { Type = "" }
-                }
-            }
-        };
-
-        string AgeBarChartOptionsAsJson = @"{ ""animation"":{""duration"":0},""legend"":{""display"":false},""scales"":{""xAxes"":[{""stacked"":true}],""yAxes"":[{""stacked"":true}]} }";
+        const string AgeBarChartOptionsAsJson = @"{ ""animation"":{""duration"":0},""legend"":{""display"":false},""scales"":{""xAxes"":[{""stacked"":true}],""yAxes"":[{""stacked"":true}]} }";
         
         LineChart<double> IntakeCount;
-        BarChart<long> AgeDistribution;
+        BarChart<int> AgeDistribution;
 
         string IntakeCountDates = "...";
 

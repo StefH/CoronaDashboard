@@ -7,6 +7,6 @@ namespace CoronaDashboard.Services
     {
         Task<string> GetIntakeCount(string label, LineChart<double> chart);
 
-        Task GetAgeDistributionStatusAsync(BarChart<long> chart);
+        Task GetAgeDistributionStatusAsync(BarChart<int> chart);
     }
 }

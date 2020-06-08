@@ -33,9 +33,10 @@ namespace CoronaDashboard
             builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
             builder.Services.AddSingleton(typeof(IStringLocalizer), typeof(StringLocalizer<Resources>));
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl/covid-19/public/") });
+            // HttpClient
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl") });
 
-            builder.Services.AddSingleton<IDataServiceFactory, DataServiceFactory>();
+            builder.Services.AddSingleton<IDataService, DataService>();
             builder.Services.AddSingleton<IChartService, ChartService>();
 
             var host = builder.Build();
