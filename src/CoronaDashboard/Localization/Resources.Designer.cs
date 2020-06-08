@@ -61,6 +61,24 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deze grafiek toont de leeftijdsverdeling per vijf-jaars categorie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst..
+        /// </summary>
+        internal static string AgeDistribution_BodyText {
+            get {
+                return ResourceManager.GetString("AgeDistribution_BodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leeftijdsdistributie van IC-patiënten met verdachte of bewezen COVID-19 naar uitkomst..
+        /// </summary>
+        internal static string AgeDistribution_Header {
+            get {
+                return ResourceManager.GetString("AgeDistribution_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Het ziekenhuis levend verlaten.
         /// </summary>
         internal static string AgeDistribution_Label_Gezond {
@@ -93,6 +111,69 @@ namespace CoronaDashboard.Localization {
         internal static string AgeDistribution_Label_Verpleegafdeling {
             get {
                 return ResourceManager.GetString("AgeDistribution_Label_Verpleegafdeling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leeftijdsverdeling.
+        /// </summary>
+        internal static string AgeDistribution_X {
+            get {
+                return ResourceManager.GetString("AgeDistribution_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal IC opnamen.
+        /// </summary>
+        internal static string AgeDistribution_Y {
+            get {
+                return ResourceManager.GetString("AgeDistribution_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het cumulatief aantal patiënten met verdachte of bewezen COVID-19 op de IC dat is ontslagen van de IC of uit het ziekenhuis of is overleden..
+        /// </summary>
+        internal static string DiedAndSurvivorsCumulative_Header {
+            get {
+                return ResourceManager.GetString("DiedAndSurvivorsCumulative_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag..
+        /// </summary>
+        internal static string IntakeCount_BodyText {
+            get {
+                return ResourceManager.GetString("IntakeCount_BodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
+        /// </summary>
+        internal static string IntakeCount_Header {
+            get {
+                return ResourceManager.GetString("IntakeCount_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal IC opnamen.
+        /// </summary>
+        internal static string IntakeCount_X {
+            get {
+                return ResourceManager.GetString("IntakeCount_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string IntakeCount_Y {
+            get {
+                return ResourceManager.GetString("IntakeCount_Y", resourceCulture);
             }
         }
     }

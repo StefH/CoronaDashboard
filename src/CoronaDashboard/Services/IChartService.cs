@@ -5,8 +5,10 @@ namespace CoronaDashboard.Services
 {
     public interface IChartService
     {
-        Task<string> GetIntakeCount(string label, LineChart<double> chart);
+        Task<string> GetIntakeCountAsync(LineChart<double> chart);
 
         Task GetAgeDistributionStatusAsync(BarChart<int> chart);
+
+        Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<int> chart);
     }
 }
