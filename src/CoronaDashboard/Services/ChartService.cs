@@ -42,35 +42,38 @@ namespace CoronaDashboard.Services
             return $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}";
         }
 
-        public async Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<int> chart)
+        public async Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart)
         {
             var data = await _dataService.GetDiedAndSurvivorsCumulativeAsync();
+            var groupedOverleden = GroupByDays(data.Overleden);
+            var groupedVerlaten = GroupByDays(data.Verlaten);
+            var groupedNogOpVerpleegafdeling = GroupByDays(data.NogOpVerpleegafdeling);
 
             await chart.Clear();
 
-            await chart.AddLabel(data.Overleden.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
+            await chart.AddLabel(groupedOverleden.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
 
-            var overleden = new LineChartDataset<int>
+            var overleden = new LineChartDataset<double>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartLightGray },
-                Data = data.Overleden.Select(d => d.Value).ToList()
+                Data = groupedOverleden.Select(d => d.Value).ToList()
             };
             await chart.AddDataSet(overleden);
 
-            var verlaten = new LineChartDataset<int>
+            var verlaten = new LineChartDataset<double>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.Green },
-                Data = data.Verlaten.Select(d => d.Value).ToList()
+                Data = groupedVerlaten.Select(d => d.Value).ToList()
             };
             await chart.AddDataSet(verlaten);
 
-            var verpleegafdeling = new LineChartDataset<int>
+            var verpleegafdeling = new LineChartDataset<double>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartBlue },
-                Data = data.ICVerlatenNogOpVerpleegafdeling.Select(d => d.Value).ToList()
+                Data = groupedNogOpVerpleegafdeling.Select(d => d.Value).ToList()
             };
             await chart.AddDataSet(verpleegafdeling);
 
@@ -89,7 +92,7 @@ namespace CoronaDashboard.Services
 
             var overleden = new BarChartDataset<int>
             {
-                Label = Resources.AgeDistribution_Label_Overleden,
+                Label = Resources.Label_Overleden,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray),
                 Data = age.Overleden
             };
@@ -97,7 +100,7 @@ namespace CoronaDashboard.Services
 
             var ic = new BarChartDataset<int>
             {
-                Label = Resources.AgeDistribution_Label_IC,
+                Label = Resources.Label_IC,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartYellow),
                 Data = age.NogOpgenomen
             };
@@ -105,7 +108,7 @@ namespace CoronaDashboard.Services
 
             var verpleegafdeling = new BarChartDataset<int>
             {
-                Label = Resources.AgeDistribution_Label_Verpleegafdeling,
+                Label = Resources.Label_Verpleegafdeling,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartBlue),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
@@ -113,7 +116,7 @@ namespace CoronaDashboard.Services
 
             var gezond = new BarChartDataset<int>
             {
-                Label = Resources.AgeDistribution_Label_Gezond,
+                Label = Resources.Label_Gezond,
                 BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartGreen),
                 Data = age.ICVerlaten
             };
@@ -121,8 +124,6 @@ namespace CoronaDashboard.Services
 
             await chart.Update();
         }
-
-
 
         private static List<Entry<double>> GroupByDays(ICollection<Entry<int>> data, int days = 3)
         {

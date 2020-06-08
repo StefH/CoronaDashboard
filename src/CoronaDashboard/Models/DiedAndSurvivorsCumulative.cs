@@ -17,6 +17,6 @@ namespace CoronaDashboard.Models
         /// <summary>
         /// index 2: Het aantal patiënten dat de IC levend verlaten heeft maar nog in het ziekenhuis ligt.
         /// </summary>
-        public List<Entry<int>> ICVerlatenNogOpVerpleegafdeling { get; set; }
+        public List<Entry<int>> NogOpVerpleegafdeling { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
@@ -48,11 +47,12 @@ namespace CoronaDashboard.Pages
             }
         }
 
-        LineChart<int> DiedAndSurvivors;
+        LineChart<double> DiedAndSurvivorsCumulative;
         LineChart<double> IntakeCount;
         BarChart<int> AgeDistribution;
 
         string IntakeCountDates = "...";
+        string DiedAndSurvivorsCumulativeDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -68,7 +68,7 @@ namespace CoronaDashboard.Pages
 
             await ChartService.GetAgeDistributionStatusAsync(AgeDistribution);
 
-            await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivors);
+            DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
 
             StateHasChanged();
         }

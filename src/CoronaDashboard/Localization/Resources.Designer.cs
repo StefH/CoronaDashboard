@@ -79,42 +79,6 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Het ziekenhuis levend verlaten.
-        /// </summary>
-        internal static string AgeDistribution_Label_Gezond {
-            get {
-                return ResourceManager.GetString("AgeDistribution_Label_Gezond", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nog opgenomen op de IC.
-        /// </summary>
-        internal static string AgeDistribution_Label_IC {
-            get {
-                return ResourceManager.GetString("AgeDistribution_Label_IC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Overleden bij IC opname.
-        /// </summary>
-        internal static string AgeDistribution_Label_Overleden {
-            get {
-                return ResourceManager.GetString("AgeDistribution_Label_Overleden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nog opgenomen op de verpleegafdeling.
-        /// </summary>
-        internal static string AgeDistribution_Label_Verpleegafdeling {
-            get {
-                return ResourceManager.GetString("AgeDistribution_Label_Verpleegafdeling", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Leeftijdsverdeling.
         /// </summary>
         internal static string AgeDistribution_X {
@@ -133,7 +97,16 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Het cumulatief aantal patiënten met verdachte of bewezen COVID-19 op de IC dat is ontslagen van de IC of uit het ziekenhuis of is overleden..
+        ///   Looks up a localized string similar to Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status..
+        /// </summary>
+        internal static string DiedAndSurvivorsCumulative_BodyText {
+            get {
+                return ResourceManager.GetString("DiedAndSurvivorsCumulative_BodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het cumulatief aantal patiënten met verdachte of bewezen COVID-19 per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
         /// </summary>
         internal static string DiedAndSurvivorsCumulative_Header {
             get {
@@ -174,6 +147,42 @@ namespace CoronaDashboard.Localization {
         internal static string IntakeCount_Y {
             get {
                 return ResourceManager.GetString("IntakeCount_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het ziekenhuis levend verlaten.
+        /// </summary>
+        internal static string Label_Gezond {
+            get {
+                return ResourceManager.GetString("Label_Gezond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nog opgenomen op de IC.
+        /// </summary>
+        internal static string Label_IC {
+            get {
+                return ResourceManager.GetString("Label_IC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overleden bij IC opname.
+        /// </summary>
+        internal static string Label_Overleden {
+            get {
+                return ResourceManager.GetString("Label_Overleden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nog opgenomen op de verpleegafdeling.
+        /// </summary>
+        internal static string Label_Verpleegafdeling {
+            get {
+                return ResourceManager.GetString("Label_Verpleegafdeling", resourceCulture);
             }
         }
     }

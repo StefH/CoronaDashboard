@@ -53,8 +53,8 @@ namespace CoronaDashboard.Services
             return new DiedAndSurvivorsCumulative
             {
                 Overleden = data[0].ToList(),
-                ICVerlatenNogOpVerpleegafdeling = data[1].ToList(),
-                Verlaten = data[2].ToList()
+                Verlaten = data[1].ToList(),
+                NogOpVerpleegafdeling = data[2].ToList(),
             };
         }
     }
