@@ -48,8 +48,8 @@ namespace CoronaDashboard.Services
             return new BehandelduurDistribution
             {
                 LabelsDagen = data[0].Select(x => $"{x[0].GetInt32()}").ToArray(),
-                NogOpgenomen = data[1].Select(x => x[1].GetInt32()).ToList(),
                 ICVerlatenNogOpVerpleegafdeling = data[0].Select(x => x[1].GetInt32()).ToList(),
+                NogOpgenomen = data[1].Select(x => x[1].GetInt32()).ToList(),
                 ICVerlaten = data[2].Select(x => x[1].GetInt32()).ToList(),
                 Overleden = data[3].Select(x => x[1].GetInt32()).ToList()
             };
@@ -61,8 +61,8 @@ namespace CoronaDashboard.Services
             {
                 LabelsLeeftijdsverdeling = data[0].Select(x => x[0].GetString()).ToArray(),
                 NogOpgenomen = data[0].Select(x => x[1].GetInt32()).ToList(),
-                ICVerlaten = data[1].Select(x => x[1].GetInt32()).ToList(),
-                ICVerlatenNogOpVerpleegafdeling = data[2].Select(x => x[1].GetInt32()).ToList(),
+                ICVerlatenNogOpVerpleegafdeling = data[1].Select(x => x[1].GetInt32()).ToList(),
+                ICVerlaten = data[2].Select(x => x[1].GetInt32()).ToList(),
                 Overleden = data[3].Select(x => x[1].GetInt32()).ToList()
             };
         }
