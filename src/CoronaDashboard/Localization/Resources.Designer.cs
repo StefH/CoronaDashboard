@@ -97,7 +97,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont de verdeling van de IC-behandelduur van patiënten die met verdachte of bewezen COVID-19 status op de IC opgenomen zijn of zijn geweest..
+        ///   Looks up a localized string similar to Deze grafiek toont de verdeling van de IC-behandelduur van patiënten die met verdachte of bewezen COVID-19 status op de IC opgenomen zijn of zijn geweest. De behandelduur wordt afgekapt op 60 dagen. Deze grafiek is zeer dynamisch..
         /// </summary>
         internal static string BehandelduurDistribution_BodyText {
             get {
