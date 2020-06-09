@@ -15,6 +15,8 @@ namespace ConsoleApp
 
             var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
 
+            var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
+
             int x = 0;
         }
     }

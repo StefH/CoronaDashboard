@@ -4,7 +4,7 @@ namespace CoronaDashboard.Models
 {
     public class AgeDistribution
     {
-        public string[] Leeftijdsverdeling { get; set; }
+        public string[] LabelsLeeftijdsverdeling { get; set; }
 
         /// <summary>
         /// Het aantal IC patiënten dat het ziekenhuis levend heeft verlaten.

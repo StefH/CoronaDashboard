@@ -29,27 +29,31 @@ namespace CoronaDashboard.Pages
                 return JsonSerializer.Serialize(value);
             }
         }
-        string AgeDistributionChartOptionsAsJson
+        string AgeDistributionChartOptionsAsJson =>
+            GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
+
+        private string BehandelduurDistributionChartOptionsAsJson =>
+            GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+
+        string GetBarChartOptionsAsJson(string x, string y)
         {
-            get
+            var value = new
             {
-                var value = new
+                animation = new { duration = 0 },
+                legend = new { display = false },
+                scales = new
                 {
-                    animation = new { duration = 0 },
-                    legend = new { display = false },
-                    scales = new
-                    {
-                        xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.AgeDistribution_X } } },
-                        yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.AgeDistribution_Y } } }
-                    }
-                };
-                return JsonSerializer.Serialize(value);
-            }
+                    xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = x } } },
+                    yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = y } } }
+                }
+            };
+            return JsonSerializer.Serialize(value);
         }
 
         LineChart<double> DiedAndSurvivorsCumulative;
         LineChart<double> IntakeCount;
         BarChart<int> AgeDistribution;
+        BarChart<int> BehandelduurDistribution;
 
         string IntakeCountDates = "...";
         string DiedAndSurvivorsCumulativeDates = "...";
@@ -79,7 +83,9 @@ namespace CoronaDashboard.Pages
                     StateHasChanged();
                 }),
 
-                ChartService.GetAgeDistributionStatusAsync(AgeDistribution)
+                ChartService.GetAgeDistributionStatusAsync(AgeDistribution),
+
+                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistribution)
             };
 
             await Task.WhenAll(tasks);

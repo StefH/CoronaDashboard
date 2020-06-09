@@ -74,6 +74,35 @@
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
-        <Card Style="visibility: hidden" Margin="Margin.Is1.OnMobile.Is2.OnAll"></Card>
+        <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
+            <CardHeader>
+                <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
+            </CardHeader>
+            <CardBody>
+                <CardText>@Resources.BehandelduurDistribution_BodyText</CardText>
+                <CardText><br /></CardText>
+                <CardText><BarChart @ref="BehandelduurDistribution" TItem="int" OptionsJsonString="@BehandelduurDistributionChartOptionsAsJson" /></CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Green">██</span>
+                    @Resources.Label_Gezond
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Blue">██</span>
+                    @Resources.Label_Verpleegafdeling
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Yellow">██</span>
+                    @Resources.Label_IC
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: lightgray">██</span>
+                    @Resources.Label_Overleden
+                </CardText>
+            </CardBody>
+            <CardFooter>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
+            </CardFooter>
+        </Card>
     </div>
 </Container>

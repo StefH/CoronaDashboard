@@ -2,7 +2,7 @@
 
 namespace CoronaDashboard.Models
 {
-    public class Entry<T>
+    public class DateValueEntry<T>
     {
         public DateTime Date { get; set; }
 
