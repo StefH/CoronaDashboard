@@ -17,9 +17,9 @@ namespace CoronaDashboard.Services
             _httpClient = httpClient;
         }
 
-        public Task<List<Entry<int>>> GetIntakeCountAsync()
+        public Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
         {
-            return _httpClient.GetFromJsonAsync<List<Entry<int>>>("/covid-19/public/intake-count");
+            return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>("/covid-19/public/intake-count");
         }
 
         public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
@@ -31,16 +31,35 @@ namespace CoronaDashboard.Services
 
         public async Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<Entry<int>[][]>("/covid-19/public/died-and-survivors-cumulative");
+            var result = await _httpClient.GetFromJsonAsync<DateValueEntry<int>[][]>("/covid-19/public/died-and-survivors-cumulative");
 
             return MapDiedAndSurvivorsCumulative(result);
+        }
+
+        public async Task<BehandelduurDistribution> GetBehandelduurDistributionAsync()
+        {
+            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>("/covid-19/public/behandelduur-distribution");
+
+            return MapBehandelduurDistribution(result);
+        }
+
+        private static BehandelduurDistribution MapBehandelduurDistribution(JsonElement[][][] data)
+        {
+            return new BehandelduurDistribution
+            {
+                LabelsDagen = data[0].Select(x => $"{x[0].GetInt32()}").ToArray(),
+                ICVerlatenNogOpVerpleegafdeling = data[0].Select(x => x[1].GetInt32()).ToList(),
+                NogOpgenomen = data[1].Select(x => x[1].GetInt32()).ToList(),
+                ICVerlaten = data[2].Select(x => x[1].GetInt32()).ToList(),
+                Overleden = data[3].Select(x => x[1].GetInt32()).ToList()
+            };
         }
 
         private static AgeDistribution MapAgeDistribution(JsonElement[][][] data)
         {
             return new AgeDistribution
             {
-                Leeftijdsverdeling = data[0].Select(x => x[0].GetString()).ToArray(),
+                LabelsLeeftijdsverdeling = data[0].Select(x => x[0].GetString()).ToArray(),
                 NogOpgenomen = data[0].Select(x => x[1].GetInt32()).ToList(),
                 ICVerlatenNogOpVerpleegafdeling = data[1].Select(x => x[1].GetInt32()).ToList(),
                 ICVerlaten = data[2].Select(x => x[1].GetInt32()).ToList(),
@@ -48,7 +67,7 @@ namespace CoronaDashboard.Services
             };
         }
 
-        private static DiedAndSurvivorsCumulative MapDiedAndSurvivorsCumulative(Entry<int>[][] data)
+        private static DiedAndSurvivorsCumulative MapDiedAndSurvivorsCumulative(DateValueEntry<int>[][] data)
         {
             return new DiedAndSurvivorsCumulative
             {

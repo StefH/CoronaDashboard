@@ -2,9 +2,9 @@
 
 namespace CoronaDashboard.Models
 {
-    public class AgeDistribution
+    public class BehandelduurDistribution
     {
-        public string[] LabelsLeeftijdsverdeling { get; set; }
+        public string[] LabelsDagen { get; set; }
 
         public List<int> ICVerlaten { get; set; }
 

@@ -87,12 +87,12 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            await chart.AddLabel(age.Leeftijdsverdeling.ToArray());
+            await chart.AddLabel(age.LabelsLeeftijdsverdeling.ToArray());
 
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray),
                 Data = age.Overleden
             };
             await chart.AddDataSet(overleden);
@@ -100,7 +100,7 @@ namespace CoronaDashboard.Services
             var ic = new BarChartDataset<int>
             {
                 Label = Resources.Label_IC,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartYellow),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartYellow),
                 Data = age.NogOpgenomen
             };
             await chart.AddDataSet(ic);
@@ -108,7 +108,7 @@ namespace CoronaDashboard.Services
             var verpleegafdeling = new BarChartDataset<int>
             {
                 Label = Resources.Label_Verpleegafdeling,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartBlue),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartBlue),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
             await chart.AddDataSet(verpleegafdeling);
@@ -116,7 +116,7 @@ namespace CoronaDashboard.Services
             var gezond = new BarChartDataset<int>
             {
                 Label = Resources.Label_Gezond,
-                BackgroundColor = age.Leeftijdsverdeling.Select(x => (string)AppColors.ChartGreen),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartGreen),
                 Data = age.ICVerlaten
             };
             await chart.AddDataSet(gezond);
@@ -124,13 +124,56 @@ namespace CoronaDashboard.Services
             await chart.Update();
         }
 
-        private static List<Entry<double>> GroupByDays(ICollection<Entry<int>> data, int days = 3)
+        public async Task GetBehandelduurDistributionAsync(BarChart<int> chart)
+        {
+            var age = await _dataService.GetBehandelduurDistributionAsync();
+
+            await chart.Clear();
+
+            await chart.AddLabel(age.LabelsDagen.ToArray());
+
+            var overleden = new BarChartDataset<int>
+            {
+                Label = Resources.Label_Overleden,
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartLightGray),
+                Data = age.Overleden
+            };
+            await chart.AddDataSet(overleden);
+
+            var ic = new BarChartDataset<int>
+            {
+                Label = Resources.Label_IC,
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartYellow),
+                Data = age.NogOpgenomen
+            };
+            await chart.AddDataSet(ic);
+
+            var verpleegafdeling = new BarChartDataset<int>
+            {
+                Label = Resources.Label_Verpleegafdeling,
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartBlue),
+                Data = age.ICVerlatenNogOpVerpleegafdeling
+            };
+            await chart.AddDataSet(verpleegafdeling);
+
+            var gezond = new BarChartDataset<int>
+            {
+                Label = Resources.Label_Gezond,
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartGreen),
+                Data = age.ICVerlaten
+            };
+            await chart.AddDataSet(gezond);
+
+            await chart.Update();
+        }
+
+        private static List<DateValueEntry<double>> GroupByDays(ICollection<DateValueEntry<int>> data, int days = 3)
         {
             long batchPeriod = TimeSpan.TicksPerDay * days;
 
             return data
                 .GroupBy(entry => entry.Date.Ticks / batchPeriod)
-                .Select(grouping => new Entry<double>
+                .Select(grouping => new DateValueEntry<double>
                 {
                     Date = grouping.Select(e => e.Date).Max(),
                     Value = Math.Round(grouping.Select(e => e.Value).Average(), 1)

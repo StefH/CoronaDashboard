@@ -10,5 +10,7 @@ namespace CoronaDashboard.Services
         Task GetAgeDistributionStatusAsync(BarChart<int> chart);
 
         Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart);
+
+        Task GetBehandelduurDistributionAsync(BarChart<int> chart);
     }
 }

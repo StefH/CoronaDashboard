@@ -97,6 +97,42 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deze grafiek toont de verdeling van de IC-behandelduur van patiënten die met verdachte of bewezen COVID-19 status op de IC opgenomen zijn of zijn geweest. De behandelduur wordt afgekapt op 60 dagen. Deze grafiek is zeer dynamisch..
+        /// </summary>
+        internal static string BehandelduurDistribution_BodyText {
+            get {
+                return ResourceManager.GetString("BehandelduurDistribution_BodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distributie van de IC-behandelduur van patiënten met verdachte of bewezen COVID-19 naar uitkomst.
+        /// </summary>
+        internal static string BehandelduurDistribution_Header {
+            get {
+                return ResourceManager.GetString("BehandelduurDistribution_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behandelduur (in dagen).
+        /// </summary>
+        internal static string BehandelduurDistribution_X {
+            get {
+                return ResourceManager.GetString("BehandelduurDistribution_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal IC opnamen.
+        /// </summary>
+        internal static string BehandelduurDistribution_Y {
+            get {
+                return ResourceManager.GetString("BehandelduurDistribution_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
         /// </summary>
         internal static string DiedAndSurvivorsCumulative_BodyText {

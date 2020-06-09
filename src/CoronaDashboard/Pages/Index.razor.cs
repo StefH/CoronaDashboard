@@ -29,27 +29,31 @@ namespace CoronaDashboard.Pages
                 return JsonSerializer.Serialize(value);
             }
         }
-        string AgeDistributionChartOptionsAsJson
+        string AgeDistributionChartOptionsAsJson =>
+            GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
+
+        private string BehandelduurDistributionChartOptionsAsJson =>
+            GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+
+        string GetBarChartOptionsAsJson(string x, string y)
         {
-            get
+            var value = new
             {
-                var value = new
+                animation = new { duration = 0 },
+                legend = new { display = false },
+                scales = new
                 {
-                    animation = new { duration = 0 },
-                    legend = new { display = false },
-                    scales = new
-                    {
-                        xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.AgeDistribution_X } } },
-                        yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.AgeDistribution_Y } } }
-                    }
-                };
-                return JsonSerializer.Serialize(value);
-            }
+                    xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = x } } },
+                    yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = y } } }
+                }
+            };
+            return JsonSerializer.Serialize(value);
         }
 
-        LineChart<double> DiedAndSurvivorsCumulative;
-        LineChart<double> IntakeCount;
-        BarChart<int> AgeDistribution;
+        LineChart<double> DiedAndSurvivorsCumulativeLineChart;
+        LineChart<double> IntakeCountLineChart;
+        BarChart<int> AgeDistributionBarChart;
+        BarChart<int> BehandelduurDistributionBarChart;
 
         string IntakeCountDates = "...";
         string DiedAndSurvivorsCumulativeDates = "...";
@@ -68,18 +72,20 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
+                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
 
                 Task.Run(async () =>
                 {
                     DiedAndSurvivorsCumulativeDates =
-                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
+                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
                     StateHasChanged();
                 }),
 
-                ChartService.GetAgeDistributionStatusAsync(AgeDistribution)
+                ChartService.GetAgeDistributionStatusAsync(AgeDistributionBarChart),
+
+                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistributionBarChart)
             };
 
             await Task.WhenAll(tasks);

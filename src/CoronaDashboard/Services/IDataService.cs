@@ -6,10 +6,12 @@ namespace CoronaDashboard.Services
 {
     public interface IDataService
     {
-        Task<List<Entry<int>>> GetIntakeCountAsync();
+        Task<List<DateValueEntry<int>>> GetIntakeCountAsync();
 
         Task<AgeDistribution> GetAgeDistributionStatusAsync();
 
         Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync();
+
+        Task<BehandelduurDistribution> GetBehandelduurDistributionAsync();
     }
 }
