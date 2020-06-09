@@ -9,7 +9,7 @@
             <CardBody>
                 <CardText>@Resources.IntakeCount_BodyText</CardText>
                 <CardText><br /></CardText>
-                <CardText><LineChart @ref="IntakeCount" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
+                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
@@ -23,7 +23,7 @@
             <CardBody>
                 <CardText>@Resources.DiedAndSurvivorsCumulative_BodyText</CardText>
                 <CardText><br /></CardText>
-                <CardText><LineChart @ref="DiedAndSurvivorsCumulative" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
+                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond
@@ -51,7 +51,7 @@
             <CardBody>
                 <CardText>@Resources.AgeDistribution_BodyText</CardText>
                 <CardText><br /></CardText>
-                <CardText><BarChart @ref="AgeDistribution" TItem="int" OptionsJsonString="@AgeDistributionChartOptionsAsJson" /></CardText>
+                <CardText><BarChart @ref="AgeDistributionBarChart" TItem="int" OptionsJsonString="@AgeDistributionChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond
@@ -81,7 +81,7 @@
             <CardBody>
                 <CardText>@Resources.BehandelduurDistribution_BodyText</CardText>
                 <CardText><br /></CardText>
-                <CardText><BarChart @ref="BehandelduurDistribution" TItem="int" OptionsJsonString="@BehandelduurDistributionChartOptionsAsJson" /></CardText>
+                <CardText><BarChart @ref="BehandelduurDistributionBarChart" TItem="int" OptionsJsonString="@BehandelduurDistributionChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond

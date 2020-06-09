@@ -50,10 +50,10 @@ namespace CoronaDashboard.Pages
             return JsonSerializer.Serialize(value);
         }
 
-        LineChart<double> DiedAndSurvivorsCumulative;
-        LineChart<double> IntakeCount;
-        BarChart<int> AgeDistribution;
-        BarChart<int> BehandelduurDistribution;
+        LineChart<double> DiedAndSurvivorsCumulativeLineChart;
+        LineChart<double> IntakeCountLineChart;
+        BarChart<int> AgeDistributionBarChart;
+        BarChart<int> BehandelduurDistributionBarChart;
 
         string IntakeCountDates = "...";
         string DiedAndSurvivorsCumulativeDates = "...";
@@ -72,20 +72,20 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCount);
+                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
 
                 Task.Run(async () =>
                 {
                     DiedAndSurvivorsCumulativeDates =
-                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulative);
+                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
                     StateHasChanged();
                 }),
 
-                ChartService.GetAgeDistributionStatusAsync(AgeDistribution),
+                ChartService.GetAgeDistributionStatusAsync(AgeDistributionBarChart),
 
-                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistribution)
+                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistributionBarChart)
             };
 
             await Task.WhenAll(tasks);
