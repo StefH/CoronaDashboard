@@ -1,5 +1,7 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Blazorise;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
@@ -11,6 +13,9 @@ namespace CoronaDashboard.Pages
     {
         [Inject]
         IChartService ChartService { get; set; }
+
+        [Inject]
+        JavaScriptInteropService JavaScriptInteropService { get; set; }
 
         string IntakeCountChartOptionsAsJson
         {
@@ -50,8 +55,13 @@ namespace CoronaDashboard.Pages
             return JsonSerializer.Serialize(value);
         }
 
-        LineChart<double> DiedAndSurvivorsCumulativeLineChart;
+        CardHeader IntakeCountHeader;
+        ElementReference CardDeck1;
+        ElementReference IntakeCountHeaderRef;
+        ElementReference DiedAndSurvivorsCumulativeHeaderRef;
+
         LineChart<double> IntakeCountLineChart;
+        LineChart<double> DiedAndSurvivorsCumulativeLineChart;
         BarChart<int> AgeDistributionBarChart;
         BarChart<int> BehandelduurDistributionBarChart;
 
@@ -62,7 +72,27 @@ namespace CoronaDashboard.Pages
         {
             if (firstRender)
             {
+                await JavaScriptInteropService.SetEventListener();
+                JavaScriptInteropService.OnResize += async delegate { await FixHeaders(); };
+
                 await GetDataAsyncAndUpdateViewAsync();
+                await FixHeaders();
+            }
+        }
+
+        async Task FixHeaders()
+        {
+            int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
+            int header1TopTop = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
+
+            int header2Top = await JavaScriptInteropService.GetTop(DiedAndSurvivorsCumulativeHeaderRef);
+            if (header2Top == header1TopTop)
+            {
+                await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef, header1Height);
+            }
+            else
+            {
+                await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef);
             }
         }
 
@@ -78,8 +108,7 @@ namespace CoronaDashboard.Pages
 
                 Task.Run(async () =>
                 {
-                    DiedAndSurvivorsCumulativeDates =
-                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
+                    DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
                     StateHasChanged();
                 }),
 

@@ -36,6 +36,14 @@ namespace CoronaDashboard.Services
             };
             await chart.AddDataSet(set);
 
+            var lastPoint = new LineChartDataset<double>
+            {
+                Fill = true,
+                BorderColor = new List<string> { AppColors.ChartRed },
+                Data = new List<double> { data.Last().Value }
+            };
+            await chart.AddDataSet(lastPoint);
+
             await chart.Update();
 
             return $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}";

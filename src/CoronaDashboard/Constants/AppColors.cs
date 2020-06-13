@@ -6,7 +6,7 @@ namespace CoronaDashboard.Constants
     {
         public static string LightGray = "#D3D3D3";
 
-        public static string Red = "#DCA0A0";
+        public static string Red = "#DC0000";
 
         public static string Blue = "#9BC2E6";
 
@@ -14,7 +14,9 @@ namespace CoronaDashboard.Constants
 
         public static string Yellow = "#FFD966";
 
-        public static ChartColor ChartDarkBlue = ChartColor.FromRgba(50, 150, 200, 1f);
+        public static string DarkBlue = "#3296C8";
+
+        public static ChartColor ChartDarkBlue = ChartColorExtensions.FromHex(DarkBlue);
 
         public static ChartColor ChartLightGray = ChartColorExtensions.FromHex(LightGray);
 
