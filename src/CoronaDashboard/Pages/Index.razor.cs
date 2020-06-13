@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
+using CoronaDashboard.Models;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -60,12 +61,12 @@ namespace CoronaDashboard.Pages
         ElementReference IntakeCountHeaderRef;
         ElementReference DiedAndSurvivorsCumulativeHeaderRef;
 
-        LineChart<double> IntakeCountLineChart;
+        LineChart<double?> IntakeCountLineChart;
         LineChart<double> DiedAndSurvivorsCumulativeLineChart;
         BarChart<int> AgeDistributionBarChart;
         BarChart<int> BehandelduurDistributionBarChart;
 
-        string IntakeCountDates = "...";
+        IntakeCountDetails IntakeCountDetails = new IntakeCountDetails { Dates = "..." };
         string DiedAndSurvivorsCumulativeDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -102,7 +103,7 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
+                    IntakeCountDetails = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
 

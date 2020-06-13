@@ -6,7 +6,7 @@ namespace CoronaDashboard.Constants
     {
         public static string LightGray = "#D3D3D3";
 
-        public static string Red = "#DC0000";
+        public static string Red = "#DC4040";
 
         public static string Blue = "#9BC2E6";
 

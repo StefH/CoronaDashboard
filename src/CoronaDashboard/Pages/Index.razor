@@ -8,16 +8,20 @@
             </div>
             @*<CardHeader @ref="IntakeCountHeader"></CardHeader>*@
             <CardBody>
-                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson"/></CardText>
+                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.IntakeCount_Y
                 </CardText>
-                <CardText><br/></CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Red">██</span>
+                    @string.Format(Resources.IntakeCount_Today, IntakeCountDetails.Today)
+                </CardText>
+                <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@Resources.IntakeCount_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
@@ -26,10 +30,10 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
             </div>
             @*<CardHeader>
-                <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
-            </CardHeader>*@
+                    <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
+                </CardHeader>*@
             <CardBody>
-                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson"/></CardText>
+                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond
@@ -42,7 +46,7 @@
                     <span style="color: lightgray">██</span>
                     @Resources.Label_Overleden
                 </CardText>
-                <CardText><br/></CardText>
+                <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@Resources.DiedAndSurvivorsCumulative_BodyText</CardText>
             </CardBody>
             <CardFooter>
@@ -78,7 +82,7 @@
                 <CardText Style="font-size: 0.9em">@Resources.AgeDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
@@ -108,7 +112,7 @@
                 <CardText Style="font-size: 0.9em">@Resources.BehandelduurDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>

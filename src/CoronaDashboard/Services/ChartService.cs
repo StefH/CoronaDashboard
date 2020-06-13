@@ -19,7 +19,7 @@ namespace CoronaDashboard.Services
             _dataService = dataService;
         }
 
-        public async Task<string> GetIntakeCountAsync(LineChart<double> chart)
+        public async Task<IntakeCountDetails> GetIntakeCountAsync(LineChart<double?> chart)
         {
             var data = await _dataService.GetIntakeCountAsync();
             var grouped = GroupByDays(data);
@@ -28,25 +28,36 @@ namespace CoronaDashboard.Services
 
             await chart.AddLabel(grouped.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
 
-            var set = new LineChartDataset<double>
+            var set = new LineChartDataset<double?>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => d.Value).ToList()
+                Data = grouped.Select(d => (double?) d.Value).ToList()
             };
             await chart.AddDataSet(set);
 
-            var lastPoint = new LineChartDataset<double>
+            int lastValue = data.Last().Value;
+            var points = Enumerable.Range(0, grouped.Count - 1).Select(x => (double?)null).ToList();
+            points.Add(lastValue);
+
+            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string) null).ToList();
+            pointColors.Add(AppColors.ChartRed);
+            var lastPoint = new LineChartDataset<double?>
             {
-                Fill = true,
-                BorderColor = new List<string> { AppColors.ChartRed },
-                Data = new List<double> { data.Last().Value }
+                Fill = false,
+                PointBackgroundColor = pointColors,
+                PointBorderColor = pointColors,
+                Data = points
             };
             await chart.AddDataSet(lastPoint);
 
             await chart.Update();
 
-            return $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}";
+            return new IntakeCountDetails
+            {
+                Dates = $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}",
+                Today = lastValue
+            };
         }
 
         public async Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart)

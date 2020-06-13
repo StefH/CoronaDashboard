@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Blazorise.Charts;
+using CoronaDashboard.Models;
 
 namespace CoronaDashboard.Services
 {
     public interface IChartService
     {
-        Task<string> GetIntakeCountAsync(LineChart<double> chart);
+        Task<IntakeCountDetails> GetIntakeCountAsync(LineChart<double?> chart);
 
         Task GetAgeDistributionStatusAsync(BarChart<int> chart);
 

@@ -169,6 +169,15 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}.
+        /// </summary>
+        internal static string IntakeCount_Today {
+            get {
+                return ResourceManager.GetString("IntakeCount_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datum.
         /// </summary>
         internal static string IntakeCount_X {
