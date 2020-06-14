@@ -60,7 +60,10 @@
     <!-- End Single Page Apps for GitHub Pages -->
 
     <script type="text/javascript">
-        window.setEventListener = (dotnetReference) => window.addEventListener("resize", () => dotnetReference.invokeMethodAsync('OnBrowserResize'));
+        window.setEventListener = (dotnetReference) => {
+            window.addEventListener('resize', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
+            window.addEventListener('orientationchange', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
+        }
 
         window.getClientHeight = (element) => {
             return element.clientHeight;

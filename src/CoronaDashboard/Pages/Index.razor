@@ -57,9 +57,12 @@
     </div>
     <div class="card-deck">
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
-            <CardHeader>
+            <div class="card-header" @ref="AgeDistributionHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
-            </CardHeader>
+            </div>
+            @*<CardHeader>
+                    <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
+                </CardHeader>*@
             <CardBody>
                 <CardText><BarChart @ref="AgeDistributionBarChart" TItem="int" OptionsJsonString="@AgeDistributionChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
@@ -87,9 +90,12 @@
             </CardFooter>
         </Card>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
-            <CardHeader>
+            <div class="card-header" @ref="BehandelduurDistributionHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
-            </CardHeader>
+            </div>
+            @*<CardHeader>
+                    <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
+                </CardHeader>*@
             <CardBody>
                 <CardText><BarChart @ref="BehandelduurDistributionBarChart" TItem="int" OptionsJsonString="@BehandelduurDistributionChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">

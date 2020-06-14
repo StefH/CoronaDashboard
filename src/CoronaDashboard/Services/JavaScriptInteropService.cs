@@ -17,14 +17,14 @@ namespace CoronaDashboard.Services
             _dotNetObjectReference = DotNetObjectReference.Create(this);
         }
 
-        public event Func<Task> OnResize;
+        public event Func<Task> OnResizeOrRotate;
 
         [JSInvokable]
-        public async Task OnBrowserResize()
+        public async Task OnBrowserResizeOrRotate()
         {
-            if (OnResize != null)
+            if (OnResizeOrRotate != null)
             {
-                await OnResize.Invoke();
+                await OnResizeOrRotate.Invoke();
             }
         }
 

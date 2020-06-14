@@ -57,6 +57,8 @@ namespace CoronaDashboard.Pages
         ElementReference CardDeck1;
         ElementReference IntakeCountHeaderRef;
         ElementReference DiedAndSurvivorsCumulativeHeaderRef;
+        ElementReference AgeDistributionHeaderRef;
+        ElementReference BehandelduurDistributionHeaderRef;
 
         LineChart<double?> IntakeCountLineChart;
         LineChart<double> DiedAndSurvivorsCumulativeLineChart;
@@ -71,7 +73,7 @@ namespace CoronaDashboard.Pages
             if (firstRender)
             {
                 await JavaScriptInteropService.SetEventListener();
-                JavaScriptInteropService.OnResize += async delegate { await FixHeaders(); };
+                JavaScriptInteropService.OnResizeOrRotate += async delegate { await FixHeaders(); };
 
                 await GetDataAsyncAndUpdateViewAsync();
                 await FixHeaders();
@@ -91,6 +93,19 @@ namespace CoronaDashboard.Pages
             else
             {
                 await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef);
+            }
+
+            int header4Height = await JavaScriptInteropService.GetClientHeight(BehandelduurDistributionHeaderRef);
+            int header4Top = await JavaScriptInteropService.GetTop(BehandelduurDistributionHeaderRef);
+
+            int header3Top = await JavaScriptInteropService.GetTop(AgeDistributionHeaderRef);
+            if (header3Top == header4Top)
+            {
+                await JavaScriptInteropService.SetClientHeight(AgeDistributionHeaderRef, header4Height);
+            }
+            else
+            {
+                await JavaScriptInteropService.SetClientHeight(AgeDistributionHeaderRef);
             }
         }
 
