@@ -36,8 +36,11 @@ namespace CoronaDashboard
             // HttpClient
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl") });
 
-            builder.Services.AddSingleton<IDataService, DataService>();
-            builder.Services.AddSingleton<IChartService, ChartService>();
+            // Services
+            builder.Services.AddScoped<IDataService, DataService>();
+            builder.Services.AddScoped<IChartService, ChartService>();
+            builder.Services.AddScoped<JavaScriptInteropService>();
+            builder.Services.AddScoped<BlazoriseInteropServices>();
 
             var host = builder.Build();
 

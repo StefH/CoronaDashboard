@@ -13,32 +13,53 @@ namespace CoronaDashboard.Services
     public class ChartService : IChartService
     {
         private readonly IDataService _dataService;
+        private readonly BlazoriseInteropServices _blazoriseInteropServices;
 
-        public ChartService(IDataService dataService)
+        public ChartService(IDataService dataService, BlazoriseInteropServices blazoriseInteropServices)
         {
             _dataService = dataService;
+            _blazoriseInteropServices = blazoriseInteropServices;
         }
 
-        public async Task<string> GetIntakeCountAsync(LineChart<double> chart)
+        public async Task<IntakeCountDetails> GetIntakeCountAsync(LineChart<double?> chart)
         {
             var data = await _dataService.GetIntakeCountAsync();
             var grouped = GroupByDays(data);
 
             await chart.Clear();
 
-            await chart.AddLabel(grouped.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
+            await _blazoriseInteropServices.AddChartLabels(chart.ElementId, GetLabelsWithYear(grouped.Select(g => g.Date)));
 
-            var set = new LineChartDataset<double>
+            var set = new LineChartDataset<double?>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => d.Value).ToList()
+                Data = grouped.Select(d => (double?)d.Value).ToList()
             };
             await chart.AddDataSet(set);
 
+            int lastValue = data.Last().Value;
+            var points = Enumerable.Range(0, grouped.Count - 1).Select(x => (double?)null).ToList();
+            points.Add(lastValue);
+
+            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
+            pointColors.Add(AppColors.ChartRed);
+            var lastPoint = new LineChartDataset<double?>
+            {
+                Fill = false,
+                PointBackgroundColor = pointColors,
+                PointBorderColor = pointColors,
+                Data = points
+            };
+            await chart.AddDataSet(lastPoint);
+
             await chart.Update();
 
-            return $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}";
+            return new IntakeCountDetails
+            {
+                Dates = $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}",
+                Today = lastValue
+            };
         }
 
         public async Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart)
@@ -50,7 +71,8 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            await chart.AddLabel(groupedOverleden.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
+            // await chart.AddLabel(groupedOverleden.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
+            await _blazoriseInteropServices.AddChartLabels(chart.ElementId, GetLabelsWithYear(groupedOverleden.Select(g => g.Date)));
 
             var overleden = new LineChartDataset<double>
             {
@@ -179,6 +201,26 @@ namespace CoronaDashboard.Services
                     Value = Math.Round(grouping.Select(e => e.Value).Average(), 1)
                 })
                 .ToList();
+        }
+
+        private static IEnumerable<object> GetLabelsWithYear(IEnumerable<DateTime> entries)
+        {
+            var years = new List<string>();
+            foreach (var entry in entries.Select(e => new { Date = DateUtils.ToShortDate(e.Date), Year = e.Date.ToString("yyyy") }))
+            {
+                object label;
+                if (!years.Contains(entry.Year))
+                {
+                    years.Add(entry.Year);
+                    label = new[] { entry.Date, entry.Year };
+                }
+                else
+                {
+                    label = entry.Date;
+                }
+
+                yield return label;
+            }
         }
     }
 }

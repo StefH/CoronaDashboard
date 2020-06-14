@@ -1,28 +1,38 @@
 ﻿@page "/"
 
 <Container Fluid="true">
-    <div class="card-deck">
+    <div class="card-deck" @ref="@CardDeck1">
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
-            <CardHeader>
+            <div class="card-header" @ref="IntakeCountHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.IntakeCount_Header</CardText>
-            </CardHeader>
+            </div>
+            @*<CardHeader @ref="IntakeCountHeader"></CardHeader>*@
             <CardBody>
-                <CardText>@Resources.IntakeCount_BodyText</CardText>
+                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.DarkBlue">██</span>
+                    @Resources.IntakeCount_Y
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Red">██</span>
+                    @string.Format(Resources.IntakeCount_Today, IntakeCountDetails.Today)
+                </CardText>
                 <CardText><br /></CardText>
-                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
+                <CardText Style="font-size: 0.9em">@Resources.IntakeCount_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
-            <CardHeader>
+            <div class="card-header" @ref="DiedAndSurvivorsCumulativeHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
-            </CardHeader>
+            </div>
+            @*<CardHeader>
+                    <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
+                </CardHeader>*@
             <CardBody>
-                <CardText>@Resources.DiedAndSurvivorsCumulative_BodyText</CardText>
-                <CardText><br /></CardText>
                 <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsJsonString="@IntakeCountChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
@@ -36,6 +46,8 @@
                     <span style="color: lightgray">██</span>
                     @Resources.Label_Overleden
                 </CardText>
+                <CardText><br /></CardText>
+                <CardText Style="font-size: 0.9em">@Resources.DiedAndSurvivorsCumulative_BodyText</CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDates</small></CardText>
@@ -49,8 +61,6 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
             </CardHeader>
             <CardBody>
-                <CardText>@Resources.AgeDistribution_BodyText</CardText>
-                <CardText><br /></CardText>
                 <CardText><BarChart @ref="AgeDistributionBarChart" TItem="int" OptionsJsonString="@AgeDistributionChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
@@ -68,9 +78,11 @@
                     <span style="color: lightgray">██</span>
                     @Resources.Label_Overleden
                 </CardText>
+                <CardText><br /></CardText>
+                <CardText Style="font-size: 0.9em">@Resources.AgeDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
@@ -79,8 +91,6 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
             </CardHeader>
             <CardBody>
-                <CardText>@Resources.BehandelduurDistribution_BodyText</CardText>
-                <CardText><br /></CardText>
                 <CardText><BarChart @ref="BehandelduurDistributionBarChart" TItem="int" OptionsJsonString="@BehandelduurDistributionChartOptionsAsJson" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
@@ -98,11 +108,14 @@
                     <span style="color: lightgray">██</span>
                     @Resources.Label_Overleden
                 </CardText>
+                <CardText><br /></CardText>
+                <CardText Style="font-size: 0.9em">@Resources.BehandelduurDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
     </div>
+    <Text Color="TextColor.Muted" Alignment="TextAlignment.Center"><small>@((MarkupString)Resources.Copyright)</small></Text>
 </Container>

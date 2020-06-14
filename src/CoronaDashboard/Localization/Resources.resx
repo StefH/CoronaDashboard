@@ -141,6 +141,9 @@
   <data name="BehandelduurDistribution_Y" xml:space="preserve">
     <value>Aantal IC opnamen</value>
   </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright © Stef Heyenrath 2020 (&lt;a href="https://github.com/StefH/CoronaDashboard"&gt;Source Code&lt;/a&gt;)</value>
+  </data>
   <data name="DiedAndSurvivorsCumulative_BodyText" xml:space="preserve">
     <value>Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
@@ -152,6 +155,10 @@
   </data>
   <data name="IntakeCount_Header" xml:space="preserve">
     <value>Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag.</value>
+  </data>
+  <data name="IntakeCount_Today" xml:space="preserve">
+    <value>Aantal IC patiënten vandaag: {0}</value>
+    <comment>Use string formatter</comment>
   </data>
   <data name="IntakeCount_X" xml:space="preserve">
     <value>Datum</value>

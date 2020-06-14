@@ -1,7 +1,9 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
+using Blazorise;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
+using CoronaDashboard.Models;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -11,6 +13,9 @@ namespace CoronaDashboard.Pages
     {
         [Inject]
         IChartService ChartService { get; set; }
+
+        [Inject]
+        JavaScriptInteropService JavaScriptInteropService { get; set; }
 
         string IntakeCountChartOptionsAsJson
         {
@@ -29,11 +34,9 @@ namespace CoronaDashboard.Pages
                 return JsonSerializer.Serialize(value);
             }
         }
-        string AgeDistributionChartOptionsAsJson =>
-            GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
+        string AgeDistributionChartOptionsAsJson => GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
 
-        private string BehandelduurDistributionChartOptionsAsJson =>
-            GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+        private string BehandelduurDistributionChartOptionsAsJson => GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
 
         string GetBarChartOptionsAsJson(string x, string y)
         {
@@ -50,19 +53,44 @@ namespace CoronaDashboard.Pages
             return JsonSerializer.Serialize(value);
         }
 
+        CardHeader IntakeCountHeader;
+        ElementReference CardDeck1;
+        ElementReference IntakeCountHeaderRef;
+        ElementReference DiedAndSurvivorsCumulativeHeaderRef;
+
+        LineChart<double?> IntakeCountLineChart;
         LineChart<double> DiedAndSurvivorsCumulativeLineChart;
-        LineChart<double> IntakeCountLineChart;
         BarChart<int> AgeDistributionBarChart;
         BarChart<int> BehandelduurDistributionBarChart;
 
-        string IntakeCountDates = "...";
+        IntakeCountDetails IntakeCountDetails = new IntakeCountDetails { Dates = "..." };
         string DiedAndSurvivorsCumulativeDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
+                await JavaScriptInteropService.SetEventListener();
+                JavaScriptInteropService.OnResize += async delegate { await FixHeaders(); };
+
                 await GetDataAsyncAndUpdateViewAsync();
+                await FixHeaders();
+            }
+        }
+
+        async Task FixHeaders()
+        {
+            int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
+            int header1Top = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
+
+            int header2Top = await JavaScriptInteropService.GetTop(DiedAndSurvivorsCumulativeHeaderRef);
+            if (header2Top == header1Top)
+            {
+                await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef, header1Height);
+            }
+            else
+            {
+                await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef);
             }
         }
 
@@ -72,14 +100,13 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
+                    IntakeCountDetails = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
 
                 Task.Run(async () =>
                 {
-                    DiedAndSurvivorsCumulativeDates =
-                        await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
+                    DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
                     StateHasChanged();
                 }),
 

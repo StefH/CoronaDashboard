@@ -133,6 +133,15 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;Source Code&lt;/a&gt;).
+        /// </summary>
+        internal static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
         /// </summary>
         internal static string DiedAndSurvivorsCumulative_BodyText {
@@ -165,6 +174,15 @@ namespace CoronaDashboard.Localization {
         internal static string IntakeCount_Header {
             get {
                 return ResourceManager.GetString("IntakeCount_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}.
+        /// </summary>
+        internal static string IntakeCount_Today {
+            get {
+                return ResourceManager.GetString("IntakeCount_Today", resourceCulture);
             }
         }
         
