@@ -30,7 +30,7 @@ namespace CoronaDashboard.Services
 
         public ValueTask SetEventListener()
         {
-            return _runtime.InvokeVoidAsync("setEventListener", _dotNetObjectReference);
+            return _runtime.InvokeVoidAsync("setEventListeners", _dotNetObjectReference);
         }
 
         public async Task<int> GetClientHeight(ElementReference element)

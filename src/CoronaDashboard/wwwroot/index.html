@@ -60,7 +60,7 @@
     <!-- End Single Page Apps for GitHub Pages -->
 
     <script type="text/javascript">
-        window.setEventListener = (dotnetReference) => {
+        window.setEventListeners = (dotnetReference) => {
             window.addEventListener('resize', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
             window.addEventListener('orientationchange', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
         }
@@ -70,7 +70,7 @@
         }
 
         window.getTop = (element) => {
-            return element.getBoundingClientRect().top;
+            return element.getBoundingClientRect().top | 0; // https://stackoverflow.com/questions/8388440/converting-a-double-to-an-int-in-javascript-without-rounding
         }
 
         window.setClientHeight = (element, height) => {
