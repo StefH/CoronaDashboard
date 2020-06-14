@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Charts;
@@ -35,11 +34,9 @@ namespace CoronaDashboard.Pages
                 return JsonSerializer.Serialize(value);
             }
         }
-        string AgeDistributionChartOptionsAsJson =>
-            GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
+        string AgeDistributionChartOptionsAsJson => GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
 
-        private string BehandelduurDistributionChartOptionsAsJson =>
-            GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+        private string BehandelduurDistributionChartOptionsAsJson => GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
 
         string GetBarChartOptionsAsJson(string x, string y)
         {
@@ -84,10 +81,10 @@ namespace CoronaDashboard.Pages
         async Task FixHeaders()
         {
             int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
-            int header1TopTop = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
+            int header1Top = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
 
             int header2Top = await JavaScriptInteropService.GetTop(DiedAndSurvivorsCumulativeHeaderRef);
-            if (header2Top == header1TopTop)
+            if (header2Top == header1Top)
             {
                 await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef, header1Height);
             }
