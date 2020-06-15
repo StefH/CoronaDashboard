@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
@@ -17,30 +16,24 @@ namespace CoronaDashboard.Pages
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
 
-        string IntakeCountChartOptionsAsJson
+        readonly object IntakeCountChartOptionsObject = new
         {
-            get
+            animation = new { duration = 0 },
+            legend = new { display = false },
+            scales = new
             {
-                var value = new
-                {
-                    animation = new { duration = 0 },
-                    legend = new { display = false },
-                    scales = new
-                    {
-                        xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
-                        yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
-                    }
-                };
-                return JsonSerializer.Serialize(value);
+                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
+                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
             }
-        }
-        string AgeDistributionChartOptionsAsJson => GetBarChartOptionsAsJson(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
+        };
 
-        private string BehandelduurDistributionChartOptionsAsJson => GetBarChartOptionsAsJson(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+        object AgeDistributionChartOptionsObject => GetBarChartOptionObject(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
 
-        string GetBarChartOptionsAsJson(string x, string y)
+        object BehandelduurDistributionChartOptionsObject => GetBarChartOptionObject(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+
+        object GetBarChartOptionObject(string x, string y)
         {
-            var value = new
+            return new
             {
                 animation = new { duration = 0 },
                 legend = new { display = false },
@@ -50,7 +43,6 @@ namespace CoronaDashboard.Pages
                     yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = y } } }
                 }
             };
-            return JsonSerializer.Serialize(value);
         }
 
         CardHeader IntakeCountHeader;

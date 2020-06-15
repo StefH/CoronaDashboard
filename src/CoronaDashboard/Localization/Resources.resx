@@ -142,7 +142,7 @@
     <value>Aantal IC opnamen</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Copyright © Stef Heyenrath 2020 (&lt;a href="https://github.com/StefH/CoronaDashboard"&gt;Source Code&lt;/a&gt;)</value>
+    <value>Copyright © Stef Heyenrath 2020 (&lt;a href="https://github.com/StefH/CoronaDashboard"&gt;source&lt;/a&gt;)</value>
   </data>
   <data name="DiedAndSurvivorsCumulative_BodyText" xml:space="preserve">
     <value>Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>

@@ -133,7 +133,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;Source Code&lt;/a&gt;).
+        ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;source&lt;/a&gt;).
         /// </summary>
         internal static string Copyright {
             get {
