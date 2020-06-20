@@ -20,12 +20,36 @@
 
 <body>
     <app>
-        <br />
-        <div style="text-align: center; vertical-align: 50%">
-            <div><img src="images/spinner_64x64.gif" /></div>
-            <div>Het Corona Dashboard wordt geladen...</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div style="text-align: center; vertical-align: 50%">
+                        <div><img src="images/spinner_64x64.gif" /></div>
+                        <div>Het Corona Dashboard wordt geladen...</div>
+                        <br />
+                        <div class="progress">
+                            <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" style="width: 0"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </app>
+
+    <script type="text/javascript">
+        const progressbar = document.getElementById('progressbar');
+        var i = 0;
+        window.loadResourceCallback = (total, response) => {
+            if (response.url.endsWith('.dll')) {
+                i++;
+                const value = parseInt((i * 100.0) / total);
+                const pct = value + '%';
+
+                progressbar.style.width = pct;
+                console.log(i + '/' + total + ' (' + pct + ') ' + response.url);
+            }
+        }
+    </script>
 
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
@@ -48,8 +72,10 @@
                     q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
                 });
                 if (q.p !== undefined) {
-                    window.history.replaceState(null, null,
-                        l.pathname.slice(0, -1) + (q.p || '') +
+                    window.history.replaceState(null,
+                        null,
+                        l.pathname.slice(0, -1) +
+                        (q.p || '') +
                         (q.q ? ('?' + q.q) : '') +
                         l.hash
                     );
@@ -62,7 +88,8 @@
     <script type="text/javascript">
         window.setEventListeners = (dotnetReference) => {
             window.addEventListener('resize', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
-            window.addEventListener('orientationchange', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
+            window.addEventListener('orientationchange',
+                () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
         }
 
         window.getClientHeight = (element) => {
@@ -70,7 +97,8 @@
         }
 
         window.getTop = (element) => {
-            return element.getBoundingClientRect().top | 0; // https://stackoverflow.com/questions/8388440/converting-a-double-to-an-int-in-javascript-without-rounding
+            return element.getBoundingClientRect().top |
+                0; // https://stackoverflow.com/questions/8388440/converting-a-double-to-an-int-in-javascript-without-rounding
         }
 
         window.setClientHeight = (element, height) => {
