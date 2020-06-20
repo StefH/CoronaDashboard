@@ -28,7 +28,7 @@
                         <div>Het Corona Dashboard wordt geladen...</div>
                         <br />
                         <div class="progress">
-                            <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" style="width: 0"></div>
+                            <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" style="width: 10%"></div>
                         </div>
                     </div>
                 </div>
@@ -37,12 +37,14 @@
     </app>
 
     <script type="text/javascript">
+        const start = 10;
+        const max = 90.0;
         const progressbar = document.getElementById('progressbar');
         var i = 0;
         window.loadResourceCallback = (total, response) => {
             if (response.url.endsWith('.dll')) {
                 i++;
-                const value = parseInt((i * 100.0) / total);
+                const value = start + parseInt((i * max) / total);
                 const pct = value + '%';
 
                 progressbar.style.width = pct;
