@@ -42,4 +42,10 @@
     <Folder Include="Components\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\blazor.webassembly.js">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
