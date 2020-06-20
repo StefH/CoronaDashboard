@@ -47,8 +47,8 @@
                 .then(data => {
                     totalResources =
                         Object.keys(data.resources.assembly).length +
-                        // Object.keys(data.resources.pdb).length +
-                        Object.keys(data.resources.runtime).length;
+                        Object.keys(data.resources.runtime).length +
+                        -1; // skip "dotnet.3.2.0.js"
                 });
         })();
 

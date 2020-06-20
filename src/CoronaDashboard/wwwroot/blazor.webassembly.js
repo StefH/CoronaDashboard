@@ -2263,13 +2263,17 @@
                     return r.loadResource(o, t(o), e[o], n)
                 }))
             }, e.prototype.loadResource = function (e, t, n, r) {
-                var r = {
+                var x = {
                     name: e,
                     url: t,
-                    response: this.cacheIfUsed ? this.loadResourceWithCaching(this.cacheIfUsed, e, t, n, r) : this.loadResourceWithoutCaching(e, t, n, r)
-                }
-                r.response.then((x) => { window.loadResourceCallback(e, x) });
-                return r;
+                    response: this.cacheIfUsed
+                        ? this.loadResourceWithCaching(this.cacheIfUsed, e, t, n, r)
+                        : this.loadResourceWithoutCaching(e, t, n, r)
+                };
+                x.response.then((y) => {
+                    window.loadResourceCallback(e, y);
+                });
+                return x;
             }, e.prototype.logToConsole = function () {
                 var e = Object.values(this.cacheLoads),
                     t = Object.values(this.networkLoads),
