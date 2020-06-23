@@ -13,9 +13,13 @@ namespace CoronaDashboard.Services
             _runtime = runtime;
         }
 
-        public async Task<bool> AddChartLabels(string id, IEnumerable<object> labels)
+        /// <summary>
+        /// https://github.com/stsrki/Blazorise/issues/983
+        /// Feature request: Add multiline labels support for ChartJS component 
+        /// </summary>
+        public ValueTask AddChartLabels(string id, IEnumerable<object> labels)
         {
-            return await _runtime.InvokeAsync<bool>("blazoriseCharts.addLabel", id, labels);
+            return _runtime.InvokeVoidAsync("blazoriseCharts.addLabel", id, labels);
         }
     }
 }

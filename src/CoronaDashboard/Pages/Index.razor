@@ -1,14 +1,14 @@
 ﻿@page "/"
 
 <Container Fluid="true">
-    <div class="card-deck" @ref="@CardDeck1">
+    <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
             <div class="card-header" @ref="IntakeCountHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.IntakeCount_Header</CardText>
             </div>
             @*<CardHeader @ref="IntakeCountHeader"></CardHeader>*@
             <CardBody>
-                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
+                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" Options="@IntakeCountChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.IntakeCount_Y
@@ -33,7 +33,7 @@
                     <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
                 </CardHeader>*@
             <CardBody>
-                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
+                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" Options="@IntakeCountChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond
@@ -54,8 +54,8 @@
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
-    </div>
-    <div class="card-deck">
+    </CardDeck>
+    <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
             <div class="card-header" @ref="AgeDistributionHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
@@ -122,6 +122,6 @@
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
-    </div>
+    </CardDeck>
     <Text Color="TextColor.Muted" Alignment="TextAlignment.Center"><small>@((MarkupString)Resources.Copyright)</small></Text>
 </Container>

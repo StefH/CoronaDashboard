@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
@@ -16,14 +17,14 @@ namespace CoronaDashboard.Pages
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
 
-        readonly object IntakeCountChartOptionsObject = new
+        readonly LineChartOptions IntakeCountChartOptions = new LineChartOptions
         {
-            animation = new { duration = 0 },
-            legend = new { display = false },
-            scales = new
+            // Animation = new Animation { Duration = 0 },
+            Legend = new Legend { Display = false },
+            Scales = new Scales
             {
-                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
-                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
+                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = Resources.IntakeCount_X } } },
+                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = Resources.IntakeCount_Y } } }
             }
         };
 
@@ -35,7 +36,7 @@ namespace CoronaDashboard.Pages
         {
             return new
             {
-                animation = new { duration = 0 },
+                // animation = new { duration = 0 },
                 legend = new { display = false },
                 scales = new
                 {
@@ -46,7 +47,6 @@ namespace CoronaDashboard.Pages
         }
 
         CardHeader IntakeCountHeader;
-        ElementReference CardDeck1;
         ElementReference IntakeCountHeaderRef;
         ElementReference DiedAndSurvivorsCumulativeHeaderRef;
         ElementReference AgeDistributionHeaderRef;

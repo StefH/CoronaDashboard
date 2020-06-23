@@ -71,7 +71,6 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            // await chart.AddLabel(groupedOverleden.Select(d => DateUtils.ToShortDate(d.Date)).ToArray());
             await _blazoriseInteropServices.AddChartLabels(chart.ElementId, GetLabelsWithYear(groupedOverleden.Select(g => g.Date)));
 
             var overleden = new LineChartDataset<double>
@@ -109,15 +108,12 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            await chart.AddLabel(age.LabelsLeeftijdsverdeling.ToArray());
-
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
                 BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray),
                 Data = age.Overleden
             };
-            await chart.AddDataSet(overleden);
 
             var ic = new BarChartDataset<int>
             {
@@ -125,7 +121,6 @@ namespace CoronaDashboard.Services
                 BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartYellow),
                 Data = age.NogOpgenomen
             };
-            await chart.AddDataSet(ic);
 
             var verpleegafdeling = new BarChartDataset<int>
             {
@@ -133,7 +128,6 @@ namespace CoronaDashboard.Services
                 BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartBlue),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
-            await chart.AddDataSet(verpleegafdeling);
 
             var gezond = new BarChartDataset<int>
             {
@@ -141,9 +135,8 @@ namespace CoronaDashboard.Services
                 BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartGreen),
                 Data = age.ICVerlaten
             };
-            await chart.AddDataSet(gezond);
 
-            await chart.Update();
+            await chart.AddLabelsDatasetsAndUpdate(age.LabelsLeeftijdsverdeling.ToArray(), overleden, ic, verpleegafdeling, gezond);
         }
 
         public async Task GetBehandelduurDistributionAsync(BarChart<int> chart)
@@ -152,15 +145,12 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            await chart.AddLabel(age.LabelsDagen.ToArray());
-
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
                 BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartLightGray),
                 Data = age.Overleden
             };
-            await chart.AddDataSet(overleden);
 
             var ic = new BarChartDataset<int>
             {
@@ -168,7 +158,6 @@ namespace CoronaDashboard.Services
                 BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartYellow),
                 Data = age.NogOpgenomen
             };
-            await chart.AddDataSet(ic);
 
             var verpleegafdeling = new BarChartDataset<int>
             {
@@ -176,7 +165,6 @@ namespace CoronaDashboard.Services
                 BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartBlue),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
-            await chart.AddDataSet(verpleegafdeling);
 
             var gezond = new BarChartDataset<int>
             {
@@ -184,9 +172,8 @@ namespace CoronaDashboard.Services
                 BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartGreen),
                 Data = age.ICVerlaten
             };
-            await chart.AddDataSet(gezond);
 
-            await chart.Update();
+            await chart.AddLabelsDatasetsAndUpdate(age.LabelsDagen.ToArray(), overleden, ic, verpleegafdeling, gezond);
         }
 
         private static List<DateValueEntry<double>> GroupByDays(ICollection<DateValueEntry<int>> data, int days = 3)
