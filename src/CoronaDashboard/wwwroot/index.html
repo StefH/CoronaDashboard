@@ -100,8 +100,7 @@
     <script type="text/javascript">
         window.setEventListeners = (dotnetReference) => {
             window.addEventListener('resize', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
-            window.addEventListener('orientationchange',
-                () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
+            window.addEventListener('orientationchange', () => dotnetReference.invokeMethodAsync('OnBrowserResizeOrRotate'));
         }
 
         window.getClientHeight = (element) => {
