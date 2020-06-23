@@ -5,40 +5,43 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace CoronaDashboard.Services
 {
     public class DataService : IDataService
     {
         private readonly HttpClient _httpClient;
+        private readonly string _url;
 
-        public DataService(HttpClient httpClient)
+        public DataService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _url = configuration["BaseUrl"];
         }
 
         public Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
         {
-            return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>("/covid-19/public/intake-count");
+            return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>($"{_url}/covid-19/public/intake-count");
         }
 
         public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>("/covid-19/public/age-distribution-status");
+            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{_url}/covid-19/public/age-distribution-status");
 
             return MapAgeDistribution(result);
         }
 
         public async Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<DateValueEntry<int>[][]>("/covid-19/public/died-and-survivors-cumulative");
+            var result = await _httpClient.GetFromJsonAsync<DateValueEntry<int>[][]>($"{_url}/covid-19/public/died-and-survivors-cumulative");
 
             return MapDiedAndSurvivorsCumulative(result);
         }
 
         public async Task<BehandelduurDistribution> GetBehandelduurDistributionAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>("/covid-19/public/behandelduur-distribution");
+            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{_url}/covid-19/public/behandelduur-distribution");
 
             return MapBehandelduurDistribution(result);
         }

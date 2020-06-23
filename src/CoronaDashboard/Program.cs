@@ -5,7 +5,6 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using CoronaDashboard.Localization;
-//using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +33,7 @@ namespace CoronaDashboard
             builder.Services.AddSingleton(typeof(IStringLocalizer), typeof(StringLocalizer<Resources>));
 
             // HttpClient
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl") });
+            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // Services
             builder.Services.AddScoped<IDataService, DataService>();
