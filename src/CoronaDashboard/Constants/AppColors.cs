@@ -16,16 +16,31 @@ namespace CoronaDashboard.Constants
 
         public static string DarkBlue = "#3296C8";
 
-        public static ChartColor ChartDarkBlue = ChartColorExtensions.FromHex(DarkBlue);
+        public static ChartColor ChartDarkBlue;
 
-        public static ChartColor ChartLightGray = ChartColorExtensions.FromHex(LightGray);
+        public static ChartColor ChartLightGray;
 
-        public static ChartColor ChartRed = ChartColorExtensions.FromHex(Red);
+        public static ChartColor ChartRed;
 
-        public static ChartColor ChartBlue = ChartColorExtensions.FromHex(Blue);
+        public static ChartColor ChartBlue;
 
-        public static ChartColor ChartGreen = ChartColorExtensions.FromHex(Green);
+        public static ChartColor ChartGreen;
 
-        public static ChartColor ChartYellow = ChartColorExtensions.FromHex(Yellow);
+        public static ChartColor ChartYellow;
+
+        static AppColors()
+        {
+            ChartDarkBlue = ChartColor.FromHtmlColorCode(DarkBlue);
+
+            ChartLightGray = ChartColor.FromHtmlColorCode(LightGray);
+
+            ChartRed = ChartColor.FromHtmlColorCode(Red);
+
+            ChartBlue = ChartColor.FromHtmlColorCode(Blue);
+
+            ChartGreen = ChartColor.FromHtmlColorCode(Green);
+
+            ChartYellow = ChartColor.FromHtmlColorCode(Yellow);
+        }
     }
 }
