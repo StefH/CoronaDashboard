@@ -1,7 +1,8 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using CoronaDashboard.Services;
+using Microsoft.Extensions.Configuration;
+using Moq;
 
 namespace ConsoleApp
 {
@@ -9,7 +10,10 @@ namespace ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            var dataService = new DataService(new HttpClient { BaseAddress = new Uri("https://stichting-nice.nl") });
+            var configMock = new Mock<IConfiguration>();
+            configMock.Setup(c => c["BaseUrl"]).Returns("https://stichting-nice.nl");
+
+            var dataService = new DataService(new HttpClient(), configMock.Object);
 
             var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
 

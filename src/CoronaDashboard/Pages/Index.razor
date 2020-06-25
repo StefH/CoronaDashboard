@@ -8,7 +8,7 @@
             </div>
             @*<CardHeader @ref="IntakeCountHeader"></CardHeader>*@
             <CardBody>
-                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" Options="@IntakeCountChartOptions" /></CardText>
+                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.IntakeCount_Y
@@ -33,7 +33,7 @@
                     <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
                 </CardHeader>*@
             <CardBody>
-                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" Options="@IntakeCountChartOptions" /></CardText>
+                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond

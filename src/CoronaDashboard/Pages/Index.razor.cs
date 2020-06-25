@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Charts;
+using Blazorise.Utils;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Services;
@@ -16,6 +18,17 @@ namespace CoronaDashboard.Pages
 
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
+
+        readonly object IntakeCountChartOptionsObject = new
+        {
+            // Animation = new Animation { Duration = 0 },
+            legend = new { display = false },
+            scales = new
+            {
+                xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
+                yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
+            }
+        };
 
         readonly LineChartOptions IntakeCountChartOptions = new LineChartOptions
         {
@@ -32,6 +45,10 @@ namespace CoronaDashboard.Pages
 
         object BehandelduurDistributionChartOptionsObject => GetBarChartOptionObject(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
 
+        BarChartOptions AgeDistributionChartOptions => GetBarChartOptions(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
+
+        BarChartOptions BehandelduurDistributionChartOptions => GetBarChartOptions(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
+
         object GetBarChartOptionObject(string x, string y)
         {
             return new
@@ -42,6 +59,19 @@ namespace CoronaDashboard.Pages
                 {
                     xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = x } } },
                     yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = y } } }
+                }
+            };
+        }
+
+        BarChartOptions GetBarChartOptions(string x, string y)
+        {
+            return new BarChartOptions
+            {
+                // animation = new { duration = 0 },
+                Scales = new Scales
+                {
+                    XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = x } } },
+                    YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = y } } }
                 }
             };
         }
