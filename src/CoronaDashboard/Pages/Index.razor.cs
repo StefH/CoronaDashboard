@@ -25,8 +25,8 @@ namespace CoronaDashboard.Pages
             legend = new { display = false },
             scales = new
             {
-                xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
-                yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
+                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
+                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
             }
         };
 
