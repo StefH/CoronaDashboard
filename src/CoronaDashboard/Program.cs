@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -25,8 +24,7 @@ namespace CoronaDashboard
                 {
                     options.ChangeTextOnKeyPress = true;
                 })
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
+                .AddBootstrapProviders();
 
             // Localization
             builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
@@ -42,10 +40,7 @@ namespace CoronaDashboard
             builder.Services.AddScoped<BlazoriseInteropServices>();
 
             var host = builder.Build();
-
-            host.Services
-                .UseBootstrapProviders()
-                .UseFontAwesomeIcons();
+            host.Services.UseBootstrapProviders();
 
             await host.RunAsync();
         }
