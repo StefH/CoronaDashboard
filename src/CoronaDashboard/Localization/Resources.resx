@@ -141,27 +141,27 @@
   <data name="BehandelduurDistribution_Y" xml:space="preserve">
     <value>Aantal IC opnamen</value>
   </data>
-  <data name="BesmettelijkePersonenPerDag_BodyText" xml:space="preserve">
-    <value>Deze grafiek toont het aantal geschatte besmettelijke personen per dag in Nederland.
-
-Het aantal besmettingen per dag in Nederland wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep.
-
-Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten.
-
-Dit cijfer is een gemiddelde van de afgelopen drie dagen.</value>
+  <data name="BesmettelijkePersonenPerDag_BodyText1" xml:space="preserve">
+    <value>Deze grafiek toont het geschatte aantal besmettelijke personen per dag.</value>
+  </data>
+  <data name="BesmettelijkePersonenPerDag_BodyText2" xml:space="preserve">
+    <value>Dit aantal wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep.</value>
+  </data>
+  <data name="BesmettelijkePersonenPerDag_BodyText3" xml:space="preserve">
+    <value>Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
   <data name="BesmettelijkePersonenPerDag_Header" xml:space="preserve">
-    <value>Aantal besmettelijke personen met COVID-19</value>
+    <value>Geschat aantal besmettelijke personen met COVID-19</value>
   </data>
   <data name="BesmettelijkePersonenPerDag_Today" xml:space="preserve">
-    <value>Geschat aantal besmettelijke personen vandaag : {0}</value>
+    <value>Geschat aantal vandaag : {0}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="BesmettelijkePersonenPerDag_X" xml:space="preserve">
     <value>Datum</value>
   </data>
   <data name="BesmettelijkePersonenPerDag_Y" xml:space="preserve">
-    <value>Geschat aantal besmettelijke personen</value>
+    <value>Geschat aantal</value>
   </data>
   <data name="BesmettelijkePersonenPerDag_Y_Besmettelijk" xml:space="preserve">
     <value>Geschat aantal besmettelijke personen</value>

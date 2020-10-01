@@ -133,22 +133,34 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont het aantal geschatte besmettelijke personen per dag in Nederland.
-        ///
-        ///Het aantal besmettingen per dag in Nederland wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep.
-        ///
-        ///Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten.
-        ///
-        ///Dit cijfer is een gemiddelde van de afgelopen drie dagen..
+        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal besmettelijke personen per dag..
         /// </summary>
-        internal static string BesmettelijkePersonenPerDag_BodyText {
+        internal static string BesmettelijkePersonenPerDag_BodyText1 {
             get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText", resourceCulture);
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal besmettelijke personen met COVID-19.
+        ///   Looks up a localized string similar to Dit aantal wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep..
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_BodyText2 {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_BodyText3 {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen met COVID-19.
         /// </summary>
         internal static string BesmettelijkePersonenPerDag_Header {
             get {
@@ -157,7 +169,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen vandaag : {0}.
+        ///   Looks up a localized string similar to Geschat aantal vandaag : {0}.
         /// </summary>
         internal static string BesmettelijkePersonenPerDag_Today {
             get {
@@ -175,7 +187,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen.
+        ///   Looks up a localized string similar to Geschat aantal.
         /// </summary>
         internal static string BesmettelijkePersonenPerDag_Y {
             get {
