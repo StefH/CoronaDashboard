@@ -3,10 +3,31 @@
 <Container Fluid="true">
     <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
+            <div class="card-header" @ref="BesmettelijkePersonenPerDagHeaderRef">
+                <CardText Alignment="TextAlignment.Left">@Resources.BesmettelijkePersonenPerDag_Header</CardText>
+            </div>
+            <CardBody>
+                <CardText><LineChart @ref="BesmettelijkePersonenPerDagLineChart" TItem="double?" OptionsObject="@BesmettelijkePersonenPerDagChartOptionsObject" /></CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.DarkBlue">██</span>
+                    @Resources.BesmettelijkePersonenPerDag_Y
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.Red">██</span>
+                    @string.Format(Resources.BesmettelijkePersonenPerDag_Today, BesmettelijkePersonenPerDagDates.Today)
+                </CardText>
+                <CardText><br /></CardText>
+                <CardText Style="font-size: 0.9em">@Resources.BesmettelijkePersonenPerDag_BodyText</CardText>
+            </CardBody>
+            <CardFooter>
+                <CardText Color="TextColor.Muted"><small>Periode: @BesmettelijkePersonenPerDagDates.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://data.overheid.nl/dataset/12972-covid-19-besmettelijke-personen-per-dag">RIVM</a></small></CardText>
+            </CardFooter>
+        </Card>
+        <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
             <div class="card-header" @ref="IntakeCountHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.IntakeCount_Header</CardText>
             </div>
-            @*<CardHeader @ref="IntakeCountHeader"></CardHeader>*@
             <CardBody>
                 <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
@@ -15,23 +36,22 @@
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
-                    @string.Format(Resources.IntakeCount_Today, IntakeCountDetails.Today)
+                    @string.Format(Resources.IntakeCount_Today, IntakeCountDates.Today)
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@Resources.IntakeCount_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
+    </CardDeck>
+    <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
             <div class="card-header" @ref="DiedAndSurvivorsCumulativeHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
             </div>
-            @*<CardHeader>
-                    <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
-                </CardHeader>*@
             <CardBody>
                 <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
@@ -54,15 +74,10 @@
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
-    </CardDeck>
-    <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
             <div class="card-header" @ref="AgeDistributionHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
             </div>
-            @*<CardHeader>
-                    <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
-                </CardHeader>*@
             <CardBody>
                 <CardText><BarChart @ref="AgeDistributionBarChart" TItem="int" OptionsObject="@AgeDistributionChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
@@ -85,17 +100,16 @@
                 <CardText Style="font-size: 0.9em">@Resources.AgeDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
+    </CardDeck>
+    <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
             <div class="card-header" @ref="BehandelduurDistributionHeaderRef">
                 <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
             </div>
-            @*<CardHeader>
-                    <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
-                </CardHeader>*@
             <CardBody>
                 <CardText><BarChart @ref="BehandelduurDistributionBarChart" TItem="int" OptionsObject="@BehandelduurDistributionChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
@@ -118,7 +132,7 @@
                 <CardText Style="font-size: 0.9em">@Resources.BehandelduurDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>

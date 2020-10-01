@@ -133,6 +133,75 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deze grafiek toont het aantal geschatte besmettelijke personen per dag in Nederland.
+        ///
+        ///Het aantal besmettingen per dag in Nederland wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep.
+        ///
+        ///Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten.
+        ///
+        ///Dit cijfer is een gemiddelde van de afgelopen drie dagen..
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_BodyText {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal besmettelijke personen met COVID-19.
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_Header {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen vandaag : {0}.
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_Today {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_X {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen.
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_Y {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen.
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_Y_Besmettelijk {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Y_Besmettelijk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geschat aantal positief geteste personen.
+        /// </summary>
+        internal static string BesmettelijkePersonenPerDag_Y_Positief {
+            get {
+                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Y_Positief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;source&lt;/a&gt;).
         /// </summary>
         internal static string Copyright {

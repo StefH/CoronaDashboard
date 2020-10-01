@@ -11,7 +11,8 @@ namespace ConsoleApp
         static async Task Main(string[] args)
         {
             var configMock = new Mock<IConfiguration>();
-            configMock.Setup(c => c["BaseUrl"]).Returns("https://stichting-nice.nl");
+            configMock.Setup(c => c["StichtingNICEBaseUrl"]).Returns("https://stichting-nice.nl");
+            configMock.Setup(c => c["RIVMBaseUrl"]).Returns("https://data.rivm.nl/covid-19");
 
             var dataService = new DataService(new HttpClient(), configMock.Object);
 

@@ -12,38 +12,55 @@ namespace CoronaDashboard.Services
     public class DataService : IDataService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _url;
+        private readonly string _StichtingNICEBaseUrl;
+        private readonly string _RIVMBaseUrl;
 
         public DataService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _url = configuration["BaseUrl"];
+            _StichtingNICEBaseUrl = configuration["StichtingNICEBaseUrl"];
+            _RIVMBaseUrl = configuration["RIVMBaseUrl"];
         }
 
         public Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
         {
-            return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>($"{_url}/covid-19/public/intake-count");
+            return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>($"{_StichtingNICEBaseUrl}/covid-19/public/intake-count");
         }
 
         public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{_url}/covid-19/public/age-distribution-status");
+            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{_StichtingNICEBaseUrl}/covid-19/public/age-distribution-status");
 
             return MapAgeDistribution(result);
         }
 
         public async Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<DateValueEntry<int>[][]>($"{_url}/covid-19/public/died-and-survivors-cumulative");
+            var result = await _httpClient.GetFromJsonAsync<DateValueEntry<int>[][]>($"{_StichtingNICEBaseUrl}/covid-19/public/died-and-survivors-cumulative");
 
             return MapDiedAndSurvivorsCumulative(result);
         }
 
         public async Task<BehandelduurDistribution> GetBehandelduurDistributionAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{_url}/covid-19/public/behandelduur-distribution");
+            var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{_StichtingNICEBaseUrl}/covid-19/public/behandelduur-distribution");
 
             return MapBehandelduurDistribution(result);
+        }
+
+        public async Task<IEnumerable<DateValueEntry<BesmettelijkePersonenPerDag>>> GetBesmettelijkePersonenPerDagAsync()
+        {
+            var data = await _httpClient.GetFromJsonAsync<IEnumerable<BesmettelijkePersonenPerDag>>($"{_RIVMBaseUrl}/COVID-19_prevalentie.json");
+            return MapBesmettelijkePersonenPerDag(data);
+        }
+
+        private static IEnumerable<DateValueEntry<BesmettelijkePersonenPerDag>> MapBesmettelijkePersonenPerDag(IEnumerable<BesmettelijkePersonenPerDag> data)
+        {
+            return data.Select(d => new DateValueEntry<BesmettelijkePersonenPerDag>
+            {
+                Date = d.Date,
+                Value = d
+            });
         }
 
         private static BehandelduurDistribution MapBehandelduurDistribution(JsonElement[][][] data)

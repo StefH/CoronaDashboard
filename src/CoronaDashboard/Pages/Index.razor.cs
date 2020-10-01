@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Charts;
-using Blazorise.Utils;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Services;
@@ -18,6 +16,17 @@ namespace CoronaDashboard.Pages
 
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
+
+        readonly object BesmettelijkePersonenPerDagChartOptionsObject = new
+        {
+            // Animation = new Animation { Duration = 0 },
+            legend = new { display = false },
+            scales = new
+            {
+                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.BesmettelijkePersonenPerDag_X } } },
+                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.BesmettelijkePersonenPerDag_Y } } }
+            }
+        };
 
         readonly object IntakeCountChartOptionsObject = new
         {
@@ -77,17 +86,20 @@ namespace CoronaDashboard.Pages
         }
 
         CardHeader IntakeCountHeader;
+        ElementReference BesmettelijkePersonenPerDagHeaderRef;
         ElementReference IntakeCountHeaderRef;
         ElementReference DiedAndSurvivorsCumulativeHeaderRef;
         ElementReference AgeDistributionHeaderRef;
         ElementReference BehandelduurDistributionHeaderRef;
 
+        LineChart<double?> BesmettelijkePersonenPerDagLineChart;
         LineChart<double?> IntakeCountLineChart;
         LineChart<double> DiedAndSurvivorsCumulativeLineChart;
         BarChart<int> AgeDistributionBarChart;
         BarChart<int> BehandelduurDistributionBarChart;
 
-        IntakeCountDetails IntakeCountDetails = new IntakeCountDetails { Dates = "..." };
+        DateRangeWithTodayValueDetails IntakeCountDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
+        DateRangeWithTodayValueDetails BesmettelijkePersonenPerDagDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
         string DiedAndSurvivorsCumulativeDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -107,28 +119,54 @@ namespace CoronaDashboard.Pages
             int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
             int header1Top = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
 
-            int header2Top = await JavaScriptInteropService.GetTop(DiedAndSurvivorsCumulativeHeaderRef);
+            int header2Top = await JavaScriptInteropService.GetTop(BesmettelijkePersonenPerDagHeaderRef);
             if (header2Top == header1Top)
             {
-                await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef, header1Height);
+                await JavaScriptInteropService.SetClientHeight(BesmettelijkePersonenPerDagHeaderRef, header1Height);
+            }
+            else
+            {
+                await JavaScriptInteropService.SetClientHeight(BesmettelijkePersonenPerDagHeaderRef);
+            }
+
+            int header4Height = await JavaScriptInteropService.GetClientHeight(AgeDistributionHeaderRef);
+            int header4Top = await JavaScriptInteropService.GetTop(AgeDistributionHeaderRef);
+
+            int header3Top = await JavaScriptInteropService.GetTop(DiedAndSurvivorsCumulativeHeaderRef);
+            if (header3Top == header4Top)
+            {
+                await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef, header4Height);
             }
             else
             {
                 await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef);
             }
 
-            int header4Height = await JavaScriptInteropService.GetClientHeight(BehandelduurDistributionHeaderRef);
-            int header4Top = await JavaScriptInteropService.GetTop(BehandelduurDistributionHeaderRef);
+            //int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
+            //int header1Top = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
 
-            int header3Top = await JavaScriptInteropService.GetTop(AgeDistributionHeaderRef);
-            if (header3Top == header4Top)
-            {
-                await JavaScriptInteropService.SetClientHeight(AgeDistributionHeaderRef, header4Height);
-            }
-            else
-            {
-                await JavaScriptInteropService.SetClientHeight(AgeDistributionHeaderRef);
-            }
+            //int header2Top = await JavaScriptInteropService.GetTop(DiedAndSurvivorsCumulativeHeaderRef);
+            //if (header2Top == header1Top)
+            //{
+            //    await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef, header1Height);
+            //}
+            //else
+            //{
+            //    await JavaScriptInteropService.SetClientHeight(DiedAndSurvivorsCumulativeHeaderRef);
+            //}
+
+            //int header4Height = await JavaScriptInteropService.GetClientHeight(BehandelduurDistributionHeaderRef);
+            //int header4Top = await JavaScriptInteropService.GetTop(BehandelduurDistributionHeaderRef);
+
+            //int header3Top = await JavaScriptInteropService.GetTop(AgeDistributionHeaderRef);
+            //if (header3Top == header4Top)
+            //{
+            //    await JavaScriptInteropService.SetClientHeight(AgeDistributionHeaderRef, header4Height);
+            //}
+            //else
+            //{
+            //    await JavaScriptInteropService.SetClientHeight(AgeDistributionHeaderRef);
+            //}
         }
 
         async Task GetDataAsyncAndUpdateViewAsync()
@@ -137,7 +175,7 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    IntakeCountDetails = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
+                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
 
@@ -149,7 +187,13 @@ namespace CoronaDashboard.Pages
 
                 ChartService.GetAgeDistributionStatusAsync(AgeDistributionBarChart),
 
-                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistributionBarChart)
+                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistributionBarChart),
+
+                Task.Run(async () =>
+                {
+                    BesmettelijkePersonenPerDagDates = await ChartService.GetBesmettelijkePersonenPerDagAsync(BesmettelijkePersonenPerDagLineChart);
+                    StateHasChanged();
+                }),
             };
 
             await Task.WhenAll(tasks);
