@@ -13,5 +13,7 @@ namespace CoronaDashboard.Services
         Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync();
 
         Task<BehandelduurDistribution> GetBehandelduurDistributionAsync();
+
+        Task<IEnumerable<DateValueEntry<BesmettelijkePersonenPerDag>>> GetBesmettelijkePersonenPerDagAsync();
     }
 }
