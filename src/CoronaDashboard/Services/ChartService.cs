@@ -184,7 +184,7 @@ namespace CoronaDashboard.Services
                 (d.Value.Population == "testpos" && d.Date > new DateTime(2020, 6, 12))
             );
 
-            var groupedGeschat = GroupByDays(testedPositive, tp => tp.Value.Geschat);
+            var groupedGeschat = GroupByDays(testedPositive, tp => tp.Value.Average);
 
             await chart.Clear();
 
@@ -198,7 +198,7 @@ namespace CoronaDashboard.Services
             };
             await chart.AddDataSet(set);
 
-            int lastValue = allData.Last().Value.Geschat;
+            int lastValue = allData.Last().Value.Average;
             var points = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (double?)null).ToList();
             points.Add(lastValue);
 

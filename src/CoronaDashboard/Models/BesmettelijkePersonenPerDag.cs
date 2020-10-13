@@ -23,13 +23,16 @@ namespace CoronaDashboard.Models
         /// Geschat aantal besmettelijken
         /// </summary>
         [JsonPropertyName("prev_avg")]
-        public int Geschat { get; set; }
+        public int? Geschat { get; set; }
 
         /// <summary>
         /// 95% betrouwbaarheidsinterval
         /// </summary>
         [JsonPropertyName("prev_up")]
         public int Bovengrens { get; set; }
+
+        [JsonIgnore]
+        public int Average => Geschat != null ? Geschat.Value : (Ondergrens + Bovengrens) / 2;
 
         /// <summary>
         /// patiëntpopulatie met waarde “hosp” voor gehospitaliseerde patiënten of “testpos” voor test-positieve patiënten
