@@ -50,6 +50,9 @@ namespace CoronaDashboard.Services
 
         public async Task<IEnumerable<DateValueEntry<BesmettelijkePersonenPerDag>>> GetBesmettelijkePersonenPerDagAsync()
         {
+            // CORS ...
+            // var x = await _httpClient.GetFromJsonAsync<dynamic>("https://coronadashboard.rijksoverheid.nl/_next/data/Mg640d4x4VnJLnCcFPX5t/landelijk/positief-geteste-mensen.json");
+
             var data = await _httpClient.GetFromJsonAsync<IEnumerable<BesmettelijkePersonenPerDag>>($"{_RIVMBaseUrl}/COVID-19_prevalentie.json");
             return MapBesmettelijkePersonenPerDag(data);
         }
