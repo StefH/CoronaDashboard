@@ -3,26 +3,24 @@
 <Container Fluid="true">
     <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
-            <div class="card-header" @ref="BesmettelijkePersonenPerDagHeaderRef">
-                <CardText Alignment="TextAlignment.Left">@Resources.BesmettelijkePersonenPerDag_Header</CardText>
+            <div class="card-header" @ref="PositiefGetestePersonenPerDagHeaderRef">
+                <CardText Alignment="TextAlignment.Left">@Resources.PositiefGetestePersonenPerDag_Header</CardText>
             </div>
             <CardBody>
-                <CardText><LineChart @ref="BesmettelijkePersonenPerDagLineChart" TItem="double?" OptionsObject="@BesmettelijkePersonenPerDagChartOptionsObject" /></CardText>
+                <CardText><LineChart @ref="PositiefGetestePersonenPerDagLineChart" TItem="double?" OptionsObject="@PositiefGetestePersonenPerDagChartOptionsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
-                    @Resources.BesmettelijkePersonenPerDag_Y
+                    @Resources.PositiefGetestePersonenPerDag_Y
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
-                    @string.Format(Resources.BesmettelijkePersonenPerDag_Today, BesmettelijkePersonenPerDagDates.Today)
+                    @string.Format(Resources.PositiefGetestePersonenPerDag_Today, PositiefGetestePersonenPerDagDates.Today)
                 </CardText>
                 <CardText><br /></CardText>
-                <CardText Style="font-size: 0.9em">@Resources.BesmettelijkePersonenPerDag_BodyText1</CardText>
-                @*<CardText Style="font-size: 0.9em">@Resources.BesmettelijkePersonenPerDag_BodyText2</CardText>
-                <CardText Style="font-size: 0.9em">@Resources.BesmettelijkePersonenPerDag_BodyText3</CardText>*@
+                <CardText Style="font-size: 0.9em">@Resources.PositiefGetestePersonenPerDag_BodyText1</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @BesmettelijkePersonenPerDagDates.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @PositiefGetestePersonenPerDagDates.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://coronadashboard.rijksoverheid.nl/landelijk/positief-geteste-mensen">rijksoverheid.nl</a></small></CardText>
             </CardFooter>
         </Card>

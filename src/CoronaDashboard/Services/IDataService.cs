@@ -14,6 +14,6 @@ namespace CoronaDashboard.Services
 
         Task<BehandelduurDistribution> GetBehandelduurDistributionAsync();
 
-        Task<IEnumerable<DateValueEntry<double>>> GetBesmettelijkePersonenPerDagAsync();
+        Task<IEnumerable<DateValueEntry<double>>> GetPositiefGetestePerDagAsync();
     }
 }

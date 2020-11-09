@@ -141,34 +141,6 @@
   <data name="BehandelduurDistribution_Y" xml:space="preserve">
     <value>Aantal IC opnamen</value>
   </data>
-  <data name="BesmettelijkePersonenPerDag_BodyText1" xml:space="preserve">
-    <value>Deze grafiek toont het geschatte aantal besmettelijke personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_BodyText2" xml:space="preserve">
-    <value>Dit aantal wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep.</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_BodyText3" xml:space="preserve">
-    <value>Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_Header" xml:space="preserve">
-    <value>Geschat aantal besmettelijke personen met COVID-19</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_Today" xml:space="preserve">
-    <value>Geschat aantal vandaag : {0}</value>
-    <comment>Use string formatter</comment>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_X" xml:space="preserve">
-    <value>Datum</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_Y" xml:space="preserve">
-    <value>Geschat aantal</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_Y_Besmettelijk" xml:space="preserve">
-    <value>Geschat aantal besmettelijke personen</value>
-  </data>
-  <data name="BesmettelijkePersonenPerDag_Y_Positief" xml:space="preserve">
-    <value>Geschat aantal positief geteste personen</value>
-  </data>
   <data name="Copyright" xml:space="preserve">
     <value>Copyright © Stef Heyenrath 2020 (&lt;a href="https://github.com/StefH/CoronaDashboard"&gt;source&lt;/a&gt;)</value>
   </data>
@@ -205,5 +177,21 @@
   </data>
   <data name="Label_Verpleegafdeling" xml:space="preserve">
     <value>Nog opgenomen op de verpleegafdeling</value>
+  </data>
+  <data name="PositiefGetestePersonenPerDag_BodyText1" xml:space="preserve">
+    <value>Deze grafiek toont het geschatte aantal postitief geteste personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
+  </data>
+  <data name="PositiefGetestePersonenPerDag_Header" xml:space="preserve">
+    <value>Aantal potitief geteste personen met COVID-19</value>
+  </data>
+  <data name="PositiefGetestePersonenPerDag_Today" xml:space="preserve">
+    <value>Aantal vandaag : {0}</value>
+    <comment>Use string formatter</comment>
+  </data>
+  <data name="PositiefGetestePersonenPerDag_X" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="PositiefGetestePersonenPerDag_Y" xml:space="preserve">
+    <value>Aantal positief geteste personen</value>
   </data>
 </root>

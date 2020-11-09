@@ -17,14 +17,14 @@ namespace CoronaDashboard.Pages
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
 
-        readonly object BesmettelijkePersonenPerDagChartOptionsObject = new
+        readonly object PositiefGetestePersonenPerDagChartOptionsObject = new
         {
             // Animation = new Animation { Duration = 0 },
             legend = new { display = false },
             scales = new
             {
-                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.BesmettelijkePersonenPerDag_X } } },
-                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.BesmettelijkePersonenPerDag_Y } } }
+                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.PositiefGetestePersonenPerDag_X } } },
+                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.PositiefGetestePersonenPerDag_Y } } }
             }
         };
 
@@ -86,20 +86,20 @@ namespace CoronaDashboard.Pages
         }
 
         CardHeader IntakeCountHeader;
-        ElementReference BesmettelijkePersonenPerDagHeaderRef;
+        ElementReference PositiefGetestePersonenPerDagHeaderRef;
         ElementReference IntakeCountHeaderRef;
         ElementReference DiedAndSurvivorsCumulativeHeaderRef;
         ElementReference AgeDistributionHeaderRef;
         ElementReference BehandelduurDistributionHeaderRef;
 
-        LineChart<double?> BesmettelijkePersonenPerDagLineChart;
+        LineChart<double?> PositiefGetestePersonenPerDagLineChart;
         LineChart<double?> IntakeCountLineChart;
         LineChart<double> DiedAndSurvivorsCumulativeLineChart;
         BarChart<int> AgeDistributionBarChart;
         BarChart<int> BehandelduurDistributionBarChart;
 
         DateRangeWithTodayValueDetails IntakeCountDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
-        DateRangeWithTodayValueDetails BesmettelijkePersonenPerDagDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
+        DateRangeWithTodayValueDetails PositiefGetestePersonenPerDagDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
         string DiedAndSurvivorsCumulativeDates = "...";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -119,14 +119,14 @@ namespace CoronaDashboard.Pages
             int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
             int header1Top = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
 
-            int header2Top = await JavaScriptInteropService.GetTop(BesmettelijkePersonenPerDagHeaderRef);
+            int header2Top = await JavaScriptInteropService.GetTop(PositiefGetestePersonenPerDagHeaderRef);
             if (header2Top == header1Top)
             {
-                await JavaScriptInteropService.SetClientHeight(BesmettelijkePersonenPerDagHeaderRef, header1Height);
+                await JavaScriptInteropService.SetClientHeight(PositiefGetestePersonenPerDagHeaderRef, header1Height);
             }
             else
             {
-                await JavaScriptInteropService.SetClientHeight(BesmettelijkePersonenPerDagHeaderRef);
+                await JavaScriptInteropService.SetClientHeight(PositiefGetestePersonenPerDagHeaderRef);
             }
 
             int header4Height = await JavaScriptInteropService.GetClientHeight(AgeDistributionHeaderRef);
@@ -191,7 +191,7 @@ namespace CoronaDashboard.Pages
 
                 Task.Run(async () =>
                 {
-                    BesmettelijkePersonenPerDagDates = await ChartService.GetBesmettelijkePersonenPerDagAsync(BesmettelijkePersonenPerDagLineChart);
+                    PositiefGetestePersonenPerDagDates = await ChartService.GetPositiefGetestePerDagAsync(PositiefGetestePersonenPerDagLineChart);
                     StateHasChanged();
                 }),
             };

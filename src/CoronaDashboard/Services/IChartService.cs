@@ -14,6 +14,6 @@ namespace CoronaDashboard.Services
 
         Task GetBehandelduurDistributionAsync(BarChart<int> chart);
 
-        Task<DateRangeWithTodayValueDetails> GetBesmettelijkePersonenPerDagAsync(LineChart<double?> chart);
+        Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart);
     }
 }

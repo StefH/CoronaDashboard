@@ -176,13 +176,9 @@ namespace CoronaDashboard.Services
             await chart.AddLabelsDatasetsAndUpdate(age.LabelsDagen.ToArray(), overleden, ic, verpleegafdeling, gezond);
         }
 
-        public async Task<DateRangeWithTodayValueDetails> GetBesmettelijkePersonenPerDagAsync(LineChart<double?> chart)
+        public async Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart)
         {
-            var allData = await _dataService.GetBesmettelijkePersonenPerDagAsync();
-            //var testedPositive = allData.Where(d =>
-            //    (d.Value.Population == "hosp" && d.Date <= new DateTime(2020, 6, 12)) ||
-            //    (d.Value.Population == "testpos" && d.Date > new DateTime(2020, 6, 12))
-            //);
+            var allData = await _dataService.GetPositiefGetestePerDagAsync();
 
             var groupedGeschat = GroupByDays(allData, tp => tp.Value);
 

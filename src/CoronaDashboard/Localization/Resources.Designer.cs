@@ -133,87 +133,6 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal besmettelijke personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_BodyText1 {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dit aantal wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep..
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_BodyText2 {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Het aantal besmettingen is tot en met 12 juni gebaseerd op gehospitaliseerde patiënten, en vanaf 12 juni op test-positieve patiënten. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_BodyText3 {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_BodyText3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen met COVID-19.
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_Header {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal vandaag : {0}.
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_Today {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Today", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Datum.
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_X {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_X", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal.
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_Y {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Y", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal besmettelijke personen.
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_Y_Besmettelijk {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Y_Besmettelijk", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Geschat aantal positief geteste personen.
-        /// </summary>
-        internal static string BesmettelijkePersonenPerDag_Y_Positief {
-            get {
-                return ResourceManager.GetString("BesmettelijkePersonenPerDag_Y_Positief", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;source&lt;/a&gt;).
         /// </summary>
         internal static string Copyright {
@@ -318,6 +237,51 @@ namespace CoronaDashboard.Localization {
         internal static string Label_Verpleegafdeling {
             get {
                 return ResourceManager.GetString("Label_Verpleegafdeling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal postitief geteste personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
+        /// </summary>
+        internal static string PositiefGetestePersonenPerDag_BodyText1 {
+            get {
+                return ResourceManager.GetString("PositiefGetestePersonenPerDag_BodyText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal potitief geteste personen met COVID-19.
+        /// </summary>
+        internal static string PositiefGetestePersonenPerDag_Header {
+            get {
+                return ResourceManager.GetString("PositiefGetestePersonenPerDag_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal vandaag : {0}.
+        /// </summary>
+        internal static string PositiefGetestePersonenPerDag_Today {
+            get {
+                return ResourceManager.GetString("PositiefGetestePersonenPerDag_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string PositiefGetestePersonenPerDag_X {
+            get {
+                return ResourceManager.GetString("PositiefGetestePersonenPerDag_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal positief geteste personen.
+        /// </summary>
+        internal static string PositiefGetestePersonenPerDag_Y {
+            get {
+                return ResourceManager.GetString("PositiefGetestePersonenPerDag_Y", resourceCulture);
             }
         }
     }
