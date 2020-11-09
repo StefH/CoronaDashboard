@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.Models;
+using CoronaDashboard.Models.Rijksoverheid;
 using Microsoft.Extensions.Configuration;
 
 namespace CoronaDashboard.Services
@@ -13,13 +15,13 @@ namespace CoronaDashboard.Services
     {
         private readonly HttpClient _httpClient;
         private readonly string _StichtingNICEBaseUrl;
-        private readonly string _RIVMBaseUrl;
+        private readonly string _ApiGatewayCovid19Url;
 
         public DataService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _StichtingNICEBaseUrl = configuration["StichtingNICEBaseUrl"];
-            _RIVMBaseUrl = configuration["RIVMBaseUrl"];
+            _ApiGatewayCovid19Url = configuration["ApiGatewayCovid19Url"];
         }
 
         public Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
@@ -48,21 +50,18 @@ namespace CoronaDashboard.Services
             return MapBehandelduurDistribution(result);
         }
 
-        public async Task<IEnumerable<DateValueEntry<BesmettelijkePersonenPerDag>>> GetBesmettelijkePersonenPerDagAsync()
+        public async Task<IEnumerable<DateValueEntry<double>>> GetBesmettelijkePersonenPerDagAsync()
         {
-            // CORS ...
-            // var x = await _httpClient.GetFromJsonAsync<dynamic>("https://coronadashboard.rijksoverheid.nl/_next/data/Mg640d4x4VnJLnCcFPX5t/landelijk/positief-geteste-mensen.json");
-
-            var data = await _httpClient.GetFromJsonAsync<IEnumerable<BesmettelijkePersonenPerDag>>($"{_RIVMBaseUrl}/COVID-19_prevalentie.json");
-            return MapBesmettelijkePersonenPerDag(data);
+            var covid19 = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL/infected_people_total");
+            return MapInfectedPeopleTotal(covid19);
         }
 
-        private static IEnumerable<DateValueEntry<BesmettelijkePersonenPerDag>> MapBesmettelijkePersonenPerDag(IEnumerable<BesmettelijkePersonenPerDag> data)
+        private static IEnumerable<DateValueEntry<double>> MapInfectedPeopleTotal(InfectedPeopleTotal data)
         {
-            return data.Select(d => new DateValueEntry<BesmettelijkePersonenPerDag>
+            return data.Values.Select(i => new DateValueEntry<double>
             {
-                Date = d.Date,
-                Value = d
+                Date = DateTimeOffset.FromUnixTimeSeconds(i.DateOfReportUnix).DateTime,
+                Value = i.InfectedDailyTotal
             });
         }
 
