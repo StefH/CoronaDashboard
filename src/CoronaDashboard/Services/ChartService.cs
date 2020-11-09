@@ -179,12 +179,12 @@ namespace CoronaDashboard.Services
         public async Task<DateRangeWithTodayValueDetails> GetBesmettelijkePersonenPerDagAsync(LineChart<double?> chart)
         {
             var allData = await _dataService.GetBesmettelijkePersonenPerDagAsync();
-            var testedPositive = allData.Where(d =>
-                (d.Value.Population == "hosp" && d.Date <= new DateTime(2020, 6, 12)) ||
-                (d.Value.Population == "testpos" && d.Date > new DateTime(2020, 6, 12))
-            );
+            //var testedPositive = allData.Where(d =>
+            //    (d.Value.Population == "hosp" && d.Date <= new DateTime(2020, 6, 12)) ||
+            //    (d.Value.Population == "testpos" && d.Date > new DateTime(2020, 6, 12))
+            //);
 
-            var groupedGeschat = GroupByDays(testedPositive, tp => tp.Value.Average);
+            var groupedGeschat = GroupByDays(allData, tp => tp.Value);
 
             await chart.Clear();
 
@@ -198,7 +198,7 @@ namespace CoronaDashboard.Services
             };
             await chart.AddDataSet(set);
 
-            int lastValue = allData.Last().Value.Average;
+            double lastValue = allData.Last().Value;
             var points = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (double?)null).ToList();
             points.Add(lastValue);
 
@@ -217,7 +217,7 @@ namespace CoronaDashboard.Services
 
             return new DateRangeWithTodayValueDetails
             {
-                Dates = $"{DateUtils.ToLongDate(testedPositive.First().Date)} t/m {DateUtils.ToLongDate(testedPositive.Last().Date)}",
+                Dates = $"{DateUtils.ToLongDate(allData.First().Date)} t/m {DateUtils.ToLongDate(allData.Last().Date)}",
                 Today = lastValue.ToString()
             };
         }

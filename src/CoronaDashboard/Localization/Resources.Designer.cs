@@ -133,7 +133,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal besmettelijke personen per dag..
+        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal besmettelijke personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
         /// </summary>
         internal static string BesmettelijkePersonenPerDag_BodyText1 {
             get {

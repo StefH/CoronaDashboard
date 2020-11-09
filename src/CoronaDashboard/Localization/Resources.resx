@@ -142,7 +142,7 @@
     <value>Aantal IC opnamen</value>
   </data>
   <data name="BesmettelijkePersonenPerDag_BodyText1" xml:space="preserve">
-    <value>Deze grafiek toont het geschatte aantal besmettelijke personen per dag.</value>
+    <value>Deze grafiek toont het geschatte aantal besmettelijke personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
   <data name="BesmettelijkePersonenPerDag_BodyText2" xml:space="preserve">
     <value>Dit aantal wordt geschat op basis van serologische gegevens, ziekenhuisopnames en meldingen per leeftijdsgroep.</value>
