@@ -22,6 +22,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaDashboard", "src\Coro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "src\ConsoleApp\ConsoleApp.csproj", "{8207797A-8394-4D82-B72D-F73F4027112F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaDashboard.Api", "src\CoronaDashboard.Api\CoronaDashboard.Api.csproj", "{148DA923-21A2-4F95-BF79-95A1F2E8247F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoronaDashboard.DataAccess", "src\CoronaDashboard.DataAccess\CoronaDashboard.DataAccess.csproj", "{37462020-A165-42FC-B883-31F01BB11939}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,14 @@ Global
 		{8207797A-8394-4D82-B72D-F73F4027112F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8207797A-8394-4D82-B72D-F73F4027112F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8207797A-8394-4D82-B72D-F73F4027112F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148DA923-21A2-4F95-BF79-95A1F2E8247F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148DA923-21A2-4F95-BF79-95A1F2E8247F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148DA923-21A2-4F95-BF79-95A1F2E8247F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148DA923-21A2-4F95-BF79-95A1F2E8247F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37462020-A165-42FC-B883-31F01BB11939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37462020-A165-42FC-B883-31F01BB11939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37462020-A165-42FC-B883-31F01BB11939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37462020-A165-42FC-B883-31F01BB11939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,8 @@ Global
 		{5026E9EE-FC52-492C-8AA6-A6082ABD056D} = {E42A73AC-5034-441B-973B-CC6D3319FC82}
 		{FACF4494-A3FA-4C99-BC82-2963285ED02C} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
 		{8207797A-8394-4D82-B72D-F73F4027112F} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
+		{148DA923-21A2-4F95-BF79-95A1F2E8247F} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
+		{37462020-A165-42FC-B883-31F01BB11939} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C027DADB-BF11-4991-9D14-30D4A14A4C38}

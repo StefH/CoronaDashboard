@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information"
+    }
+  },
+  "StichtingNICEBaseUrl": "https://stichting-nice.nl",
+  "ApiGatewayCovid19Url": "https://stef.azure-api.net/covid-19"
+}
