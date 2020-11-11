@@ -31,10 +31,19 @@ namespace CoronaDashboard
             builder.Services.AddSingleton(typeof(IStringLocalizer), typeof(StringLocalizer<Resources>));
 
             // HttpClient
-            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            var baseAddress = builder.HostEnvironment.BaseAddress;
+            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(baseAddress) });
 
             // Services
-            builder.Services.AddScoped<IDataService, DataService>();
+            bool.TryParse(builder.Configuration["UseApi"], out bool useApi);
+            if (useApi)
+            {
+                builder.Services.AddScoped<IDataService, ApiDataService>();
+            }
+            else
+            {
+                builder.Services.AddScoped<IDataService, DataService>();
+            }
             builder.Services.AddScoped<IChartService, ChartService>();
             builder.Services.AddScoped<JavaScriptInteropService>();
             builder.Services.AddScoped<BlazoriseInteropServices>();

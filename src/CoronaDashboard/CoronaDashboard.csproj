@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\DataService.cs" />
+    <Compile Remove="Services\IDataService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazorise" Version="0.9.1" />
     <PackageReference Include="Blazorise.Bootstrap" Version="0.9.1" />
     <PackageReference Include="Blazorise.Charts" Version="0.9.1" />
@@ -39,6 +51,10 @@
 
   <ItemGroup>
     <Folder Include="Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoronaDashboard.DataAccess\CoronaDashboard.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
