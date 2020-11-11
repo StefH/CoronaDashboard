@@ -9,6 +9,7 @@ namespace CoronaDashboard.Services
 {
     public class ApiDataService : IDataService
     {
+        private const string StichtingNICEBaseUrl = "https://stichting-nice.nl";
         private readonly HttpClient _httpClient;
 
         public ApiDataService(HttpClient httpClient)
@@ -18,22 +19,22 @@ namespace CoronaDashboard.Services
 
         public Task<AgeDistribution> GetAgeDistributionStatusAsync()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Task<BehandelduurDistribution> GetBehandelduurDistributionAsync()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
         {
-            throw new NotImplementedException();
+            return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>($"{StichtingNICEBaseUrl}/covid-19/public/intake-count");
         }
 
         public Task<IEnumerable<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
