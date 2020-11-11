@@ -35,7 +35,7 @@ namespace CoronaDashboard
             builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(baseAddress) });
 
             // Services
-            bool useApi = string.Equals(builder.Configuration["UseApi"], "true", StringComparison.OrdinalIgnoreCase);
+            bool useApi = baseAddress.EndsWith("azurestaticapps.net");
             if (useApi)
             {
                 builder.Services.AddScoped<IDataService, ApiDataService>();
