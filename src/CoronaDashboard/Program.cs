@@ -36,7 +36,7 @@ namespace CoronaDashboard
 
             // Services
             Console.WriteLine("baseAddress = " + baseAddress);
-            bool useApi = baseAddress.EndsWith("azurestaticapps.net");
+            bool useApi = baseAddress.Contains("azurestaticapps.net");
             Console.WriteLine("useApi = " + useApi);
             if (useApi)
             {
