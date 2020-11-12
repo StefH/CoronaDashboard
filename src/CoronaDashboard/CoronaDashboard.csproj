@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Services\DataService.cs" />
     <Compile Remove="Services\IDataService.cs" />
   </ItemGroup>
 

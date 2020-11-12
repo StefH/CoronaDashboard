@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.Services;
 using Microsoft.Extensions.Configuration;
 using Moq;
@@ -12,9 +13,9 @@ namespace ConsoleApp
         {
             var configMock = new Mock<IConfiguration>();
             configMock.Setup(c => c["StichtingNICEBaseUrl"]).Returns("https://stichting-nice.nl");
-            configMock.Setup(c => c["RIVMBaseUrl"]).Returns("https://data.rivm.nl/covid-19");
+            configMock.Setup(c => c["RIVMBaseUrl"]).Returns("https://stef.azure-api.net/covid-19");
 
-            var dataService = new DataService(new HttpClient(), configMock.Object);
+            var dataService = new DataService(new HttpClient(), configMock.Object, new DataMapper());
 
             var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
 

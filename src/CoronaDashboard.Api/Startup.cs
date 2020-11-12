@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using System.Net.Http;
 using Api;
+using CoronaDashboard.DataAccess.Mappers;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +29,10 @@ namespace Api
                 .ReadFrom.Configuration(config)
                 .CreateLogger();
             builder.Services.AddLogging(lb => lb.AddSerilog(logger, dispose: true));
+
+            builder.Services.AddSingleton(new HttpClient());
+
+            builder.Services.AddSingleton<IDataMapper, DataMapper>();
         }
     }
 }

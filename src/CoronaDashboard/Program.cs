@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
+using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -46,6 +47,7 @@ namespace CoronaDashboard
             {
                 builder.Services.AddScoped<IDataService, DataService>();
             }
+            builder.Services.AddSingleton<IDataMapper, DataMapper>();
             builder.Services.AddScoped<IChartService, ChartService>();
             builder.Services.AddScoped<JavaScriptInteropService>();
             builder.Services.AddScoped<BlazoriseInteropServices>();
