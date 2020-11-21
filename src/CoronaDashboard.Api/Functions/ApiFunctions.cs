@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BlazorApp.Api.Models;
 using CoronaDashboard.Models;
 using CoronaDashboard.Models.Rijksoverheid;
 using Microsoft.AspNetCore.Http;
@@ -33,7 +34,7 @@ namespace BlazorApp.Api
 
             var result = await _httpClient.GetFromJsonAsync<Covid19RootObject>("https://coronadashboard.rijksoverheid.nl/json/NL.json");
 
-            return new OkObjectResult(result.InfectedPeopleTotal);
+            return new SystemTextJsonResult(result.InfectedPeopleTotal);
         }
 
         [FunctionName("IntakeCount")]
@@ -43,7 +44,7 @@ namespace BlazorApp.Api
 
             var result = await _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>($"{StichtingNICEBaseUrl}/covid-19/public/intake-count");
 
-            return new OkObjectResult(result);
+            return new SystemTextJsonResult(result);
         }
 
         [FunctionName("AgeDistributionStatus")]
@@ -53,7 +54,7 @@ namespace BlazorApp.Api
 
             var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{StichtingNICEBaseUrl}/covid-19/public/age-distribution-status");
 
-            return new OkObjectResult(result);
+            return new SystemTextJsonResult(result);
         }
 
         [FunctionName("DiedAndSurvivorsCumulative")]
@@ -63,7 +64,7 @@ namespace BlazorApp.Api
 
             var result = await _httpClient.GetFromJsonAsync<DateValueEntry<int>[][]>($"{StichtingNICEBaseUrl}/covid-19/public/died-and-survivors-cumulative");
 
-            return new OkObjectResult(result);
+            return new SystemTextJsonResult(result);
         }
 
         [FunctionName("BehandelduurDistribution")]
@@ -73,7 +74,7 @@ namespace BlazorApp.Api
 
             var result = await _httpClient.GetFromJsonAsync<JsonElement[][][]>($"{StichtingNICEBaseUrl}/covid-19/public/behandelduur-distribution");
 
-            return new OkObjectResult(result);
+            return new SystemTextJsonResult(result);
         }
     }
 }

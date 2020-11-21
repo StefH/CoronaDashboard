@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.Models;
+using CoronaDashboard.Models.Rijksoverheid;
 
 namespace CoronaDashboard.Services
 {
@@ -45,9 +46,11 @@ namespace CoronaDashboard.Services
             return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>("/api/IntakeCount");
         }
 
-        public Task<IEnumerable<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
+        public async Task<IEnumerable<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
         {
-            return _httpClient.GetFromJsonAsync<IEnumerable<DateValueEntry<double>>>("/api/PositiefGetestePerDag");
+            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>("/api/PositiefGetestePerDag");
+
+            return _mapper.MapInfectedPeopleTotal(infectedPeopleTotal);
         }
     }
 }

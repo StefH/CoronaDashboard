@@ -171,13 +171,13 @@ namespace CoronaDashboard.Models.Rijksoverheid
     public class InfectedPeopleTotal
     {
         [JsonPropertyName("values")]
-        public InfectedPeopleTotalLastValue[] Values { get; set; }
+        public InfectedPeopleTotalValue[] Values { get; set; }
 
         [JsonPropertyName("last_value")]
-        public InfectedPeopleTotalLastValue LastValue { get; set; }
+        public InfectedPeopleTotalValue LastValue { get; set; }
     }
 
-    public class InfectedPeopleTotalLastValue
+    public class InfectedPeopleTotalValue
     {
         [JsonPropertyName("date_of_report_unix")]
         public long DateOfReportUnix { get; set; }

@@ -241,7 +241,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal postitief geteste personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
+        ///   Looks up a localized string similar to Deze grafiek toont het geschatte aantal positief geteste personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
         /// </summary>
         internal static string PositiefGetestePersonenPerDag_BodyText1 {
             get {
@@ -250,7 +250,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal potitief geteste personen met COVID-19.
+        ///   Looks up a localized string similar to Aantal positief geteste personen met COVID-19.
         /// </summary>
         internal static string PositiefGetestePersonenPerDag_Header {
             get {

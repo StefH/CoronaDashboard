@@ -33,11 +33,20 @@ namespace CoronaDashboard
 
             // HttpClient
             var baseAddress = builder.HostEnvironment.BaseAddress;
-            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(baseAddress) });
+            Console.WriteLine("baseAddress = " + baseAddress);
+
+            bool isLocalHost = baseAddress.Contains("localhost");
+            Console.WriteLine("isLocalHost = " + isLocalHost);
+
+            bool isAzure = baseAddress.Contains("azurestaticapps.net");
+            Console.WriteLine("isAzure = " + isAzure);
+
+            string httpClientBaseAddress = isLocalHost ? "http://localhost:7071" : baseAddress;
+            Console.WriteLine("httpClientBaseAddress = " + httpClientBaseAddress);
+            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(httpClientBaseAddress) });
 
             // Services
-            Console.WriteLine("baseAddress = " + baseAddress);
-            bool useApi = baseAddress.Contains("azurestaticapps.net");
+            bool useApi = isAzure || isLocalHost;
             Console.WriteLine("useApi = " + useApi);
             if (useApi)
             {
