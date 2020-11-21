@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
     <Compile Remove="Models\**" />
+    <Content Remove="Components\**" />
     <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Components\**" />
     <EmbeddedResource Remove="Models\**" />
+    <None Remove="Components\**" />
     <None Remove="Models\**" />
   </ItemGroup>
 
@@ -46,10 +50,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\" />
   </ItemGroup>
 
   <ItemGroup>

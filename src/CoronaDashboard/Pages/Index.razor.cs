@@ -175,6 +175,12 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
+                    PositiefGetestePersonenPerDagDates = await ChartService.GetPositiefGetestePerDagAsync(PositiefGetestePersonenPerDagLineChart);
+                    StateHasChanged();
+                }),
+
+                Task.Run(async () =>
+                {
                     IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
@@ -185,15 +191,17 @@ namespace CoronaDashboard.Pages
                     StateHasChanged();
                 }),
 
-                ChartService.GetAgeDistributionStatusAsync(AgeDistributionBarChart),
-
-                ChartService.GetBehandelduurDistributionAsync(BehandelduurDistributionBarChart),
+                Task.Run(async () =>
+                {
+                    await ChartService.GetAgeDistributionStatusAsync(AgeDistributionBarChart);
+                    StateHasChanged();
+                }),
 
                 Task.Run(async () =>
                 {
-                    PositiefGetestePersonenPerDagDates = await ChartService.GetPositiefGetestePerDagAsync(PositiefGetestePersonenPerDagLineChart);
+                    await ChartService.GetBehandelduurDistributionAsync(BehandelduurDistributionBarChart);
                     StateHasChanged();
-                }),
+                })
             };
 
             await Task.WhenAll(tasks);
