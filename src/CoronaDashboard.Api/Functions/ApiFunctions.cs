@@ -17,6 +17,7 @@ namespace BlazorApp.Api
     public class ApiFunctions
     {
         private const string StichtingNICEBaseUrl = "https://stichting-nice.nl";
+        private const string ApiGatewayCovid19Url = "https://stef.azure-api.net/covid-19";
 
         private ILogger<ApiFunctions> _logger;
         private HttpClient _httpClient;
@@ -27,14 +28,24 @@ namespace BlazorApp.Api
             _httpClient = httpClient;
         }
 
+        [FunctionName("PositiefGetestePerDagNL")]
+        public async Task<IActionResult> GetPositiefGetestePerDagNLAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
+        {
+            _logger.LogInformation("HttpTrigger - PositiefGetestePerDagNL");
+
+            var result = await _httpClient.GetFromJsonAsync<Covid19RootObject>("https://coronadashboard.rijksoverheid.nl/json/NL.json");
+
+            return new SystemTextJsonResult(result.InfectedPeopleTotal);
+        }
+
         [FunctionName("PositiefGetestePerDag")]
         public async Task<IActionResult> GetPositiefGetestePerDagAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
             _logger.LogInformation("HttpTrigger - PositiefGetestePerDag");
 
-            var result = await _httpClient.GetFromJsonAsync<Covid19RootObject>("https://coronadashboard.rijksoverheid.nl/json/NL.json");
+            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>($"{ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=infected_people_total");
 
-            return new SystemTextJsonResult(result.InfectedPeopleTotal);
+            return new SystemTextJsonResult(infectedPeopleTotal);
         }
 
         [FunctionName("IntakeCount")]
