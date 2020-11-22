@@ -28,7 +28,7 @@ namespace BlazorApp.Api
         }
 
         [FunctionName("PositiefGetestePerDag")]
-        public async Task<IActionResult> GetPositiefGetestePerDagAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req)
+        public async Task<IActionResult> GetPositiefGetestePerDagAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
             _logger.LogInformation("HttpTrigger - PositiefGetestePerDag");
 
