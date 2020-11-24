@@ -51,7 +51,7 @@ namespace CoronaDashboard.Services
             return _mapper.MapBehandelduurDistribution(result);
         }
 
-        public async Task<IEnumerable<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
+        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
         {
             var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=infected_people_total");
 

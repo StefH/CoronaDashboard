@@ -46,7 +46,7 @@ namespace CoronaDashboard.Services
             return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>("/api/IntakeCount");
         }
 
-        public async Task<IEnumerable<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
+        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
         {
             var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>("/api/PositiefGetestePerDag");
 

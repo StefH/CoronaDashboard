@@ -7,7 +7,7 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.PositiefGetestePersonenPerDag_Header</CardText>
             </div>
             <CardBody>
-                <CardText><LineChart @ref="PositiefGetestePersonenPerDagLineChart" TItem="double?" OptionsObject="@PositiefGetestePersonenPerDagChartOptionsObject" /></CardText>
+                <CardText><LineChart @ref="PositiefGetestePersonenPerDagLineChart" TItem="double?" Options="@PositiefGetestePersonenPerDagChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.PositiefGetestePersonenPerDag_Y
@@ -53,7 +53,7 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.DiedAndSurvivorsCumulative_Header</CardText>
             </div>
             <CardBody>
-                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
+                <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" Options="@IntakeCountChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond
@@ -79,7 +79,7 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.AgeDistribution_Header</CardText>
             </div>
             <CardBody>
-                <CardText><BarChart @ref="AgeDistributionBarChart" TItem="int" OptionsObject="@AgeDistributionChartOptionsObject" /></CardText>
+                <CardText><BarChart @ref="AgeDistributionBarChart" TItem="int" Options="@AgeDistributionChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond
@@ -111,7 +111,7 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.BehandelduurDistribution_Header</CardText>
             </div>
             <CardBody>
-                <CardText><BarChart @ref="BehandelduurDistributionBarChart" TItem="int" OptionsObject="@BehandelduurDistributionChartOptionsObject" /></CardText>
+                <CardText><BarChart @ref="BehandelduurDistributionBarChart" TItem="int" Options="@BehandelduurDistributionChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
                     @Resources.Label_Gezond

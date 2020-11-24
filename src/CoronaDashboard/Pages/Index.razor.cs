@@ -17,25 +17,14 @@ namespace CoronaDashboard.Pages
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
 
-        readonly object PositiefGetestePersonenPerDagChartOptionsObject = new
+        readonly LineChartOptions PositiefGetestePersonenPerDagChartOptions = new LineChartOptions
         {
             // Animation = new Animation { Duration = 0 },
-            legend = new { display = false },
-            scales = new
+            Legend = new Legend { Display = false },
+            Scales = new Scales
             {
-                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.PositiefGetestePersonenPerDag_X } } },
-                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.PositiefGetestePersonenPerDag_Y } } }
-            }
-        };
-
-        readonly object IntakeCountChartOptionsObject = new
-        {
-            // Animation = new Animation { Duration = 0 },
-            legend = new { display = false },
-            scales = new
-            {
-                xAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_X } } },
-                yAxes = new[] { new { scaleLabel = new { display = true, labelString = Resources.IntakeCount_Y } } }
+                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.PositiefGetestePersonenPerDag_X } } },
+                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.PositiefGetestePersonenPerDag_Y } } }
             }
         };
 
@@ -50,27 +39,9 @@ namespace CoronaDashboard.Pages
             }
         };
 
-        object AgeDistributionChartOptionsObject => GetBarChartOptionObject(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
-
-        object BehandelduurDistributionChartOptionsObject => GetBarChartOptionObject(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
-
         BarChartOptions AgeDistributionChartOptions => GetBarChartOptions(Resources.AgeDistribution_X, Resources.AgeDistribution_Y);
 
         BarChartOptions BehandelduurDistributionChartOptions => GetBarChartOptions(Resources.BehandelduurDistribution_X, Resources.BehandelduurDistribution_Y);
-
-        object GetBarChartOptionObject(string x, string y)
-        {
-            return new
-            {
-                // animation = new { duration = 0 },
-                legend = new { display = false },
-                scales = new
-                {
-                    xAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = x } } },
-                    yAxes = new[] { new { stacked = true, scaleLabel = new { display = true, labelString = y } } }
-                }
-            };
-        }
 
         BarChartOptions GetBarChartOptions(string x, string y)
         {
@@ -79,8 +50,8 @@ namespace CoronaDashboard.Pages
                 // animation = new { duration = 0 },
                 Scales = new Scales
                 {
-                    XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = x } } },
-                    YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = y } } }
+                    XAxes = new List<Axis> { new Axis { Display = true, Stacked = true, ScaleLabel = new AxisScaleLabel { LabelString = x } } },
+                    YAxes = new List<Axis> { new Axis { Display = true, Stacked = true, ScaleLabel = new AxisScaleLabel { LabelString = y } } }
                 }
             };
         }
