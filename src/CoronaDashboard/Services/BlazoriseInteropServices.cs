@@ -17,9 +17,14 @@ namespace CoronaDashboard.Services
         /// https://github.com/stsrki/Blazorise/issues/983
         /// Feature request: Add multiline labels support for ChartJS component 
         /// </summary>
-        public ValueTask AddChartLabels(string id, IEnumerable<object> labels)
+        public ValueTask AddChartLabels2(string id, IEnumerable<object> labels)
         {
             return _runtime.InvokeVoidAsync("blazoriseCharts.addLabel", id, labels);
+        }
+        
+        public ValueTask AddLabelsDatasetsAndUpdate<TDataSet>(string id, IEnumerable<object> labels, params TDataSet[] datasets)
+        {
+            return _runtime.InvokeVoidAsync("blazoriseCharts.addLabelsDatasetsAndUpdate", id, labels, datasets);
         }
     }
 }

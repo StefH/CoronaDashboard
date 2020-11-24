@@ -45,8 +45,8 @@ namespace CoronaDashboard.Pages
             Legend = new Legend { Display = false },
             Scales = new Scales
             {
-                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = Resources.IntakeCount_X } } },
-                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = Resources.IntakeCount_Y } } }
+                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_X } } },
+                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_Y } } }
             }
         };
 
@@ -79,8 +79,8 @@ namespace CoronaDashboard.Pages
                 // animation = new { duration = 0 },
                 Scales = new Scales
                 {
-                    XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = x } } },
-                    YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxeScaleLabel { LabelString = y } } }
+                    XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = x } } },
+                    YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = y } } }
                 }
             };
         }

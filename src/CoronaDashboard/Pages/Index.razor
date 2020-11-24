@@ -29,7 +29,7 @@
                 <CardText Alignment="TextAlignment.Left">@Resources.IntakeCount_Header</CardText>
             </div>
             <CardBody>
-                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" OptionsObject="@IntakeCountChartOptionsObject" /></CardText>
+                <CardText><LineChart @ref="IntakeCountLineChart" TItem="double?" Options="@IntakeCountChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.IntakeCount_Y
