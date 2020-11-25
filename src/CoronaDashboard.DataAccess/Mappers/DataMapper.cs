@@ -9,13 +9,13 @@ namespace CoronaDashboard.DataAccess.Mappers
 {
     public class DataMapper : IDataMapper
     {
-        public IEnumerable<DateValueEntry<double>> MapInfectedPeopleTotal(InfectedPeopleTotal data)
+        public IReadOnlyCollection<DateValueEntry<double>> MapInfectedPeopleTotal(InfectedPeopleTotal data)
         {
             return data.Values.Select(i => new DateValueEntry<double>
             {
                 Date = DateTimeOffset.FromUnixTimeSeconds(i.DateOfReportUnix).DateTime,
                 Value = i.InfectedDailyTotal
-            });
+            }).ToList();
         }
 
         public BehandelduurDistribution MapBehandelduurDistribution(JsonElement[][][] data)
