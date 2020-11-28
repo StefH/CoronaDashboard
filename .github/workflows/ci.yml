@@ -1,0 +1,44 @@
+name: CI
+env:
+  PUBLISH_DIR: src/CoronaDashboard/bin/Release/net5.0/publish/wwwroot
+
+on:
+  push:
+    branches:
+    - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: actions/setup-dotnet@v1
+      with:
+       dotnet-version: '5.0.x'
+
+    - name: Publish app
+      run: dotnet publish -c Release src/CoronaDashboard
+
+    - name: Rewrite base href
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: ${{ env.PUBLISH_DIR }}/index.html
+        base_href: /CoronaDashboard/
+        
+    - name: Patch blazor.webassembly.js
+      uses: jacobtomlinson/gha-find-replace@master
+      with:
+        find: "return{name:e,url:t,response:this\\.cacheIfUsed\\?this\\.loadResourceWithCaching\\(this\\.cacheIfUsed,e,t,n,r\\):this\\.loadResourceWithoutCaching\\(e,t,n,r\\)}}"
+        replace: "var x={name:e,url:t,response:this.cacheIfUsed?this.loadResourceWithCaching(this.cacheIfUsed,e,t,n,r):this.loadResourceWithoutCaching(e,t,n,r)}; x.response.then((y) => { window.loadResourceCallback(e, y); }); return x;}"
+        include: "blazor.webassembly.js"
+
+    - name: BlazorWebAssemblyFileHashFixer
+      uses: stefh/ghaction-BlazorWebAssemblyFileHashFixer@v1
+      with:
+        wwwroot-path: ${{ env.PUBLISH_DIR }}
+    
+    - name: CompressFiles
+      uses: stefh/ghaction-CompressFiles@v1
+      with:
+        path: ${{ env.PUBLISH_DIR }}
