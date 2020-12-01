@@ -48,10 +48,11 @@ namespace CoronaDashboard.Pages
             return new BarChartOptions
             {
                 // animation = new { duration = 0 },
+                Legend = new Legend { Display = false },
                 Scales = new Scales
                 {
-                    XAxes = new List<Axis> { new Axis { Display = true, Stacked = true, ScaleLabel = new AxisScaleLabel { LabelString = x } } },
-                    YAxes = new List<Axis> { new Axis { Display = true, Stacked = true, ScaleLabel = new AxisScaleLabel { LabelString = y } } }
+                    XAxes = new List<Axis> { new Axis { Stacked = true, ScaleLabel = new AxisScaleLabel { Display = true, LabelString = x } } },
+                    YAxes = new List<Axis> { new Axis { Stacked = true, ScaleLabel = new AxisScaleLabel { Display = true, LabelString = y } } }
                 }
             };
         }
