@@ -38,7 +38,7 @@ namespace CoronaDashboard
             bool isLocalHost = baseAddress.Contains("localhost");
             Console.WriteLine("isLocalHost = " + isLocalHost);
 
-            bool isAzure = baseAddress.Contains("azurestaticapps.net");
+            bool isAzure = baseAddress.Contains("azurestaticapps.net") || baseAddress.Contains("coronadashboard.heyenrath.nl");
             Console.WriteLine("isAzure = " + isAzure);
 
             string httpClientBaseAddress = isLocalHost ? "http://localhost:7071" : baseAddress;
