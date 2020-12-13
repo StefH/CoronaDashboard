@@ -168,8 +168,8 @@
   <data name="IntakeCount_Header" xml:space="preserve">
     <value>Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag.</value>
   </data>
-  <data name="IntakeCount_TodayAndTotal" xml:space="preserve">
-    <value>Aantal IC patiënten vandaag: {0}, aantal totaal: {1}</value>
+  <data name="IntakeCount_Today" xml:space="preserve">
+    <value>Aantal IC patiënten vandaag: {0}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="IntakeCount_X" xml:space="preserve">

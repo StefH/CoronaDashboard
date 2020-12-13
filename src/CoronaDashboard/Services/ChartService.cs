@@ -98,8 +98,7 @@ namespace CoronaDashboard.Services
             return new DateRangeWithTodayValueDetails
             {
                 Dates = $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}",
-                CountToday = lastValue.ToString(),
-                CountTotal = data.Sum(x => x.Value).ToString()
+                CountToday = lastValue.ToString()
             };
         }
 

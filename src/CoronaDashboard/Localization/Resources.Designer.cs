@@ -205,11 +205,11 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}, aantal totaal: {1}.
+        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}.
         /// </summary>
-        internal static string IntakeCount_TodayAndTotal {
+        internal static string IntakeCount_Today {
             get {
-                return ResourceManager.GetString("IntakeCount_TodayAndTotal", resourceCulture);
+                return ResourceManager.GetString("IntakeCount_Today", resourceCulture);
             }
         }
         
