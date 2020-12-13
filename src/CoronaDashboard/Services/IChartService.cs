@@ -6,14 +6,14 @@ namespace CoronaDashboard.Services
 {
     public interface IChartService
     {
+        Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart);
+
         Task<DateRangeWithTodayValueDetails> GetIntakeCountAsync(LineChart<double?> chart);
 
         Task GetAgeDistributionStatusAsync(BarChart<int> chart);
 
-        Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart);
+        Task<DiedAndSurvivorsCumulativeDetails> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart);
 
         Task GetBehandelduurDistributionAsync(BarChart<int> chart);
-
-        Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart);
     }
 }
