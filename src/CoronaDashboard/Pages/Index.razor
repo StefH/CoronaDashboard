@@ -14,13 +14,13 @@
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
-                    @string.Format(Resources.PositiefGetestePersonenPerDag_Today, PositiefGetestePersonenPerDagDates.Today)
+                    @string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal, PositiefGetestePersonenPerDagDetails.CountToday, PositiefGetestePersonenPerDagDetails.CountTotal)
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@Resources.PositiefGetestePersonenPerDag_BodyText1</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @PositiefGetestePersonenPerDagDates.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @PositiefGetestePersonenPerDagDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://coronadashboard.rijksoverheid.nl/landelijk/positief-geteste-mensen">rijksoverheid.nl</a></small></CardText>
             </CardFooter>
         </Card>
@@ -36,13 +36,13 @@
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
-                    @string.Format(Resources.IntakeCount_Today, IntakeCountDates.Today)
+                    @string.Format(Resources.IntakeCount_TodayAndTotal, IntakeCountDetails.CountToday, IntakeCountDetails.CountTotal)
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@Resources.IntakeCount_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
@@ -56,21 +56,21 @@
                 <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" Options="@IntakeCountChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
-                    @Resources.Label_Gezond
+                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Verlaten, DiedAndSurvivorsCumulativeDetails.CountTodayVerlaten)
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Blue">██</span>
-                    @Resources.Label_Verpleegafdeling
+                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Verpleegafdeling, DiedAndSurvivorsCumulativeDetails.CountTodayNogOpVerpleegafdeling)
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: lightgray">██</span>
-                    @Resources.Label_Overleden
+                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Overleden, DiedAndSurvivorsCumulativeDetails.CountTodayOverleden)
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@Resources.DiedAndSurvivorsCumulative_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDetails</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
@@ -100,7 +100,7 @@
                 <CardText Style="font-size: 0.9em">@Resources.AgeDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>
@@ -132,7 +132,7 @@
                 <CardText Style="font-size: 0.9em">@Resources.BehandelduurDistribution_BodyText</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDates.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>

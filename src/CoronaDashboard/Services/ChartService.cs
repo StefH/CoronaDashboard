@@ -21,6 +21,48 @@ namespace CoronaDashboard.Services
             _blazoriseInteropServices = blazoriseInteropServices;
         }
 
+        public async Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart)
+        {
+            var allData = await _dataService.GetPositiefGetestePerDagAsync();
+
+            var groupedGeschat = GroupByDays(allData, tp => tp.Value);
+
+            await chart.Clear();
+
+            var set = new LineChartDataset<double?>
+            {
+                Fill = false,
+                BorderColor = new List<string> { AppColors.ChartDarkBlue },
+                Data = groupedGeschat.Select(d => (double?)d.Value).ToList()
+            };
+
+            double lastValue = allData.Last().Value;
+            var points = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (double?)null).ToList();
+            points.Add(lastValue);
+
+            var pointColors = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (string)null).ToList();
+            pointColors.Add(AppColors.ChartRed);
+            var lastPoint = new LineChartDataset<double?>
+            {
+                Fill = false,
+                PointBackgroundColor = pointColors,
+                PointBorderColor = pointColors,
+                Data = points
+            };
+
+            await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
+                GetLabelsWithYear(groupedGeschat.Select(g => g.Date)),
+                set, lastPoint
+            );
+
+            return new DateRangeWithTodayValueDetails
+            {
+                Dates = $"{DateUtils.ToLongDate(allData.First().Date)} t/m {DateUtils.ToLongDate(allData.Last().Date)}",
+                CountToday = lastValue.ToString(),
+                CountTotal = allData.Sum(x => x.Value).ToString()
+            };
+        }
+
         public async Task<DateRangeWithTodayValueDetails> GetIntakeCountAsync(LineChart<double?> chart)
         {
             var data = await _dataService.GetIntakeCountAsync();
@@ -56,11 +98,12 @@ namespace CoronaDashboard.Services
             return new DateRangeWithTodayValueDetails
             {
                 Dates = $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}",
-                Today = lastValue.ToString()
+                CountToday = lastValue.ToString(),
+                CountTotal = data.Sum(x => x.Value).ToString()
             };
         }
 
-        public async Task<string> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart)
+        public async Task<DiedAndSurvivorsCumulativeDetails> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart)
         {
             var data = await _dataService.GetDiedAndSurvivorsCumulativeAsync();
             var groupedOverleden = GroupByDays(data.Overleden);
@@ -95,7 +138,13 @@ namespace CoronaDashboard.Services
                 overleden, verlaten, verpleegafdeling
             );
 
-            return $"{DateUtils.ToLongDate(data.Overleden.First().Date)} t/m {DateUtils.ToLongDate(data.Overleden.Last().Date)}";
+            return new DiedAndSurvivorsCumulativeDetails
+            {
+                Dates = $"{DateUtils.ToLongDate(data.Overleden.First().Date)} t/m {DateUtils.ToLongDate(data.Overleden.Last().Date)}",
+                CountTodayOverleden = data.Overleden.Last().Value.ToString(),
+                CountTodayNogOpVerpleegafdeling = data.NogOpVerpleegafdeling.Last().Value.ToString(),
+                CountTodayVerlaten = data.Verlaten.Last().Value.ToString()
+            };
         }
 
         public async Task GetAgeDistributionStatusAsync(BarChart<int> chart)
@@ -170,47 +219,6 @@ namespace CoronaDashboard.Services
             };
 
             await chart.AddLabelsDatasetsAndUpdate(age.LabelsDagen.ToArray(), overleden, ic, verpleegafdeling, gezond);
-        }
-
-        public async Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart)
-        {
-            var allData = await _dataService.GetPositiefGetestePerDagAsync();
-
-            var groupedGeschat = GroupByDays(allData, tp => tp.Value);
-
-            await chart.Clear();
-
-            var set = new LineChartDataset<double?>
-            {
-                Fill = false,
-                BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = groupedGeschat.Select(d => (double?)d.Value).ToList()
-            };
-
-            double lastValue = allData.Last().Value;
-            var points = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (double?)null).ToList();
-            points.Add(lastValue);
-
-            var pointColors = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (string)null).ToList();
-            pointColors.Add(AppColors.ChartRed);
-            var lastPoint = new LineChartDataset<double?>
-            {
-                Fill = false,
-                PointBackgroundColor = pointColors,
-                PointBorderColor = pointColors,
-                Data = points
-            };
-
-            await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-                GetLabelsWithYear(groupedGeschat.Select(g => g.Date)),
-                set, lastPoint
-            );
-
-            return new DateRangeWithTodayValueDetails
-            {
-                Dates = $"{DateUtils.ToLongDate(allData.First().Date)} t/m {DateUtils.ToLongDate(allData.Last().Date)}",
-                Today = lastValue.ToString()
-            };
         }
 
         private static List<DateValueEntry<double>> GroupByDays(IEnumerable<DateValueEntry<int>> data, int days = 3)

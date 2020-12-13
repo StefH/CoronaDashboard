@@ -11,6 +11,8 @@ namespace CoronaDashboard.Pages
 {
     public partial class Index
     {
+        private const string D3 = "...";
+
         [Inject]
         IChartService ChartService { get; set; }
 
@@ -70,9 +72,15 @@ namespace CoronaDashboard.Pages
         BarChart<int> AgeDistributionBarChart;
         BarChart<int> BehandelduurDistributionBarChart;
 
-        DateRangeWithTodayValueDetails IntakeCountDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
-        DateRangeWithTodayValueDetails PositiefGetestePersonenPerDagDates = new DateRangeWithTodayValueDetails { Dates = "...", Today = "..." };
-        string DiedAndSurvivorsCumulativeDates = "...";
+        DateRangeWithTodayValueDetails IntakeCountDetails = new DateRangeWithTodayValueDetails { Dates = D3, CountToday = D3 };
+        DateRangeWithTodayValueDetails PositiefGetestePersonenPerDagDetails = new DateRangeWithTodayValueDetails { Dates = D3, CountToday = D3, CountTotal = D3 };
+        DiedAndSurvivorsCumulativeDetails DiedAndSurvivorsCumulativeDetails = new DiedAndSurvivorsCumulativeDetails
+        { 
+            Dates = D3,
+            CountTodayOverleden = D3,
+            CountTodayVerlaten = D3,
+            CountTodayNogOpVerpleegafdeling = D3,
+        };
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -147,19 +155,19 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    PositiefGetestePersonenPerDagDates = await ChartService.GetPositiefGetestePerDagAsync(PositiefGetestePersonenPerDagLineChart);
+                    PositiefGetestePersonenPerDagDetails = await ChartService.GetPositiefGetestePerDagAsync(PositiefGetestePersonenPerDagLineChart);
                     StateHasChanged();
                 }),
 
                 Task.Run(async () =>
                 {
-                    IntakeCountDates = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
+                    IntakeCountDetails = await ChartService.GetIntakeCountAsync(IntakeCountLineChart);
                     StateHasChanged();
                 }),
 
                 Task.Run(async () =>
                 {
-                    DiedAndSurvivorsCumulativeDates = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
+                    DiedAndSurvivorsCumulativeDetails = await ChartService.GetDiedAndSurvivorsCumulativeAsync(DiedAndSurvivorsCumulativeLineChart);
                     StateHasChanged();
                 }),
 

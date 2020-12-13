@@ -160,6 +160,33 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overleden bij IC opname: {0}.
+        /// </summary>
+        internal static string DiedAndSurvivorsCumulative_Overleden {
+            get {
+                return ResourceManager.GetString("DiedAndSurvivorsCumulative_Overleden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het ziekenhuis levend verlaten: {0}.
+        /// </summary>
+        internal static string DiedAndSurvivorsCumulative_Verlaten {
+            get {
+                return ResourceManager.GetString("DiedAndSurvivorsCumulative_Verlaten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nog opgenomen op de verpleegafdeling: {0}.
+        /// </summary>
+        internal static string DiedAndSurvivorsCumulative_Verpleegafdeling {
+            get {
+                return ResourceManager.GetString("DiedAndSurvivorsCumulative_Verpleegafdeling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
         /// </summary>
         internal static string IntakeCount_BodyText {
@@ -178,11 +205,11 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}.
+        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}, aantal totaal: {1}.
         /// </summary>
-        internal static string IntakeCount_Today {
+        internal static string IntakeCount_TodayAndTotal {
             get {
-                return ResourceManager.GetString("IntakeCount_Today", resourceCulture);
+                return ResourceManager.GetString("IntakeCount_TodayAndTotal", resourceCulture);
             }
         }
         
@@ -259,11 +286,11 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal vandaag : {0}.
+        ///   Looks up a localized string similar to Aantal vandaag : {0}, aantal totaal: {1}.
         /// </summary>
-        internal static string PositiefGetestePersonenPerDag_Today {
+        internal static string PositiefGetestePersonenPerDag_TodayAndTotal {
             get {
-                return ResourceManager.GetString("PositiefGetestePersonenPerDag_Today", resourceCulture);
+                return ResourceManager.GetString("PositiefGetestePersonenPerDag_TodayAndTotal", resourceCulture);
             }
         }
         
