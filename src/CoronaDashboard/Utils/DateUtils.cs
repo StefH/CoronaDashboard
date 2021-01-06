@@ -5,19 +5,16 @@ namespace CoronaDashboard.Utils
 {
     public static class DateUtils
     {
-        private static readonly CultureInfo CultureNederland = new CultureInfo("NL-nl");
-
-        private const string DateFormat = "dd-MMM";
-        private const string LongDateFormat = "d MMM yyyy";
+        private static readonly CultureInfo CultureNederland = CultureInfo.GetCultureInfo("nl-NL");
 
         public static string ToShortDate(DateTime date)
         {
-            return date.ToString(DateFormat, CultureNederland);
+            return string.Format(CultureNederland, "{0:dd-MMM}", date);
         }
 
         public static string ToLongDate(DateTime date)
         {
-            return date.ToString(LongDateFormat, CultureNederland);
+            return string.Format(CultureNederland, "{0:d MMM yyyy}", date);
         }
     }
 }

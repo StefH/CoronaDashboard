@@ -24,6 +24,7 @@ namespace CoronaDashboard.Services
         
         public ValueTask AddLabelsDatasetsAndUpdate<TDataSet>(string id, IEnumerable<object> labels, params TDataSet[] datasets)
         {
+            // _runtime.InvokeVoidAsync("console.log", labels);
             return _runtime.InvokeVoidAsync("blazoriseCharts.addLabelsDatasetsAndUpdate", id, labels, datasets);
         }
     }
