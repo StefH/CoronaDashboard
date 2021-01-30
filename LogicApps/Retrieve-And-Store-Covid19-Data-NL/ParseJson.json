@@ -1,0 +1,1156 @@
+{
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "ggd": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "infected": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infected_percentage": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "tested_total": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "week_end_unix": {
+              "type": "integer"
+            },
+            "week_start_unix": {
+              "type": "integer"
+            },
+            "week_unix": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "infected": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infected_percentage": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "tested_total": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "week_end_unix": {
+                "type": "integer"
+              },
+              "week_start_unix": {
+                "type": "integer"
+              },
+              "week_unix": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "week_unix",
+              "week_start_unix",
+              "week_end_unix",
+              "infected",
+              "infected_percentage",
+              "tested_total",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "hospital_beds_occupied": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "covid_occupied": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "covid_occupied": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "covid_occupied",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "infected_people_delta_normalized": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "infected_daily_increase": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "infected_daily_increase": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "infected_daily_increase",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "infected_people_total": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "infected_daily_total": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "infected_daily_total": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "infected_daily_total",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "infectious_people_count": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "infectious_avg": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infectious_high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infectious_low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "infectious_avg": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infectious_high": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infectious_low": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "infectious_low",
+              "infectious_avg",
+              "infectious_high",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "infectious_people_count_normalized": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "infectious_avg_normalized": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infectious_high_normalized": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infectious_low_normalized": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "infectious_avg_normalized": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infectious_high_normalized": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infectious_low_normalized": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "infectious_low_normalized",
+              "infectious_avg_normalized",
+              "infectious_high_normalized",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "infectious_people_last_known_average": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "infectious_avg": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infectious_high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infectious_low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "infectious_avg": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infectious_high": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infectious_low": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "infectious_low",
+              "infectious_avg",
+              "infectious_high",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "intake_hospital_ma": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "moving_average_hospital": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "moving_average_hospital": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "moving_average_hospital",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "intake_intensivecare_ma": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "moving_average_ic": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "moving_average_ic": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "moving_average_ic",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "intake_share_age_groups": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "agegroup": {
+              "type": "string"
+            },
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "infected_per_agegroup_increase": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "agegroup": {
+                "type": "string"
+              },
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "infected_per_agegroup_increase": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "agegroup",
+              "infected_per_agegroup_increase",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "intensive_care_beds_occupied": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "covid_occupied": {
+              "type": "integer"
+            },
+            "covid_percentage_of_all_occupied": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "non_covid_occupied": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "covid_occupied": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "covid_percentage_of_all_occupied": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "non_covid_occupied": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "covid_occupied",
+              "non_covid_occupied",
+              "covid_percentage_of_all_occupied",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "last_generated": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "nursing_home": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "deceased_daily": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infected_locations_percentage": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "infected_locations_total": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "newly_infected_locations": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "newly_infected_people": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "deceased_daily": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infected_locations_percentage": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "infected_locations_total": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "newly_infected_locations": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "newly_infected_people": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "newly_infected_people",
+              "infected_locations_total",
+              "deceased_daily",
+              "newly_infected_locations",
+              "infected_locations_percentage",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "proto_name": {
+      "type": "string"
+    },
+    "reproduction_index": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "reproduction_index_avg": {},
+            "reproduction_index_high": {},
+            "reproduction_index_low": {}
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "reproduction_index_avg": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "reproduction_index_high": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "reproduction_index_low": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "reproduction_index_low",
+              "reproduction_index_avg",
+              "reproduction_index_high",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "reproduction_index_last_known_average": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "date_of_report_unix": {
+              "type": "integer"
+            },
+            "reproduction_index_avg": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "reproduction_index_high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "reproduction_index_low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "date_of_report_unix": {
+                "type": "integer"
+              },
+              "reproduction_index_avg": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "reproduction_index_high": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "reproduction_index_low": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "date_of_report_unix",
+              "reproduction_index_low",
+              "reproduction_index_avg",
+              "reproduction_index_high",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sewer": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "average": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "total_installation_count": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "week_end_unix": {
+              "type": "integer"
+            },
+            "week_start_unix": {
+              "type": "integer"
+            },
+            "week_unix": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "average": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "total_installation_count": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "week_end_unix": {
+                "type": "integer"
+              },
+              "week_start_unix": {
+                "type": "integer"
+              },
+              "week_unix": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "week_unix",
+              "week_start_unix",
+              "week_end_unix",
+              "average",
+              "total_installation_count",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sewer_per_installation": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_measurement_unix": {
+              "type": "integer"
+            },
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "gm_code": {
+              "type": "string"
+            },
+            "rna_normalized": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "rwzi_awzi_code": {
+              "type": "string"
+            },
+            "rwzi_awzi_name": {
+              "type": "string"
+            },
+            "vrcode": {
+              "type": "string"
+            },
+            "vrnaam": {
+              "type": "string"
+            },
+            "week_end_unix": {
+              "type": "integer"
+            },
+            "week_start_unix": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_measurement_unix": {
+                "type": "integer"
+              },
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "gm_code": {
+                "type": "string"
+              },
+              "rna_normalized": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "rwzi_awzi_code": {
+                "type": "string"
+              },
+              "rwzi_awzi_name": {
+                "type": "string"
+              },
+              "vrcode": {
+                "type": "string"
+              },
+              "vrnaam": {
+                "type": "string"
+              },
+              "week_end_unix": {
+                "type": "integer"
+              },
+              "week_start_unix": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "date_measurement_unix",
+              "week_start_unix",
+              "week_end_unix",
+              "rwzi_awzi_code",
+              "rwzi_awzi_name",
+              "vrcode",
+              "vrnaam",
+              "gm_code",
+              "rna_normalized",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "verdenkingen_huisartsen": {
+      "properties": {
+        "last_value": {
+          "properties": {
+            "date_of_insertion_unix": {
+              "type": "integer"
+            },
+            "geschat_aantal": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "incidentie": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "week_end_unix": {
+              "type": "integer"
+            },
+            "week_start_unix": {
+              "type": "integer"
+            },
+            "week_unix": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "values": {
+          "items": {
+            "properties": {
+              "date_of_insertion_unix": {
+                "type": "integer"
+              },
+              "geschat_aantal": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "incidentie": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "week_end_unix": {
+                "type": "integer"
+              },
+              "week_start_unix": {
+                "type": "integer"
+              },
+              "week_unix": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "week_unix",
+              "week_start_unix",
+              "week_end_unix",
+              "incidentie",
+              "geschat_aantal",
+              "date_of_insertion_unix"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
