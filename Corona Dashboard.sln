@@ -38,7 +38,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Retrieve-And-Store-Covid19-Data-NL", "Retrieve-And-Store-Covid19-Data-NL", "{83BB5BFB-6C14-4DAC-A953-C9308B048454}"
 	ProjectSection(SolutionItems) = preProject
 		LogicApps\Retrieve-And-Store-Covid19-Data-NL\ParseJson.json = LogicApps\Retrieve-And-Store-Covid19-Data-NL\ParseJson.json
-		LogicApps\Retrieve-And-Store-Covid19-Data-NL\ParseJson2.json = LogicApps\Retrieve-And-Store-Covid19-Data-NL\ParseJson2.json
 	EndProjectSection
 EndProject
 Global
