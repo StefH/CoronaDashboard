@@ -9,12 +9,12 @@ namespace CoronaDashboard.DataAccess.Mappers
 {
     public class DataMapper : IDataMapper
     {
-        public IReadOnlyCollection<DateValueEntry<double>> MapInfectedPeopleTotal(InfectedPeopleTotal data)
+        public IReadOnlyCollection<DateValueEntry<double>> MapTestedGGDDailyTotal(TestedGGDDailyTotal data)
         {
             return data.Values.Select(i => new DateValueEntry<double>
             {
-                Date = DateTimeOffset.FromUnixTimeSeconds(i.DateOfReportUnix).DateTime,
-                Value = i.InfectedDailyTotal
+                Date = DateTimeOffset.FromUnixTimeSeconds(i.DateUnix).DateTime,
+                Value = i.Infected
             }).ToList();
         }
 

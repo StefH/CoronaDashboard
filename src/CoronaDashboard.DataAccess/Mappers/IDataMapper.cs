@@ -7,7 +7,7 @@ namespace CoronaDashboard.DataAccess.Mappers
 {
     public interface IDataMapper
     {
-        IReadOnlyCollection<DateValueEntry<double>> MapInfectedPeopleTotal(InfectedPeopleTotal data);
+        IReadOnlyCollection<DateValueEntry<double>> MapTestedGGDDailyTotal(TestedGGDDailyTotal data);
 
         BehandelduurDistribution MapBehandelduurDistribution(JsonElement[][][] data);
 

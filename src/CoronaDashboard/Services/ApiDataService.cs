@@ -46,11 +46,11 @@ namespace CoronaDashboard.Services
             return _httpClient.GetFromJsonAsync<List<DateValueEntry<int>>>("/api/IntakeCount");
         }
 
-        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
+        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDDailyTotalAsync()
         {
-            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>("/api/PositiefGetestePerDag");
+            var result = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>("/api/TestedGGDDailyTotal");
 
-            return _mapper.MapInfectedPeopleTotal(infectedPeopleTotal);
+            return _mapper.MapTestedGGDDailyTotal(result);
         }
     }
 }

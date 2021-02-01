@@ -51,11 +51,11 @@ namespace CoronaDashboard.Services
             return _mapper.MapBehandelduurDistribution(result);
         }
 
-        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetPositiefGetestePerDagAsync()
+        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDDailyTotalAsync()
         {
-            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=infected_people_total");
+            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=infected_people_total");
 
-            return _mapper.MapInfectedPeopleTotal(infectedPeopleTotal);
+            return _mapper.MapTestedGGDDailyTotal(infectedPeopleTotal);
         }
     }
 }

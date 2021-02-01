@@ -14,6 +14,6 @@ namespace CoronaDashboard.Services
 
         Task<BehandelduurDistribution> GetBehandelduurDistributionAsync();
 
-        Task<IReadOnlyCollection<DateValueEntry<double>>> GetPositiefGetestePerDagAsync();
+        Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDDailyTotalAsync();
     }
 }

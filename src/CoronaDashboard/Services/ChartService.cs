@@ -21,9 +21,9 @@ namespace CoronaDashboard.Services
             _blazoriseInteropServices = blazoriseInteropServices;
         }
 
-        public async Task<DateRangeWithTodayValueDetails> GetPositiefGetestePerDagAsync(LineChart<double?> chart)
+        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDDailyTotalAsync(LineChart<double?> chart)
         {
-            var allData = await _dataService.GetPositiefGetestePerDagAsync();
+            var allData = await _dataService.GetTestedGGDDailyTotalAsync();
 
             var groupedGeschat = GroupByDays(allData, tp => tp.Value);
 

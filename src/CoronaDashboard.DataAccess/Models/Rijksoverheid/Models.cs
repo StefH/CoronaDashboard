@@ -33,7 +33,7 @@ namespace CoronaDashboard.Models.Rijksoverheid
         public IntakeIntensivecareMa IntakeIntensivecareMa { get; set; }
 
         [JsonPropertyName("infected_people_total")]
-        public InfectedPeopleTotal InfectedPeopleTotal { get; set; }
+        public TestedGGDDailyTotal InfectedPeopleTotal { get; set; }
 
         [JsonPropertyName("infected_people_delta_normalized")]
         public InfectedPeopleDeltaNormalized InfectedPeopleDeltaNormalized { get; set; }
@@ -168,22 +168,28 @@ namespace CoronaDashboard.Models.Rijksoverheid
         public long DateOfInsertionUnix { get; set; }
     }
 
-    public class InfectedPeopleTotal
+    public class TestedGGDDailyTotal
     {
         [JsonPropertyName("values")]
-        public InfectedPeopleTotalValue[] Values { get; set; }
+        public TestedGGDDailyTotalValue[] Values { get; set; }
 
         [JsonPropertyName("last_value")]
-        public InfectedPeopleTotalValue LastValue { get; set; }
+        public TestedGGDDailyTotalValue LastValue { get; set; }
     }
 
-    public class InfectedPeopleTotalValue
+    public class TestedGGDDailyTotalValue
     {
-        [JsonPropertyName("date_of_report_unix")]
-        public long DateOfReportUnix { get; set; }
+        [JsonPropertyName("date_unix")]
+        public long DateUnix { get; set; }
 
-        [JsonPropertyName("infected_daily_total")]
-        public long InfectedDailyTotal { get; set; }
+        [JsonPropertyName("tested_total")]
+        public long TestedTotal { get; set; }
+
+        [JsonPropertyName("infected")]
+        public long Infected { get; set; }
+
+        [JsonPropertyName("infected_percentage")]
+        public double InfectedPercentage { get; set; }
 
         [JsonPropertyName("date_of_insertion_unix")]
         public long DateOfInsertionUnix { get; set; }

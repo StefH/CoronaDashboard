@@ -191,13 +191,13 @@
     <value>Nog opgenomen op de verpleegafdeling</value>
   </data>
   <data name="PositiefGetestePersonenPerDag_BodyText1" xml:space="preserve">
-    <value>Deze grafiek toont het geschatte aantal positief geteste personen per dag. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
+    <value>Deze grafiek toont het aantal positief geteste personen per dag via GGD teststraten. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen.</value>
   </data>
   <data name="PositiefGetestePersonenPerDag_Header" xml:space="preserve">
     <value>Aantal positief geteste personen met COVID-19</value>
   </data>
   <data name="PositiefGetestePersonenPerDag_TodayAndTotal" xml:space="preserve">
-    <value>Aantal vandaag : {0}, aantal totaal: {1}</value>
+    <value>Aantal vandaag: {0}, aantal totaal: {1}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="PositiefGetestePersonenPerDag_X" xml:space="preserve">

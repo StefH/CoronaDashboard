@@ -28,24 +28,24 @@ namespace BlazorApp.Api
             _httpClient = httpClient;
         }
 
-        [FunctionName("PositiefGetestePerDagNL")]
-        public async Task<IActionResult> GetPositiefGetestePerDagNLAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
+        [FunctionName("CoronaDashboardNL")]
+        public async Task<IActionResult> GetCoronaDashboardNLAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
-            _logger.LogInformation("HttpTrigger - PositiefGetestePerDagNL");
+            _logger.LogInformation("HttpTrigger - CoronaDashboardNL");
 
             var result = await _httpClient.GetFromJsonAsync<Covid19RootObject>("https://coronadashboard.rijksoverheid.nl/json/NL.json");
 
             return new SystemTextJsonResult(result.InfectedPeopleTotal);
         }
 
-        [FunctionName("PositiefGetestePerDag")]
-        public async Task<IActionResult> GetPositiefGetestePerDagAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
+        [FunctionName("TestedGGDDailyTotal")]
+        public async Task<IActionResult> GetTestedGGDDailyTotalAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
-            _logger.LogInformation("HttpTrigger - PositiefGetestePerDag");
+            _logger.LogInformation("HttpTrigger - TestedGGDDailyTotal");
 
-            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<InfectedPeopleTotal>($"{ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=infected_people_total");
+            var result = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=tested_ggd_daily");
 
-            return new SystemTextJsonResult(infectedPeopleTotal);
+            return new SystemTextJsonResult(result);
         }
 
         [FunctionName("IntakeCount")]
