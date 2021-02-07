@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{E42A73
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pulumi.Azure.StaticWebsite", "src\Pulumi\Pulumi.Azure.StaticWebsite.csproj", "{5026E9EE-FC52-492C-8AA6-A6082ABD056D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{148DA923-21A2-4F95-BF79-95A1F2E8247F} = {148DA923-21A2-4F95-BF79-95A1F2E8247F}
+		{FACF4494-A3FA-4C99-BC82-2963285ED02C} = {FACF4494-A3FA-4C99-BC82-2963285ED02C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronaDashboard", "src\CoronaDashboard\CoronaDashboard.csproj", "{FACF4494-A3FA-4C99-BC82-2963285ED02C}"
 EndProject
