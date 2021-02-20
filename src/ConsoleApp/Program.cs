@@ -13,7 +13,7 @@ namespace ConsoleApp
         {
             var configMock = new Mock<IConfiguration>();
             configMock.Setup(c => c["StichtingNICEBaseUrl"]).Returns("https://stichting-nice.nl");
-            configMock.Setup(c => c["RIVMBaseUrl"]).Returns("https://stef.azure-api.net/covid-19");
+            configMock.Setup(c => c["ApiGatewayCovid19Url"]).Returns("https://stef.azure-api.net/covid-19");
 
             var dataService = new DataService(new HttpClient(), configMock.Object, new DataMapper());
 
@@ -22,6 +22,8 @@ namespace ConsoleApp
             var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
 
             var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
+
+            var testedGGDDaily = await dataService.GetTestedGGDDailyTotalAsync();
 
             int x = 0;
         }
