@@ -15,7 +15,7 @@ namespace CoronaDashboard.DataAccess.Mappers
             {
                 Date = DateTimeOffset.FromUnixTimeSeconds(i.DateUnix).DateTime,
                 Value = i.Infected
-            }).ToList();
+            }).OrderBy(d => d.Date).ToList();
         }
 
         public BehandelduurDistribution MapBehandelduurDistribution(JsonElement[][][] data)
