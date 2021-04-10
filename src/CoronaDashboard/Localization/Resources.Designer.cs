@@ -142,7 +142,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
+        ///   Looks up a localized string similar to Deze grafiek toont per dag het cumulatief aantal IC-patiënten met verdachte en bewezen COVID-19 status. Dit cijfer is een gemiddelde van de afgelopen {0} dagen..
         /// </summary>
         internal static string DiedAndSurvivorsCumulative_BodyText {
             get {
@@ -187,7 +187,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag. Dit cijfer is een gemiddelde van de afgelopen drie dagen..
+        ///   Looks up a localized string similar to Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag. Dit cijfer is een gemiddelde van de afgelopen {0} dagen..
         /// </summary>
         internal static string IntakeCount_BodyText {
             get {
@@ -268,7 +268,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont het aantal positief geteste personen per dag via GGD teststraten. Het cijfer in de grafiek is een gemiddelde van de afgelopen drie dagen..
+        ///   Looks up a localized string similar to Deze grafiek toont het aantal positief geteste personen per dag via GGD teststraten. Het cijfer in de grafiek is een gemiddelde van de afgelopen {0} dagen..
         /// </summary>
         internal static string PositiefGetestePersonenPerDag_BodyText1 {
             get {

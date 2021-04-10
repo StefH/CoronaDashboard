@@ -4,6 +4,7 @@ using Blazorise;
 using Blazorise.Charts;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
+//using CoronaDashboard.Options;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -12,6 +13,11 @@ namespace CoronaDashboard.Pages
     public partial class Index
     {
         private const string D3 = "...";
+
+        //[Inject]
+        //IOptions<ChartServiceOptions> Options { get; set; }
+
+        private int GroupByDays = 5;
 
         [Inject]
         IChartService ChartService { get; set; }

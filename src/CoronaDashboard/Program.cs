@@ -5,6 +5,7 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.Localization;
+//using CoronaDashboard.Options;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,8 @@ namespace CoronaDashboard
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            // var configuration = builder.Configuration.Build();
+
             builder.RootComponents.Add<App>("app");
 
             // Blazorise
@@ -59,7 +62,16 @@ namespace CoronaDashboard
             builder.Services.AddSingleton<IDataMapper, DataMapper>();
             builder.Services.AddScoped<IChartService, ChartService>();
             builder.Services.AddScoped<JavaScriptInteropService>();
-            builder.Services.AddScoped<BlazoriseInteropServices>();
+
+            // Options (TODO)
+            //builder.Services.AddSi<ChartServiceOptions>(o =>
+            //{
+            //    o.GroupByDays = int.Parse(configuration.GetSection("ChartServiceOptions")["GroupByDays"]);
+            //});
+            //builder.Services.Configure<ChartServiceOptions>(o =>
+            //{
+            //    o.GroupByDays = int.Parse(configuration.GetSection("ChartServiceOptions")["GroupByDays"]);
+            //});
 
             var host = builder.Build();
             host.Services.UseBootstrapProviders();

@@ -7,16 +7,20 @@ using CoronaDashboard.Constants;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Utils;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CoronaDashboard.Services
 {
     public class ChartService : IChartService
     {
+        private readonly int _groupByDays;
         private readonly IDataService _dataService;
         private readonly BlazoriseInteropServices _blazoriseInteropServices;
 
         public ChartService(IDataService dataService, BlazoriseInteropServices blazoriseInteropServices)
         {
+            _groupByDays = 5; //int.Parse(configuration.GetSection("ChartServiceOptions")["GroupByDays"]);
             _dataService = dataService;
             _blazoriseInteropServices = blazoriseInteropServices;
         }
@@ -220,14 +224,14 @@ namespace CoronaDashboard.Services
             await chart.AddLabelsDatasetsAndUpdate(age.LabelsDagen.ToArray(), overleden, ic, verpleegafdeling, gezond);
         }
 
-        private static List<DateValueEntry<double>> GroupByDays(IEnumerable<DateValueEntry<int>> data, int days = 3)
+        private List<DateValueEntry<double>> GroupByDays(IEnumerable<DateValueEntry<int>> data)
         {
-            return GroupByDays(data, d => d.Value, days);
+            return GroupByDays(data, d => d.Value);
         }
 
-        private static List<DateValueEntry<double>> GroupByDays<T>(IEnumerable<DateValueEntry<T>> data, Func<DateValueEntry<T>, double> selector, int days = 3)
+        private List<DateValueEntry<double>> GroupByDays<T>(IEnumerable<DateValueEntry<T>> data, Func<DateValueEntry<T>, double> selector)
         {
-            long batchPeriod = TimeSpan.TicksPerDay * days;
+            long batchPeriod = TimeSpan.TicksPerDay * _groupByDays;
 
             return data
                 .GroupBy(entry => entry.Date.Ticks / batchPeriod)
