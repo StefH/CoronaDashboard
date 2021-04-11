@@ -17,7 +17,7 @@
                     @string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal, PositiefGetestePersonenPerDagDetails.CountToday, PositiefGetestePersonenPerDagDetails.CountTotal)
                 </CardText>
                 <CardText><br /></CardText>
-                <CardText Style="font-size: 0.9em">@string.Format(Resources.PositiefGetestePersonenPerDag_BodyText1, GroupByDays)</CardText>
+                <CardText Style="font-size: 0.9em">@string.Format(Resources.PositiefGetestePersonenPerDag_BodyText1, Options.Value.GroupByDays)</CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @PositiefGetestePersonenPerDagDetails.Dates</small></CardText>
@@ -39,7 +39,7 @@
                     @string.Format(Resources.IntakeCount_Today, IntakeCountDetails.CountToday)
                 </CardText>
                 <CardText><br /></CardText>
-                <CardText Style="font-size: 0.9em">@string.Format(Resources.IntakeCount_BodyText, GroupByDays)</CardText>
+                <CardText Style="font-size: 0.9em">@string.Format(Resources.IntakeCount_BodyText, Options.Value.GroupByDays)</CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @IntakeCountDetails.Dates</small></CardText>
@@ -67,7 +67,7 @@
                     @string.Format(@Resources.DiedAndSurvivorsCumulative_Overleden, DiedAndSurvivorsCumulativeDetails.CountTodayOverleden)
                 </CardText>
                 <CardText><br /></CardText>
-                <CardText Style="font-size: 0.9em">@string.Format(Resources.DiedAndSurvivorsCumulative_BodyText, GroupByDays)</CardText>
+                <CardText Style="font-size: 0.9em">@string.Format(Resources.DiedAndSurvivorsCumulative_BodyText, Options.Value.GroupByDays)</CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDetails</small></CardText>
