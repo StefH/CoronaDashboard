@@ -8,16 +8,19 @@ using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Utils;
+using Microsoft.Extensions.Configuration;
 
 namespace CoronaDashboard.Services
 {
     public class ChartService : IChartService
     {
+        private readonly int _groupByDays;
         private readonly IDataService _dataService;
         private readonly BlazoriseInteropServices _blazoriseInteropServices;
 
-        public ChartService(IDataService dataService, BlazoriseInteropServices blazoriseInteropServices)
+        public ChartService(IConfiguration configuration, IDataService dataService, BlazoriseInteropServices blazoriseInteropServices)
         {
+            _groupByDays = int.Parse(configuration["GroupByDays"]);
             _dataService = dataService;
             _blazoriseInteropServices = blazoriseInteropServices;
         }
@@ -26,7 +29,7 @@ namespace CoronaDashboard.Services
         {
             var allData = await _dataService.GetTestedGGDDailyTotalAsync();
 
-            var groupedGeschat = GroupByDays(allData, tp => tp.Value);
+            var groupedGeschat = GroupByDays(allData, tp => tp.Value, _groupByDays);
 
             await chart.Clear();
 
@@ -67,7 +70,7 @@ namespace CoronaDashboard.Services
         public async Task<DateRangeWithTodayValueDetails> GetIntakeCountAsync(LineChart<double?> chart)
         {
             var data = await _dataService.GetIntakeCountAsync();
-            var grouped = GroupByDays(data);
+            var grouped = GroupByDays(data, _groupByDays);
 
             await chart.Clear();
 
@@ -106,9 +109,9 @@ namespace CoronaDashboard.Services
         public async Task<DiedAndSurvivorsCumulativeDetails> GetDiedAndSurvivorsCumulativeAsync(LineChart<double> chart)
         {
             var data = await _dataService.GetDiedAndSurvivorsCumulativeAsync();
-            var groupedOverleden = GroupByDays(data.Overleden);
-            var groupedVerlaten = GroupByDays(data.Verlaten);
-            var groupedNogOpVerpleegafdeling = GroupByDays(data.NogOpVerpleegafdeling);
+            var groupedOverleden = GroupByDays(data.Overleden, _groupByDays);
+            var groupedVerlaten = GroupByDays(data.Verlaten, _groupByDays);
+            var groupedNogOpVerpleegafdeling = GroupByDays(data.NogOpVerpleegafdeling, _groupByDays);
 
             await chart.Clear();
 
@@ -221,12 +224,12 @@ namespace CoronaDashboard.Services
             await chart.AddLabelsDatasetsAndUpdate(age.LabelsDagen.ToArray(), overleden, ic, verpleegafdeling, gezond);
         }
 
-        private static List<DateValueEntry<double>> GroupByDays(IEnumerable<DateValueEntry<int>> data, int days = 3)
+        private static List<DateValueEntry<double>> GroupByDays(IEnumerable<DateValueEntry<int>> data, int days)
         {
             return GroupByDays(data, d => d.Value, days);
         }
 
-        private static List<DateValueEntry<double>> GroupByDays<T>(IEnumerable<DateValueEntry<T>> data, Func<DateValueEntry<T>, double> selector, int days = 3)
+        private static List<DateValueEntry<double>> GroupByDays<T>(IEnumerable<DateValueEntry<T>> data, Func<DateValueEntry<T>, double> selector, int days)
         {
             long batchPeriod = TimeSpan.TicksPerDay * days;
 

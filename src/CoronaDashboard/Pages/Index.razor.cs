@@ -6,12 +6,24 @@ using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Configuration;
 
 namespace CoronaDashboard.Pages
 {
     public partial class Index
     {
         private const string D3 = "...";
+
+        private int GroupByDays = 5;
+
+        [Inject]
+        IConfiguration Configuration
+        {
+            set
+            {
+                GroupByDays = int.Parse(value["GroupByDays"]);
+            }
+        }
 
         [Inject]
         IChartService ChartService { get; set; }
