@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
 using CoronaDashboard.DataAccess.Mappers;
+using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

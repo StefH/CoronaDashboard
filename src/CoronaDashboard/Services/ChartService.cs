@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
+using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Utils;

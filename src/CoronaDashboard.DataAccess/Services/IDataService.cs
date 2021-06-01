@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CoronaDashboard.Models;
 
-namespace CoronaDashboard.Services
+namespace CoronaDashboard.DataAccess.Services
 {
     public interface IDataService
     {

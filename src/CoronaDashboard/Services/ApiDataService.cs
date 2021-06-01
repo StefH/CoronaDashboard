@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Mappers;
+using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Models;
 using CoronaDashboard.Models.Rijksoverheid;
 
