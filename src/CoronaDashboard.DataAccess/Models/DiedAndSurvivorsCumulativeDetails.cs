@@ -4,10 +4,10 @@
     {
         public string Dates { get; set; }
 
-        public string CountTodayOverleden { get; set; }
+        public string CountOverleden { get; set; }
 
-        public string CountTodayVerlaten { get; set; }
+        public string CountVerlaten { get; set; }
 
-        public string CountTodayNogOpVerpleegafdeling { get; set; }
+        public string CountNogOpVerpleegafdeling { get; set; }
     }
 }

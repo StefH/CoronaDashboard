@@ -89,9 +89,9 @@ namespace CoronaDashboard.Pages
         DiedAndSurvivorsCumulativeDetails DiedAndSurvivorsCumulativeDetails = new DiedAndSurvivorsCumulativeDetails
         { 
             Dates = D3,
-            CountTodayOverleden = D3,
-            CountTodayVerlaten = D3,
-            CountTodayNogOpVerpleegafdeling = D3,
+            CountOverleden = D3,
+            CountVerlaten = D3,
+            CountNogOpVerpleegafdeling = D3,
         };
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

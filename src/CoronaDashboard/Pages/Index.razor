@@ -56,21 +56,21 @@
                 <CardText><LineChart @ref="DiedAndSurvivorsCumulativeLineChart" TItem="double" Options="@IntakeCountChartOptions" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Green">██</span>
-                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Verlaten, DiedAndSurvivorsCumulativeDetails.CountTodayVerlaten)
+                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Verlaten, DiedAndSurvivorsCumulativeDetails.CountVerlaten)
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Blue">██</span>
-                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Verpleegafdeling, DiedAndSurvivorsCumulativeDetails.CountTodayNogOpVerpleegafdeling)
+                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Verpleegafdeling, DiedAndSurvivorsCumulativeDetails.CountNogOpVerpleegafdeling)
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: lightgray">██</span>
-                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Overleden, DiedAndSurvivorsCumulativeDetails.CountTodayOverleden)
+                    @string.Format(@Resources.DiedAndSurvivorsCumulative_Overleden, DiedAndSurvivorsCumulativeDetails.CountOverleden)
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@string.Format(Resources.DiedAndSurvivorsCumulative_BodyText, GroupByDays)</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDetails</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @DiedAndSurvivorsCumulativeDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://stichting-nice.nl/">Stichting NICE</a></small></CardText>
             </CardFooter>
         </Card>

@@ -144,9 +144,9 @@ namespace CoronaDashboard.Services
             return new DiedAndSurvivorsCumulativeDetails
             {
                 Dates = $"{DateUtils.ToLongDate(data.Overleden.First().Date)} t/m {DateUtils.ToLongDate(data.Overleden.Last().Date)}",
-                CountTodayOverleden = data.Overleden.Last().Value.ToString(),
-                CountTodayNogOpVerpleegafdeling = data.NogOpVerpleegafdeling.Last().Value.ToString(),
-                CountTodayVerlaten = data.Verlaten.Last().Value.ToString()
+                CountOverleden = data.Overleden.Last().Value.ToString(),
+                CountNogOpVerpleegafdeling = data.NogOpVerpleegafdeling.Last().Value.ToString(),
+                CountVerlaten = data.Verlaten.Last().Value.ToString()
             };
         }
 
