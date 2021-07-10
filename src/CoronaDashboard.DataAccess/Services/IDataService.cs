@@ -14,6 +14,6 @@ namespace CoronaDashboard.DataAccess.Services
 
         Task<BehandelduurDistribution> GetBehandelduurDistributionAsync();
 
-        Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDDailyTotalAsync();
+        Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDTotalAsync();
     }
 }

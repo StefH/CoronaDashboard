@@ -52,9 +52,9 @@ namespace CoronaDashboard.Services
             return _mapper.MapBehandelduurDistribution(result);
         }
 
-        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDDailyTotalAsync()
+        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDTotalAsync()
         {
-            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=tested_ggd_daily");
+            var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=tested_ggd");
 
             return _mapper.MapTestedGGDDailyTotal(infectedPeopleTotal);
         }

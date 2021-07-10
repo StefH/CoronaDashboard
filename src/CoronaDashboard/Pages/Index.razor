@@ -14,7 +14,7 @@
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
-                    @string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal, PositiefGetestePersonenPerDagDetails.CountToday, PositiefGetestePersonenPerDagDetails.CountTotal)
+                    @PositiefGetestePersonenPerDagToday
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@string.Format(Resources.PositiefGetestePersonenPerDag_BodyText1, GroupByDays)</CardText>
@@ -36,7 +36,7 @@
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
-                    @string.Format(Resources.IntakeCount_Today, IntakeCountDetails.CountToday)
+                    @IntakeCountToday
                 </CardText>
                 <CardText><br /></CardText>
                 <CardText Style="font-size: 0.9em">@string.Format(Resources.IntakeCount_BodyText, GroupByDays)</CardText>

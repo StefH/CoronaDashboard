@@ -205,7 +205,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal IC patiënten vandaag: {0}.
+        ///   Looks up a localized string similar to Aantal IC patiënten {0}: {1}.
         /// </summary>
         internal static string IntakeCount_Today {
             get {
@@ -286,7 +286,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal vandaag: {0}, aantal totaal: {1}.
+        ///   Looks up a localized string similar to Aantal {0}: {1}, aantal totaal: {2}.
         /// </summary>
         internal static string PositiefGetestePersonenPerDag_TodayAndTotal {
             get {

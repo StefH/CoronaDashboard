@@ -171,7 +171,7 @@
     <value>Het totaal aantal aanwezige patiënten met verdachte of bewezen COVID-19 op de IC per dag.</value>
   </data>
   <data name="IntakeCount_Today" xml:space="preserve">
-    <value>Aantal IC patiënten vandaag: {0}</value>
+    <value>Aantal IC patiënten {0}: {1}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="IntakeCount_X" xml:space="preserve">
@@ -200,7 +200,7 @@
     <value>Aantal positief geteste personen met COVID-19</value>
   </data>
   <data name="PositiefGetestePersonenPerDag_TodayAndTotal" xml:space="preserve">
-    <value>Aantal vandaag: {0}, aantal totaal: {1}</value>
+    <value>Aantal {0}: {1}, aantal totaal: {2}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="PositiefGetestePersonenPerDag_X" xml:space="preserve">

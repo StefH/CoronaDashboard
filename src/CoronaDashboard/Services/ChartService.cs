@@ -25,9 +25,9 @@ namespace CoronaDashboard.Services
             _blazoriseInteropServices = blazoriseInteropServices;
         }
 
-        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDDailyTotalAsync(LineChart<double?> chart)
+        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDTotalAsync(LineChart<double?> chart)
         {
-            var allData = await _dataService.GetTestedGGDDailyTotalAsync();
+            var allData = await _dataService.GetTestedGGDTotalAsync();
 
             var groupedGeschat = GroupByDays(allData, tp => tp.Value, _groupByDays);
 
@@ -61,7 +61,8 @@ namespace CoronaDashboard.Services
 
             return new DateRangeWithTodayValueDetails
             {
-                Dates = $"{DateUtils.ToLongDate(allData.First().Date)} t/m {DateUtils.ToLongDate(allData.Last().Date)}",
+                Today = DateUtils.ToTodayOrDayWithWithLongMonth(allData.Last().Date),
+                Dates = $"{DateUtils.ToDayWithShortMonthAndYear(allData.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(allData.Last().Date)}",
                 CountToday = lastValue.ToString(),
                 CountTotal = allData.Sum(x => x.Value).ToString()
             };
@@ -101,7 +102,8 @@ namespace CoronaDashboard.Services
 
             return new DateRangeWithTodayValueDetails
             {
-                Dates = $"{DateUtils.ToLongDate(data.First().Date)} t/m {DateUtils.ToLongDate(data.Last().Date)}",
+                Today = DateUtils.ToTodayOrDayWithWithLongMonth(data.Last().Date),
+                Dates = $"{DateUtils.ToDayWithShortMonthAndYear(data.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(data.Last().Date)}",
                 CountToday = lastValue.ToString()
             };
         }
@@ -143,7 +145,7 @@ namespace CoronaDashboard.Services
 
             return new DiedAndSurvivorsCumulativeDetails
             {
-                Dates = $"{DateUtils.ToLongDate(data.Overleden.First().Date)} t/m {DateUtils.ToLongDate(data.Overleden.Last().Date)}",
+                Dates = $"{DateUtils.ToDayWithShortMonthAndYear(data.Overleden.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(data.Overleden.Last().Date)}",
                 CountOverleden = data.Overleden.Last().Value.ToString(),
                 CountNogOpVerpleegafdeling = data.NogOpVerpleegafdeling.Last().Value.ToString(),
                 CountVerlaten = data.Verlaten.Last().Value.ToString()
@@ -246,7 +248,7 @@ namespace CoronaDashboard.Services
         private static IEnumerable<object> GetLabelsWithYear(IEnumerable<DateTime> entries)
         {
             var years = new List<string>();
-            foreach (var entry in entries.Select(e => new { Date = DateUtils.ToShortDate(e.Date), Year = e.Date.ToString("yyyy") }))
+            foreach (var entry in entries.Select(e => new { Date = DateUtils.ToDayWithShortMonth(e.Date), Year = e.Date.ToString("yyyy") }))
             {
                 object label;
                 if (!years.Contains(entry.Year))

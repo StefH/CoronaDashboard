@@ -23,7 +23,7 @@ namespace ConsoleApp
 
             var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
 
-            var testedGGDDaily = await dataService.GetTestedGGDDailyTotalAsync();
+            var testedGGDDaily = await dataService.GetTestedGGDTotalAsync();
 
             int x = 0;
         }
