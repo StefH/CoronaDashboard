@@ -1,8 +1,9 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using CoronaDashboard;
 using CoronaDashboard.DataAccess.Mappers;
-using CoronaDashboard.Services;
-using Microsoft.Extensions.Configuration;
+using CoronaDashboard.Services.Data;
+using Microsoft.Extensions.Options;
 using Moq;
 
 namespace ConsoleApp
@@ -11,19 +12,27 @@ namespace ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            var configMock = new Mock<IConfiguration>();
-            configMock.Setup(c => c["StichtingNICEBaseUrl"]).Returns("https://stichting-nice.nl");
-            configMock.Setup(c => c["ApiGatewayCovid19Url"]).Returns("https://stef.azure-api.net/covid-19");
+            var optionsMock = new Mock<IOptions<CoronaDashboardOptions>>();
+            optionsMock.Setup(o => o.Value).Returns(new CoronaDashboardOptions
+            {
+                GroupByDays = 5,
+                StichtingNICEBaseUrl = "https://stichting-nice.nl",
+                ApiGatewayCovid19Url = "https://stef.azure-api.net/covid-19",
+                GitHubMZelstAllDataUrl = "https://raw.githubusercontent.com/mzelst/covid-19/master/data/all_data.csv"
+            });
 
-            var dataService = new DataService(new HttpClient(), configMock.Object, new DataMapper());
+            //var dataService = new GetDataViaDirectCallsService(optionsMock.Object, new HttpClient(), new DataMapper());
 
-            var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
+            //var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
 
-            var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
+            //var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
 
-            var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
+            //var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
 
-            var testedGGDDaily = await dataService.GetTestedGGDTotalAsync();
+            //var testedGGDDaily = await dataService.GetTestedGGDTotalAsync();
+
+            var githubDataService = new GetDataFromGitHubService(optionsMock.Object, new HttpClient(), new DataMapper());
+            var testedGGDDaily2 = await githubDataService.GetTestedGGDTotalAsync();
 
             int x = 0;
         }

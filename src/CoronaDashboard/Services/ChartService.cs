@@ -8,7 +8,7 @@ using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Utils;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CoronaDashboard.Services
 {
@@ -18,9 +18,9 @@ namespace CoronaDashboard.Services
         private readonly IDataService _dataService;
         private readonly BlazoriseInteropServices _blazoriseInteropServices;
 
-        public ChartService(IConfiguration configuration, IDataService dataService, BlazoriseInteropServices blazoriseInteropServices)
+        public ChartService(IOptions<CoronaDashboardOptions> options, IDataService dataService, BlazoriseInteropServices blazoriseInteropServices)
         {
-            _groupByDays = int.Parse(configuration["GroupByDays"]);
+            _groupByDays = options.Value.GroupByDays;
             _dataService = dataService;
             _blazoriseInteropServices = blazoriseInteropServices;
         }

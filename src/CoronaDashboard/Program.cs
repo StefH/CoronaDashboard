@@ -7,9 +7,12 @@ using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
+using CoronaDashboard.Services.Data;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 
 namespace CoronaDashboard
 {
@@ -19,6 +22,13 @@ namespace CoronaDashboard
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
+
+            // Example of loading a configuration as configuration isn't available yet at this stage.
+            builder.Services.AddSingleton(provider =>
+            {
+                var config = provider.GetService<IConfiguration>();
+                return Options.Create(config.Get<CoronaDashboardOptions>());
+            });
 
             // Blazorise
             builder.Services
@@ -51,11 +61,12 @@ namespace CoronaDashboard
             Console.WriteLine("useApi = " + useApi);
             if (useApi)
             {
-                builder.Services.AddScoped<IDataService, ApiDataService>();
+                builder.Services.AddScoped<IDataService, GetDataFromViaAzureFunctionService>();
+                // builder.Services.AddScoped<IDataService, GetDataFromGitHubService>();
             }
             else
             {
-                builder.Services.AddScoped<IDataService, DataService>();
+                builder.Services.AddScoped<IDataService, GetDataViaDirectCallsService>();
             }
             builder.Services.AddSingleton<IDataMapper, DataMapper>();
             builder.Services.AddScoped<IChartService, ChartService>();

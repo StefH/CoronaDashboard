@@ -19,8 +19,8 @@ namespace BlazorApp.Api
         private const string StichtingNICEBaseUrl = "https://stichting-nice.nl";
         private const string ApiGatewayCovid19Url = "https://stef.azure-api.net/covid-19";
 
-        private ILogger<ApiFunctions> _logger;
-        private HttpClient _httpClient;
+        private readonly ILogger<ApiFunctions> _logger;
+        private readonly HttpClient _httpClient;
 
         public ApiFunctions(ILogger<ApiFunctions> logger, HttpClient httpClient)
         {
