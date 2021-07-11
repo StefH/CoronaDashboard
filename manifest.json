@@ -1,0 +1,17 @@
+{
+  "name": "Corona Dashboard",
+  "short_name": "Corona Dashboard",
+  "description": "Een Corona Dashboard gebaseerd op cijfers van Stichting NICE en het RIVM gemaakt met Blazor en Blazorise.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#03173d",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "version": "2021.11.7.1"
+}
