@@ -121,11 +121,11 @@
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
         if (navigator && navigator.serviceWorker) {
-            navigator.serviceWorker
-                .register('version.js')
-                .then(() => {
-                    console.log('version.js registered');
-                });
+            //navigator.serviceWorker
+            //    .register('version.js')
+            //    .then(() => {
+            //        console.log('version.js registered');
+            //    });
 
             navigator.serviceWorker
                 .register('service-worker.js')
