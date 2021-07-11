@@ -14,7 +14,7 @@
     <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet" />
 
     <link href="css/app.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
+    <!--<link href="manifest.json" rel="manifest" />-->
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 </head>
@@ -128,11 +128,11 @@
             //        console.log('version.js registered');
             //    });
 
-            navigator.serviceWorker
-                .register('service-worker.js')
-                .then(() => {
-                    console.log('service-worker.js registered');
-                });
+            //navigator.serviceWorker
+            //    .register('service-worker.js')
+            //    .then(() => {
+            //        console.log('service-worker.js registered');
+            //    });
         }
 
         if (location.hostname === 'stefh.github.io') {
