@@ -1,39 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Mappers;
-using CoronaDashboard.DataAccess.Models.GitHubMZelst;
 using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Models;
 using CoronaDashboard.Models.Rijksoverheid;
-using CsvHelper;
 using Microsoft.Extensions.Options;
 
 namespace CoronaDashboard.Services.Data
 {
-    public class GetDataFromViaAzureFunctionService : IDataService
+    public class GetDataFromViaAzureFunctionService : GetDataFromGitHubService, IDataService
     {
         private readonly HttpClient _httpClient;
         private readonly IDataMapper _mapper;
-        private readonly Lazy<Task<List<AllDataCsv>>> _allData;
 
-        public GetDataFromViaAzureFunctionService(IOptions<CoronaDashboardOptions> options, HttpClient httpClient, IDataMapper mapper)
+        public GetDataFromViaAzureFunctionService(IOptions<CoronaDashboardOptions> options, HttpClient httpClient, IDataMapper mapper) :
+            base(options, httpClient)
         {
             _httpClient = httpClient;
             _mapper = mapper;
-            _allData = new Lazy<Task<List<AllDataCsv>>>(async () =>
-            {
-                var reader = await httpClient.GetStringAsync(options.Value.GitHubMZelstAllDataUrl);
-                using var tr = new StringReader(reader);
-                using var csv = new CsvReader(tr, CultureInfo.InvariantCulture);
-                return csv.GetRecords<AllDataCsv>().ToList();
-            });
         }
 
         public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
@@ -67,16 +54,6 @@ namespace CoronaDashboard.Services.Data
             var result = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>("/api/TestedGGDDailyTotal");
 
             return _mapper.MapTestedGGDDailyTotal(result);
-        }
-
-        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDTotalAsync()
-        {
-            var data = await _allData.Value;
-            return data.Select(csv => new DateValueEntry<double>
-            {
-                Date = csv.date,
-                Value = csv.positivetests
-            }).ToList();
         }
     }
 }

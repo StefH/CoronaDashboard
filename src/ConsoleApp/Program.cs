@@ -21,18 +21,15 @@ namespace ConsoleApp
                 GitHubMZelstAllDataUrl = "https://raw.githubusercontent.com/mzelst/covid-19/master/data/all_data.csv"
             });
 
-            //var dataService = new GetDataViaDirectCallsService(optionsMock.Object, new HttpClient(), new DataMapper());
+            var dataService = new GetDataViaDirectCallsService(optionsMock.Object, new HttpClient(), new DataMapper());
 
-            //var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
+            var ageDistributionStatus = await dataService.GetAgeDistributionStatusAsync();
 
-            //var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
+            var diedAndSurvivorsCumulativeAsync = await dataService.GetDiedAndSurvivorsCumulativeAsync();
 
-            //var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
+            var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
 
-            //var testedGGDDaily = await dataService.GetTestedGGDTotalAsync();
-
-            var githubDataService = new GetDataFromGitHubService(optionsMock.Object, new HttpClient(), new DataMapper());
-            var testedGGDDaily2 = await githubDataService.GetTestedGGDTotalAsync();
+            var testedGGDDaily = await dataService.GetTestedGGDTotalAsync();
 
             int x = 0;
         }

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace CoronaDashboard.Services.Data
 {
-    public class GetDataViaDirectCallsService : IDataService
+    public class GetDataViaDirectCallsService : GetDataFromGitHubService, IDataService
     {
         private readonly HttpClient _httpClient;
         private readonly IDataMapper _mapper;
@@ -19,6 +19,7 @@ namespace CoronaDashboard.Services.Data
         private readonly string _ApiGatewayCovid19Url;
 
         public GetDataViaDirectCallsService(IOptions<CoronaDashboardOptions> options, HttpClient httpClient, IDataMapper mapper)
+            : base(options, httpClient)
         {
             _httpClient = httpClient;
             _mapper = mapper;
@@ -52,7 +53,7 @@ namespace CoronaDashboard.Services.Data
             return _mapper.MapBehandelduurDistribution(result);
         }
 
-        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDTotalAsync()
+        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDTotalAsyncOld()
         {
             var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=tested_ggd");
 
