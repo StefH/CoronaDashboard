@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Models;
 using CoronaDashboard.DataAccess.Models.GitHubMZelst;
 using CoronaDashboard.DataAccess.Options;
-using CoronaDashboard.Models;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Options;
@@ -25,23 +24,11 @@ namespace CoronaDashboard.Services.Data
 
             _allData = new Lazy<Task<List<AllDataCsv>>>(async () =>
             {
-                Console.WriteLine("@options.Value.GitHubMZelstAllDataUrl = " + options.Value.GitHubMZelstAllDataUrl);
                 var @string = await httpClient.GetStringAsync(options.Value.GitHubMZelstAllDataUrl);
-                Console.WriteLine("@string = " + @string);
                 using var stringReader = new StringReader(@string);
                 using var csvReader = new CsvReader(stringReader, config);
 
-                try
-                {
-                    var records = csvReader.GetRecords<AllDataCsv>().ToList();
-                    Console.WriteLine(records.Count);
-                    return records;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    throw;
-                }
+                return csvReader.GetRecords<AllDataCsv>().ToList();
             });
         }
 

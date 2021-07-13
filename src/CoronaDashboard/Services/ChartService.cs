@@ -33,12 +33,12 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            var positive = new LineChartDataset<double?>
-            {
-                Fill = false,
-                BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => (double?)d.Positive).ToList()
-            };
+            //var positive = new LineChartDataset<double?>
+            //{
+            //    Fill = false,
+            //    BorderColor = new List<string> { AppColors.ChartDarkBlue },
+            //    Data = grouped.Select(d => (double?)d.Positive).ToList()
+            //};
 
             var total = new LineChartDataset<double?>
             {
@@ -63,7 +63,7 @@ namespace CoronaDashboard.Services
 
             await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
                 GetLabelsWithYear(grouped.Select(g => g.Date)),
-                positive, total, positiveLastPoint
+                total, positiveLastPoint
             );
 
             return new DateRangeWithTodayValueDetails
