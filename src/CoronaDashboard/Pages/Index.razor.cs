@@ -177,7 +177,7 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    PositiefGetestePersonenPerDagDetails = await ChartService.GetTestedGGDTotalAsync(PositiefGetestePersonenPerDagLineChart);
+                    PositiefGetestePersonenPerDagDetails = await ChartService.GetTestedGGDAsync(PositiefGetestePersonenPerDagLineChart);
                     StateHasChanged();
                 }),
 

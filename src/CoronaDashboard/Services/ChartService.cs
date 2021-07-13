@@ -26,11 +26,10 @@ namespace CoronaDashboard.Services
             _blazoriseInteropServices = blazoriseInteropServices;
         }
 
-        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDTotalAsync(LineChart<double?> chart)
+        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDAsync(LineChart<double?> chart)
         {
             var allData = await _dataService.GetTestedGGDAsync();
-
-            var groupedGeschat = GroupByDays(allData, _groupByDays);
+            var grouped = GroupByDays(allData, _groupByDays);
 
             await chart.Clear();
 
@@ -38,16 +37,23 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = groupedGeschat.Select(d => (double?)d.Positive).ToList()
+                Data = grouped.Select(d => (double?)d.Positive).ToList()
             };
 
-            double lastValue = allData.Last().Positive;
-            var points = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (double?)null).ToList();
-            points.Add(lastValue);
+            var total = new LineChartDataset<double?>
+            {
+                Fill = false,
+                BorderColor = new List<string> { AppColors.ChartLightGray },
+                Data = grouped.Select(d => d.Total).ToList()
+            };
 
-            var pointColors = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (string)null).ToList();
+            double positiveLastValue = allData.Last().Positive;
+            var points = Enumerable.Range(0, grouped.Count - 1).Select(x => (double?)null).ToList();
+            points.Add(positiveLastValue);
+
+            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
             pointColors.Add(AppColors.ChartRed);
-            var lastPoint = new LineChartDataset<double?>
+            var positiveLastPoint = new LineChartDataset<double?>
             {
                 Fill = false,
                 PointBackgroundColor = pointColors,
@@ -56,15 +62,15 @@ namespace CoronaDashboard.Services
             };
 
             await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-                GetLabelsWithYear(groupedGeschat.Select(g => g.Date)),
-                positive, lastPoint
+                GetLabelsWithYear(grouped.Select(g => g.Date)),
+                positive, total, positiveLastPoint
             );
 
             return new DateRangeWithTodayValueDetails
             {
                 Today = DateUtils.ToTodayOrDayWithWithLongMonth(allData.Last().Date),
                 Dates = $"{DateUtils.ToDayWithShortMonthAndYear(allData.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(allData.Last().Date)}",
-                CountToday = lastValue.ToString(),
+                CountToday = positiveLastValue.ToString(),
                 CountTotal = allData.Sum(x => x.Positive).ToString()
             };
         }
