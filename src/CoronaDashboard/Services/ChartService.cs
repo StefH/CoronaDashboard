@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
+using CoronaDashboard.DataAccess.Models;
 using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
@@ -27,20 +28,20 @@ namespace CoronaDashboard.Services
 
         public async Task<DateRangeWithTodayValueDetails> GetTestedGGDTotalAsync(LineChart<double?> chart)
         {
-            var allData = await _dataService.GetTestedGGDTotalAsync();
+            var allData = await _dataService.GetTestedGGDAsync();
 
-            var groupedGeschat = GroupByDays(allData, tp => tp.Value, _groupByDays);
+            var groupedGeschat = GroupByDays(allData, _groupByDays);
 
             await chart.Clear();
 
-            var set = new LineChartDataset<double?>
+            var positive = new LineChartDataset<double?>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = groupedGeschat.Select(d => (double?)d.Value).ToList()
+                Data = groupedGeschat.Select(d => (double?)d.Positive).ToList()
             };
 
-            double lastValue = allData.Last().Value;
+            double lastValue = allData.Last().Positive;
             var points = Enumerable.Range(0, groupedGeschat.Count - 1).Select(x => (double?)null).ToList();
             points.Add(lastValue);
 
@@ -56,7 +57,7 @@ namespace CoronaDashboard.Services
 
             await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
                 GetLabelsWithYear(groupedGeschat.Select(g => g.Date)),
-                set, lastPoint
+                positive, lastPoint
             );
 
             return new DateRangeWithTodayValueDetails
@@ -64,7 +65,7 @@ namespace CoronaDashboard.Services
                 Today = DateUtils.ToTodayOrDayWithWithLongMonth(allData.Last().Date),
                 Dates = $"{DateUtils.ToDayWithShortMonthAndYear(allData.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(allData.Last().Date)}",
                 CountToday = lastValue.ToString(),
-                CountTotal = allData.Sum(x => x.Value).ToString()
+                CountTotal = allData.Sum(x => x.Positive).ToString()
             };
         }
 
@@ -242,6 +243,28 @@ namespace CoronaDashboard.Services
                     Date = grouping.Select(e => e.Date).Max(),
                     Value = Math.Round(grouping.Select(selector).Average(), 1)
                 })
+                .ToList();
+        }
+
+        private static List<TestedGGD> GroupByDays(IEnumerable<TestedGGD> data, int days)
+        {
+            long batchPeriod = TimeSpan.TicksPerDay * days;
+
+            TestedGGD Map(IGrouping<long, TestedGGD> grouping)
+            {
+                var totals = grouping.Where(t => t.Total != null).Select(t => t.Total.Value);
+                double? averageTotal = totals.Any() ? Math.Round(totals.Average(), 1) : null;
+
+                return new TestedGGD
+                {
+                    Date = grouping.Select(t => t.Date).Max(),
+                    Positive = Math.Round(grouping.Select(t => t.Positive).Average(), 1)
+                };
+            }
+
+            return data
+                .GroupBy(entry => entry.Date.Ticks / batchPeriod)
+                .Select(Map)
                 .ToList();
         }
 

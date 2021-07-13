@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
 using CoronaDashboard.DataAccess.Mappers;
+using CoronaDashboard.DataAccess.Options;
 using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
@@ -28,6 +29,11 @@ namespace CoronaDashboard
             {
                 var config = provider.GetService<IConfiguration>();
                 return Options.Create(config.Get<CoronaDashboardOptions>());
+            });
+            builder.Services.AddSingleton(provider =>
+            {
+                var config = provider.GetService<IConfiguration>();
+                return Options.Create(config.Get<CoronaDashboardDataAccessOptions>());
             });
 
             // Blazorise
@@ -62,7 +68,6 @@ namespace CoronaDashboard
             if (useApi)
             {
                 builder.Services.AddScoped<IDataService, GetDataFromViaAzureFunctionService>();
-                // builder.Services.AddScoped<IDataService, GetDataFromGitHubService>();
             }
             else
             {

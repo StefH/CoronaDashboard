@@ -183,7 +183,7 @@ namespace CoronaDashboard.Models.Rijksoverheid
         public long DateUnix { get; set; }
 
         [JsonPropertyName("tested_total")]
-        public long TestedTotal { get; set; }
+        public long? TestedTotal { get; set; }
 
         [JsonPropertyName("infected")]
         public long Infected { get; set; }

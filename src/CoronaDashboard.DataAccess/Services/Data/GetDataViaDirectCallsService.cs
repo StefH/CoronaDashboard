@@ -4,6 +4,8 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Mappers;
+using CoronaDashboard.DataAccess.Models;
+using CoronaDashboard.DataAccess.Options;
 using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Models;
 using CoronaDashboard.Models.Rijksoverheid;
@@ -18,7 +20,7 @@ namespace CoronaDashboard.Services.Data
         private readonly string _StichtingNICEBaseUrl;
         private readonly string _ApiGatewayCovid19Url;
 
-        public GetDataViaDirectCallsService(IOptions<CoronaDashboardOptions> options, HttpClient httpClient, IDataMapper mapper)
+        public GetDataViaDirectCallsService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient, IDataMapper mapper)
             : base(options, httpClient)
         {
             _httpClient = httpClient;
@@ -53,11 +55,11 @@ namespace CoronaDashboard.Services.Data
             return _mapper.MapBehandelduurDistribution(result);
         }
 
-        public async Task<IReadOnlyCollection<DateValueEntry<double>>> GetTestedGGDTotalAsyncOld()
+        public async Task<IReadOnlyCollection<TestedGGD>> GetTestedGGDAsyncOld()
         {
             var infectedPeopleTotal = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{_ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=tested_ggd");
 
-            return _mapper.MapTestedGGDDailyTotal(infectedPeopleTotal);
+            return _mapper.MapTestedGGD(infectedPeopleTotal);
         }
     }
 }
