@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Blazorise.Charts;
+using CoronaDashboard.ChartJs;
 using CoronaDashboard.Constants;
 using CoronaDashboard.DataAccess.Models;
 using CoronaDashboard.DataAccess.Services;
@@ -33,18 +35,22 @@ namespace CoronaDashboard.Services
 
             await chart.Clear();
 
-            //var positive = new LineChartDataset<double?>
-            //{
-            //    Fill = false,
-            //    BorderColor = new List<string> { AppColors.ChartDarkBlue },
-            //    Data = grouped.Select(d => (double?)d.Positive).ToList()
-            //};
+            var positive = new LineChartDataset<double?>
+            {
+                Fill = false,
+                BorderColor = new List<string> { AppColors.ChartDarkBlue },
+                Data = grouped.Select(d => (double?)d.Positive).ToList(),
+                Label = "positief"
+                // YAxisID = "positief"
+            };
 
             var total = new LineChartDataset<double?>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartLightGray },
-                Data = grouped.Select(d => d.Total).ToList()
+                Data = grouped.Select(d => d.Total).ToList(),
+                Label = "totaal"
+               // YAxisID = "totaal"
             };
 
             double positiveLastValue = allData.Last().Positive;
@@ -63,7 +69,7 @@ namespace CoronaDashboard.Services
 
             await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
                 GetLabelsWithYear(grouped.Select(g => g.Date)),
-                total, positiveLastPoint
+                positive, total /*, positiveLastPoint*/
             );
 
             return new DateRangeWithTodayValueDetails
@@ -264,7 +270,8 @@ namespace CoronaDashboard.Services
                 return new TestedGGD
                 {
                     Date = grouping.Select(t => t.Date).Max(),
-                    Positive = Math.Round(grouping.Select(t => t.Positive).Average(), 1)
+                    Positive = Math.Round(grouping.Select(t => t.Positive).Average(), 1),
+                    Total = averageTotal
                 };
             }
 

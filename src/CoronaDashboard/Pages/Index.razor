@@ -3,21 +3,25 @@
 <Container Fluid="true">
     <CardDeck>
         <Card Margin="Margin.Is1.OnMobile.Is2.OnAll">
-            <div class="card-header" @ref="PositiefGetestePersonenPerDagHeaderRef">
-                <CardText Alignment="TextAlignment.Left">@Resources.PositiefGetestePersonenPerDag_Header</CardText>
+            <div class="card-header" @ref="GGDGetestePersonenPerDagHeaderRef">
+                <CardText Alignment="TextAlignment.Left">@Resources.GGDGetestePersonenPerDag_Header</CardText>
             </div>
             <CardBody>
-                <CardText><LineChart @ref="PositiefGetestePersonenPerDagLineChart" TItem="double?" Options="@PositiefGetestePersonenPerDagChartOptions" /></CardText>
+                <CardText><LineChart @ref="GGDGetestePersonenPerDagLineChart" TItem="double?" OptionsObject="@GGDGetestePersonenPerDagChartOptionsAsObject" /></CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
-                    @Resources.PositiefGetestePersonenPerDag_Y
+                    @Resources.GGDPositiefGetestePersonenPerDag_Y
+                </CardText>
+                <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
+                    <span style="color: @AppColors.LightGray">██</span>
+                    @Resources.GGDGetestePersonenPerDag_Y
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
                     @PositiefGetestePersonenPerDagToday
                 </CardText>
                 <CardText><br /></CardText>
-                <CardText Style="font-size: 0.9em">@string.Format(Resources.PositiefGetestePersonenPerDag_BodyText1, GroupByDays)</CardText>
+                <CardText Style="font-size: 0.9em">@string.Format(Resources.GGDGetestePersonenPerDag_BodyText1, GroupByDays)</CardText>
             </CardBody>
             <CardFooter>
                 <CardText Color="TextColor.Muted"><small>Periode: @PositiefGetestePersonenPerDagDetails.Dates</small></CardText>
