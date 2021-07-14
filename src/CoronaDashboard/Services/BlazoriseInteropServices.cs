@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Blazorise.Charts;
-using Blazorise.Utils;
+using Blazorise.Utilities;
 using CoronaDashboard.ChartJs;
 using Microsoft.JSInterop;
 
@@ -29,27 +29,27 @@ namespace CoronaDashboard.Services
 
         public ValueTask AddLabelsDatasetsAndUpdate<T>(string id, IEnumerable<object> labels, params LineChartDataset<T>[] datasets)
         {
-            var sets = new List<object>();
+            //var sets = new List<object>();
 
-            foreach (var set in datasets)
-            {
-                var dict = Converters.ToDictionary(set, true, false);
-                Console.WriteLine("set  = " + JsonSerializer.Serialize(set));
+            //foreach (var set in datasets)
+            //{
+            //    var dict = Converters.ToDictionary(set, true, false);
+            //    Console.WriteLine("set  = " + JsonSerializer.Serialize(set));
 
-                if (!string.IsNullOrEmpty(set.Label))
-                {
-                    dict.Add("YAxisID", set.Label);
-                    Console.WriteLine("dict = " + JsonSerializer.Serialize(dict));
+            //    if (!string.IsNullOrEmpty(set.Label))
+            //    {
+            //        dict.Add("YAxisID", set.Label);
+            //        Console.WriteLine("dict = " + JsonSerializer.Serialize(dict));
 
-                    sets.Add(dict);
-                }
-                else
-                {
-                    sets.Add(set);
-                }
-            }
+            //        sets.Add(dict);
+            //    }
+            //    else
+            //    {
+            //        sets.Add(set);
+            //    }
+            //}
 
-            return _runtime.InvokeVoidAsync("blazoriseCharts.addLabelsDatasetsAndUpdate", id, labels, sets);
+            return _runtime.InvokeVoidAsync("blazoriseCharts.addLabelsDatasetsAndUpdate", id, labels, datasets);
         }
 
         public ValueTask AddLabelsDatasetsAndUpdate2<T>(string id, IEnumerable<object> labels, params ChartDataset<T>[] datasets)

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Blazorise.Charts;
-using CoronaDashboard.ChartJs;
 using CoronaDashboard.Constants;
 using CoronaDashboard.DataAccess.Models;
 using CoronaDashboard.DataAccess.Services;
@@ -50,7 +48,7 @@ namespace CoronaDashboard.Services
                 BorderColor = new List<string> { AppColors.ChartLightGray },
                 Data = grouped.Select(d => d.Total).ToList(),
                 Label = "totaal"
-               // YAxisID = "totaal"
+                // YAxisID = "totaal"
             };
 
             double positiveLastValue = allData.Last().Positive;
@@ -59,17 +57,19 @@ namespace CoronaDashboard.Services
 
             var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
             pointColors.Add(AppColors.ChartRed);
-            var positiveLastPoint = new LineChartDataset<double?>
-            {
-                Fill = false,
-                PointBackgroundColor = pointColors,
-                PointBorderColor = pointColors,
-                Data = points
-            };
+            //var positiveLastPoint = new LineChartDataset<double?>
+            //{
+            //    Fill = false,
+            //    PointBackgroundColor = pointColors,
+            //    PointBorderColor = pointColors,
+            //    Data = points
+            //};
+
+            //await chart.AddLabelsDatasetsAndUpdate(GetLabelsWithYear(grouped.Select(g => g.Date)).Select(x => x.ToString()).ToArray(), positive);
 
             await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
                 GetLabelsWithYear(grouped.Select(g => g.Date)),
-                positive, total /*, positiveLastPoint*/
+                positive, total /*, total, positiveLastPoint*/
             );
 
             return new DateRangeWithTodayValueDetails
@@ -174,28 +174,28 @@ namespace CoronaDashboard.Services
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray).ToArray(),
                 Data = age.Overleden
             };
 
             var ic = new BarChartDataset<int>
             {
                 Label = Resources.Label_IC,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartYellow),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartYellow).ToArray(),
                 Data = age.NogOpgenomen
             };
 
             var verpleegafdeling = new BarChartDataset<int>
             {
                 Label = Resources.Label_Verpleegafdeling,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartBlue),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartBlue).ToArray(),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
 
             var gezond = new BarChartDataset<int>
             {
                 Label = Resources.Label_Gezond,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartGreen),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartGreen).ToArray(),
                 Data = age.ICVerlaten
             };
 
@@ -211,28 +211,28 @@ namespace CoronaDashboard.Services
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartLightGray),
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartLightGray).ToArray(),
                 Data = age.Overleden
             };
 
             var ic = new BarChartDataset<int>
             {
                 Label = Resources.Label_IC,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartYellow),
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartYellow).ToArray(),
                 Data = age.NogOpgenomen
             };
 
             var verpleegafdeling = new BarChartDataset<int>
             {
                 Label = Resources.Label_Verpleegafdeling,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartBlue),
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartBlue).ToArray(),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
 
             var gezond = new BarChartDataset<int>
             {
                 Label = Resources.Label_Gezond,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartGreen),
+                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartGreen).ToArray(),
                 Data = age.ICVerlaten
             };
 
