@@ -57,19 +57,19 @@ namespace CoronaDashboard.Services
 
             var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
             pointColors.Add(AppColors.ChartRed);
-            //var positiveLastPoint = new LineChartDataset<double?>
-            //{
-            //    Fill = false,
-            //    PointBackgroundColor = pointColors,
-            //    PointBorderColor = pointColors,
-            //    Data = points
-            //};
+            var positiveLastPoint = new LineChartDataset<double?>
+            {
+                Fill = false,
+                PointBackgroundColor = pointColors,
+                PointBorderColor = pointColors,
+                Data = points
+            };
 
             //await chart.AddLabelsDatasetsAndUpdate(GetLabelsWithYear(grouped.Select(g => g.Date)).Select(x => x.ToString()).ToArray(), positive);
 
             await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
                 GetLabelsWithYear(grouped.Select(g => g.Date)),
-                positive, total /*, total, positiveLastPoint*/
+                positive, total, positiveLastPoint /*, total, positiveLastPoint*/
             );
 
             return new DateRangeWithTodayValueDetails
