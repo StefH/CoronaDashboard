@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
@@ -38,8 +39,7 @@ namespace CoronaDashboard.Services
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
                 Data = grouped.Select(d => (double?)d.Positive).ToList(),
-                Label = "positief"
-                // YAxisID = "positief"
+                YAxisID = "positief"
             };
 
             var total = new LineChartDataset<double?>
@@ -47,8 +47,7 @@ namespace CoronaDashboard.Services
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartLightGray },
                 Data = grouped.Select(d => d.Total).ToList(),
-                Label = "totaal"
-                // YAxisID = "totaal"
+                YAxisID = "totaal"
             };
 
             double positiveLastValue = allData.Last().Positive;
@@ -65,12 +64,14 @@ namespace CoronaDashboard.Services
                 Data = points
             };
 
-            //await chart.AddLabelsDatasetsAndUpdate(GetLabelsWithYear(grouped.Select(g => g.Date)).Select(x => x.ToString()).ToArray(), positive);
+            await chart.AddLabelsDatasetsAndUpdate(
+                GetLabelsWithYear(grouped.Select(g => g.Date)).ToArray(),
+                positive, total, positiveLastPoint);
 
-            await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-                GetLabelsWithYear(grouped.Select(g => g.Date)),
-                positive, total, positiveLastPoint /*, total, positiveLastPoint*/
-            );
+            //await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
+            //    GetLabelsWithYear(grouped.Select(g => g.Date)),
+            //    positive, total, positiveLastPoint /*, total, positiveLastPoint*/
+            //);
 
             return new DateRangeWithTodayValueDetails
             {
@@ -109,8 +110,12 @@ namespace CoronaDashboard.Services
                 Data = points
             };
 
-            await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-                GetLabelsWithYear(grouped.Select(g => g.Date)),
+            //await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
+            //    GetLabelsWithYear(grouped.Select(g => g.Date)),
+            //    set, lastPoint);
+
+            await chart.AddLabelsDatasetsAndUpdate(
+                GetLabelsWithYear(grouped.Select(g => g.Date)).ToArray(),
                 set, lastPoint);
 
             return new DateRangeWithTodayValueDetails
@@ -151,10 +156,14 @@ namespace CoronaDashboard.Services
                 Data = groupedNogOpVerpleegafdeling.Select(d => d.Value).ToList()
             };
 
-            await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-                GetLabelsWithYear(groupedOverleden.Select(g => g.Date)),
-                overleden, verlaten, verpleegafdeling
-            );
+            //await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
+            //    GetLabelsWithYear(groupedOverleden.Select(g => g.Date)),
+            //    overleden, verlaten, verpleegafdeling
+            //);
+
+            await chart.AddLabelsDatasetsAndUpdate(
+                GetLabelsWithYear(groupedOverleden.Select(g => g.Date)).ToArray(),
+                overleden, verlaten, verpleegafdeling);
 
             return new DiedAndSurvivorsCumulativeDetails
             {

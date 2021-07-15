@@ -168,20 +168,20 @@
     <comment>Use string formatter</comment>
   </data>
   <data name="GGDGetestePersonenPerDag_Header" xml:space="preserve">
-    <value>Aantal positief en geteste personen met COVID-19</value>
+    <value>Aantal positieve en aantal geteste personen voor COVID-19</value>
   </data>
   <data name="GGDGetestePersonenPerDag_X" xml:space="preserve">
     <value>Datum</value>
   </data>
   <data name="GGDGetestePersonenPerDag_Y" xml:space="preserve">
-    <value>Aantal geteste personen</value>
+    <value>Totaal aantal testen</value>
   </data>
   <data name="GGDPositiefGetestePersonenPerDag_TodayAndTotal" xml:space="preserve">
     <value>Aantal positief {0}: {1}, aantal totaal: {2}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="GGDPositiefGetestePersonenPerDag_Y" xml:space="preserve">
-    <value>Aantal positief geteste personen</value>
+    <value>Positieve testen</value>
   </data>
   <data name="IntakeCount_BodyText" xml:space="preserve">
     <value>Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag. Dit cijfer is een gemiddelde van de afgelopen {0} dagen.</value>

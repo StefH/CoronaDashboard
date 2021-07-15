@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
+// using Blazorise.Icons.FontAwesome;
 using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.DataAccess.Options;
 using CoronaDashboard.DataAccess.Services;
@@ -43,8 +43,8 @@ namespace CoronaDashboard
                 {
                     options.ChangeTextOnKeyPress = true;
                 })
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
+                .AddBootstrapProviders();
+                //.AddFontAwesomeIcons();
 
             // Localization
             builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");

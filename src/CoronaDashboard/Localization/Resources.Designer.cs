@@ -196,7 +196,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal positief en geteste personen met COVID-19.
+        ///   Looks up a localized string similar to Aantal positieve en aantal geteste personen voor COVID-19.
         /// </summary>
         internal static string GGDGetestePersonenPerDag_Header {
             get {
@@ -214,7 +214,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal geteste personen.
+        ///   Looks up a localized string similar to Totaal aantal testen.
         /// </summary>
         internal static string GGDGetestePersonenPerDag_Y {
             get {
@@ -232,7 +232,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aantal positief geteste personen.
+        ///   Looks up a localized string similar to Positieve testen.
         /// </summary>
         internal static string GGDPositiefGetestePersonenPerDag_Y {
             get {

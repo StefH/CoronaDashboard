@@ -13,6 +13,7 @@ namespace CoronaDashboard.Pages
 {
     public partial class Index
     {
+        private const string Dot = "●";
         private int GroupByDays = 5;
 
         [Inject]
@@ -36,11 +37,36 @@ namespace CoronaDashboard.Pages
             Legend = new Legend { Display = false },
             Scales = new Scales
             {
-                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDGetestePersonenPerDag_X } } },
+                XAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDGetestePersonenPerDag_X } } },
                 YAxes = new List<Axis>
                 {
-                    new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDPositiefGetestePersonenPerDag_Y } },
-                    new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDGetestePersonenPerDag_Y } }
+                    new Axis
+                    {
+                        Id = "positief",
+                        //Position = "left",
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 2,
+                            FontColor = AppColors.ChartDarkBlue,
+                            LabelString = $"{Dot} {Resources.GGDPositiefGetestePersonenPerDag_Y}"
+                        }
+                    },
+                    new Axis
+                    {
+                        Id = "totaal",
+                        Position = "right",
+                        GridLines = new AxisGridLines
+                        {
+                            Display = false
+                        },
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 2,
+                            LabelString = $"{Dot} {Resources.GGDGetestePersonenPerDag_Y}"
+                        }
+                    }
                 }
             }
         };
@@ -78,8 +104,8 @@ namespace CoronaDashboard.Pages
             Legend = new Legend { Display = false },
             Scales = new Scales
             {
-                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_X } } },
-                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_Y } } }
+                XAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_X } } },
+                YAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_Y } } }
             }
         };
 
