@@ -17,6 +17,18 @@ window.blazoriseCharts = {
         const canvas = document.getElementById(canvasId);
 
         if (canvas) {
+            console.log(options);
+            if (options.scales && Array.isArray(options.scales.yAxes)) {
+                options.scales.yAxes.forEach(y => {
+                    if (y.ticks && y.ticks.callbackJavaScript) {
+                        y.ticks.callback = function (value) {
+                            return eval(y.ticks.callbackJavaScript)
+                        }
+                    }
+                });
+                console.log(options);
+            }
+
             let chart = new Chart(canvas, {
                 type: type,
                 data: data,

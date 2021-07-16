@@ -284,6 +284,9 @@ namespace Blazorise.Charts
         /// </summary>
         [DataMember]
         public bool BeginAtZero { get; set; }
+
+        [DataMember (EmitDefaultValue = false )]
+        public string CallbackJavaScript { get; set; }
     }
 
     /// <summary>

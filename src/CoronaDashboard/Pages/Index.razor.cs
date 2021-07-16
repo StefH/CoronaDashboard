@@ -44,6 +44,10 @@ namespace CoronaDashboard.Pages
                     {
                         Id = "positief",
                         Position = "left",
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "`${value / 1000} K`"
+                        },
                         ScaleLabel = new AxisScaleLabel
                         {
                             Display = true,
@@ -59,6 +63,10 @@ namespace CoronaDashboard.Pages
                         GridLines = new AxisGridLines
                         {
                             Display = false
+                        },
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "`${value / 1000} K`"
                         },
                         ScaleLabel = new AxisScaleLabel
                         {
@@ -76,23 +84,39 @@ namespace CoronaDashboard.Pages
             Legend = new { Display = false },
             Scales = new
             {
-                X = new { Display = true, ScaleLabel = new { LabelString = Resources.GGDGetestePersonenPerDag_X } },
-
-                Positief = new
+                XAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDGetestePersonenPerDag_X } } },
+                YAxes = new List<Axis>
                 {
-                    position = "left",
-                    display = true,
-                    scaleLabel = new { LabelString = Resources.GGDPositiefGetestePersonenPerDag_Y }
-                },
-
-                Totaal = new
-                {
-                    position = "right",
-                    display = true,
-                    scaleLabel = new { LabelString = Resources.GGDGetestePersonenPerDag_Y },
-                    grid = new
+                    new Axis
                     {
-                        drawOnChartArea = false // only want the grid lines for one axis to show up
+                        Id = "positief",
+                        Position = "left",
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 1,
+                            FontColor = AppColors.ChartDarkBlue,
+                            LabelString = $"{Resources.GGDPositiefGetestePersonenPerDag_Y}"
+                        }
+                    },
+                    new Axis
+                    {
+                        Id = "totaal",
+                        Position = "right",
+                        GridLines = new AxisGridLines
+                        {
+                            Display = false
+                        },
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "(value / 1000.0)"
+                        },
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 1,
+                            LabelString = $"{Resources.GGDGetestePersonenPerDag_Y}"
+                        }
                     }
                 }
             }
