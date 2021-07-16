@@ -17,17 +17,20 @@ window.blazoriseCharts = {
         const canvas = document.getElementById(canvasId);
 
         if (canvas) {
-            console.log(options);
-            if (options.scales && Array.isArray(options.scales.yAxes)) {
-                options.scales.yAxes.forEach(y => {
-                    if (y.ticks && y.ticks.callbackJavaScript) {
-                        y.ticks.callback = function (value) {
-                            return eval(y.ticks.callbackJavaScript)
+            function processTicksCallback(scales, axis) {
+                if (scales && Array.isArray(scales[axis])) {
+                    scales[axis].forEach(a => {
+                        if (a.ticks && a.ticks.callbackJavaScript) {
+                            a.ticks.callback = function (value) {
+                                return eval(a.ticks.callbackJavaScript)
+                            }
                         }
-                    }
-                });
-                console.log(options);
+                    });
+                }
             }
+
+            processTicksCallback(options.scales, 'xAxes');
+            processTicksCallback(options.scales, 'yAxes');
 
             let chart = new Chart(canvas, {
                 type: type,
