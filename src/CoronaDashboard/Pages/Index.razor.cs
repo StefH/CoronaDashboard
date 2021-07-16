@@ -43,13 +43,13 @@ namespace CoronaDashboard.Pages
                     new Axis
                     {
                         Id = "positief",
-                        //Position = "left",
+                        Position = "left",
                         ScaleLabel = new AxisScaleLabel
                         {
                             Display = true,
-                            Padding = 2,
+                            Padding = 1,
                             FontColor = AppColors.ChartDarkBlue,
-                            LabelString = $"{Dot} {Resources.GGDPositiefGetestePersonenPerDag_Y}"
+                            LabelString = $"{Resources.GGDPositiefGetestePersonenPerDag_Y}"
                         }
                     },
                     new Axis
@@ -63,8 +63,8 @@ namespace CoronaDashboard.Pages
                         ScaleLabel = new AxisScaleLabel
                         {
                             Display = true,
-                            Padding = 2,
-                            LabelString = $"{Dot} {Resources.GGDGetestePersonenPerDag_Y}"
+                            Padding = 1,
+                            LabelString = $"{Resources.GGDGetestePersonenPerDag_Y}"
                         }
                     }
                 }

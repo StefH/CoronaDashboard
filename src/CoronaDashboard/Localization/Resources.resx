@@ -174,7 +174,7 @@
     <value>Datum</value>
   </data>
   <data name="GGDGetestePersonenPerDag_Y" xml:space="preserve">
-    <value>Totaal aantal testen</value>
+    <value>Totale testen</value>
   </data>
   <data name="GGDPositiefGetestePersonenPerDag_TodayAndTotal" xml:space="preserve">
     <value>Aantal positief {0}: {1}, aantal totaal: {2}</value>

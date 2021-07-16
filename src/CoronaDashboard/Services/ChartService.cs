@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
@@ -38,8 +37,10 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => (double?)d.Positive).ToList(),
-                YAxisID = "positief"
+                Data = grouped.Select(d => (double?)(d.Positive)).ToList(),
+                YAxisID = "positief",
+                BorderWidth = 2,
+                PointRadius = 2
             };
 
             var total = new LineChartDataset<double?>
@@ -47,7 +48,9 @@ namespace CoronaDashboard.Services
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartLightGray },
                 Data = grouped.Select(d => d.Total).ToList(),
-                YAxisID = "totaal"
+                YAxisID = "totaal",
+                BorderWidth = 2,
+                PointRadius = 2
             };
 
             double positiveLastValue = allData.Last().Positive;
@@ -61,17 +64,13 @@ namespace CoronaDashboard.Services
                 Fill = false,
                 PointBackgroundColor = pointColors,
                 PointBorderColor = pointColors,
-                Data = points
+                Data = points,
+                PointRadius = 2
             };
 
             await chart.AddLabelsDatasetsAndUpdate(
                 GetLabelsWithYear(grouped.Select(g => g.Date)).ToArray(),
                 positive, total, positiveLastPoint);
-
-            //await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-            //    GetLabelsWithYear(grouped.Select(g => g.Date)),
-            //    positive, total, positiveLastPoint /*, total, positiveLastPoint*/
-            //);
 
             return new DateRangeWithTodayValueDetails
             {
@@ -93,7 +92,9 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => (double?)d.Value).ToList()
+                Data = grouped.Select(d => (double?)d.Value).ToList(),
+                BorderWidth = 2,
+                PointRadius = 2
             };
 
             int lastValue = data.Last().Value;
@@ -107,12 +108,9 @@ namespace CoronaDashboard.Services
                 Fill = false,
                 PointBackgroundColor = pointColors,
                 PointBorderColor = pointColors,
-                Data = points
+                Data = points,
+                PointRadius = 2
             };
-
-            //await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-            //    GetLabelsWithYear(grouped.Select(g => g.Date)),
-            //    set, lastPoint);
 
             await chart.AddLabelsDatasetsAndUpdate(
                 GetLabelsWithYear(grouped.Select(g => g.Date)).ToArray(),
@@ -139,27 +137,28 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartLightGray },
-                Data = groupedOverleden.Select(d => d.Value).ToList()
+                Data = groupedOverleden.Select(d => d.Value).ToList(),
+                BorderWidth = 2,
+                PointRadius = 2
             };
 
             var verlaten = new LineChartDataset<double>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.Green },
-                Data = groupedVerlaten.Select(d => d.Value).ToList()
+                Data = groupedVerlaten.Select(d => d.Value).ToList(),
+                BorderWidth = 2,
+                PointRadius = 2
             };
 
             var verpleegafdeling = new LineChartDataset<double>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartBlue },
-                Data = groupedNogOpVerpleegafdeling.Select(d => d.Value).ToList()
+                Data = groupedNogOpVerpleegafdeling.Select(d => d.Value).ToList(),
+                BorderWidth = 2,
+                PointRadius = 2
             };
-
-            //await _blazoriseInteropServices.AddLabelsDatasetsAndUpdate(chart.ElementId,
-            //    GetLabelsWithYear(groupedOverleden.Select(g => g.Date)),
-            //    overleden, verlaten, verpleegafdeling
-            //);
 
             await chart.AddLabelsDatasetsAndUpdate(
                 GetLabelsWithYear(groupedOverleden.Select(g => g.Date)).ToArray(),
