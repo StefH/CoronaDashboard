@@ -38,10 +38,10 @@ namespace BlazorApp.Api
             return new SystemTextJsonResult(result.InfectedPeopleTotal);
         }
 
-        [FunctionName("TestedGGDDailyTotal")]
-        public async Task<IActionResult> GetTestedGGDTotalAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
+        [FunctionName("TestedGGD")]
+        public async Task<IActionResult> GetTestedGGDAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
-            _logger.LogInformation("HttpTrigger - TestedGGDTotal");
+            _logger.LogInformation("HttpTrigger - TestedGGD");
 
             var result = await _httpClient.GetFromJsonAsync<TestedGGDDailyTotal>($"{ApiGatewayCovid19Url}/coronadashboard-rijksoverheid-NL?dataset=tested_ggd");
 

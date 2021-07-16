@@ -3,7 +3,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
+// using Blazorise.Icons.FontAwesome;
 using CoronaDashboard.DataAccess.Mappers;
+using CoronaDashboard.DataAccess.Options;
 using CoronaDashboard.DataAccess.Services;
 using CoronaDashboard.Localization;
 using CoronaDashboard.Services;
@@ -29,6 +31,11 @@ namespace CoronaDashboard
                 var config = provider.GetService<IConfiguration>();
                 return Options.Create(config.Get<CoronaDashboardOptions>());
             });
+            builder.Services.AddSingleton(provider =>
+            {
+                var config = provider.GetService<IConfiguration>();
+                return Options.Create(config.Get<CoronaDashboardDataAccessOptions>());
+            });
 
             // Blazorise
             builder.Services
@@ -37,6 +44,7 @@ namespace CoronaDashboard
                     options.ChangeTextOnKeyPress = true;
                 })
                 .AddBootstrapProviders();
+                //.AddFontAwesomeIcons();
 
             // Localization
             builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
@@ -62,7 +70,6 @@ namespace CoronaDashboard
             if (useApi)
             {
                 builder.Services.AddScoped<IDataService, GetDataFromViaAzureFunctionService>();
-                // builder.Services.AddScoped<IDataService, GetDataFromGitHubService>();
             }
             else
             {
@@ -74,7 +81,7 @@ namespace CoronaDashboard
             builder.Services.AddScoped<BlazoriseInteropServices>();
 
             var host = builder.Build();
-            host.Services.UseBootstrapProviders();
+            //host.Services.UseBootstrapProviders();
 
             await host.RunAsync();
         }

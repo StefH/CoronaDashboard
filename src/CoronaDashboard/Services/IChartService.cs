@@ -6,7 +6,7 @@ namespace CoronaDashboard.Services
 {
     public interface IChartService
     {
-        Task<DateRangeWithTodayValueDetails> GetTestedGGDTotalAsync(LineChart<double?> chart);
+        Task<DateRangeWithTodayValueDetails> GetTestedGGDAsync(LineChart<double?> chart);
 
         Task<DateRangeWithTodayValueDetails> GetIntakeCountAsync(LineChart<double?> chart);
 

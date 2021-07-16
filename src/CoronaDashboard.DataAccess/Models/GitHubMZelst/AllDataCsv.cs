@@ -1,11 +1,18 @@
 ﻿using System;
+using CsvHelper.Configuration.Attributes;
 
 namespace CoronaDashboard.DataAccess.Models.GitHubMZelst
 {
     public class AllDataCsv
     {
-        public DateTime date { get; set; }
+        [Name("date")]
+        public DateTime Date { get; set; }
 
-        public int positivetests { get; set; }
+        [Name("positivetests")]
+        public int PositiveTests { get; set; }
+
+        [Name("values.tested_total")]
+        [TypeConverter(typeof(NATypeConverter))]
+        public int? TestedTotal { get; set; }
     }
 }
