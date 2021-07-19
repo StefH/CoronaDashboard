@@ -19,7 +19,7 @@ namespace CoronaDashboard.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -187,6 +187,60 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deze grafiek toont het aantal testen en positieve testen per dag via GGD teststraten. Het cijfer in de grafiek is een gemiddelde van de afgelopen {0} dagen..
+        /// </summary>
+        internal static string GGDGetestePersonenPerDag_BodyText1 {
+            get {
+                return ResourceManager.GetString("GGDGetestePersonenPerDag_BodyText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal positieve en aantal geteste personen voor COVID-19.
+        /// </summary>
+        internal static string GGDGetestePersonenPerDag_Header {
+            get {
+                return ResourceManager.GetString("GGDGetestePersonenPerDag_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string GGDGetestePersonenPerDag_X {
+            get {
+                return ResourceManager.GetString("GGDGetestePersonenPerDag_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale testen.
+        /// </summary>
+        internal static string GGDGetestePersonenPerDag_Y {
+            get {
+                return ResourceManager.GetString("GGDGetestePersonenPerDag_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aantal positief {0}: {1}, aantal totaal: {2}.
+        /// </summary>
+        internal static string GGDPositiefGetestePersonenPerDag_TodayAndTotal {
+            get {
+                return ResourceManager.GetString("GGDPositiefGetestePersonenPerDag_TodayAndTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Positieve testen.
+        /// </summary>
+        internal static string GGDPositiefGetestePersonenPerDag_Y {
+            get {
+                return ResourceManager.GetString("GGDPositiefGetestePersonenPerDag_Y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deze grafiek toont hoeveel patiënten met verdachte of bewezen COVID-19 status per dag op de IC’s aanwezig waren. Het gaat hierbij dus om de reeds aanwezige COVID-19 patiënten en de nieuwe opgenomen COVID-19 patiënten per dag. Dit cijfer is een gemiddelde van de afgelopen {0} dagen..
         /// </summary>
         internal static string IntakeCount_BodyText {
@@ -264,51 +318,6 @@ namespace CoronaDashboard.Localization {
         internal static string Label_Verpleegafdeling {
             get {
                 return ResourceManager.GetString("Label_Verpleegafdeling", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Deze grafiek toont het aantal positief geteste personen per dag via GGD teststraten. Het cijfer in de grafiek is een gemiddelde van de afgelopen {0} dagen..
-        /// </summary>
-        internal static string PositiefGetestePersonenPerDag_BodyText1 {
-            get {
-                return ResourceManager.GetString("PositiefGetestePersonenPerDag_BodyText1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aantal positief geteste personen met COVID-19.
-        /// </summary>
-        internal static string PositiefGetestePersonenPerDag_Header {
-            get {
-                return ResourceManager.GetString("PositiefGetestePersonenPerDag_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aantal {0}: {1}, aantal totaal: {2}.
-        /// </summary>
-        internal static string PositiefGetestePersonenPerDag_TodayAndTotal {
-            get {
-                return ResourceManager.GetString("PositiefGetestePersonenPerDag_TodayAndTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Datum.
-        /// </summary>
-        internal static string PositiefGetestePersonenPerDag_X {
-            get {
-                return ResourceManager.GetString("PositiefGetestePersonenPerDag_X", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aantal positief geteste personen.
-        /// </summary>
-        internal static string PositiefGetestePersonenPerDag_Y {
-            get {
-                return ResourceManager.GetString("PositiefGetestePersonenPerDag_Y", resourceCulture);
             }
         }
     }

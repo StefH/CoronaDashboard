@@ -7,20 +7,21 @@ using CoronaDashboard.Localization;
 using CoronaDashboard.Models;
 using CoronaDashboard.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CoronaDashboard.Pages
 {
     public partial class Index
     {
+        private const string Dot = "●";
         private int GroupByDays = 5;
 
         [Inject]
-        IConfiguration Configuration
+        IOptions<CoronaDashboardOptions> CoronaDashboardOptions
         {
             set
             {
-                GroupByDays = int.Parse(value["GroupByDays"]);
+                GroupByDays = value.Value.GroupByDays;
             }
         }
 
@@ -30,14 +31,101 @@ namespace CoronaDashboard.Pages
         [Inject]
         JavaScriptInteropService JavaScriptInteropService { get; set; }
 
-        readonly LineChartOptions PositiefGetestePersonenPerDagChartOptions = new LineChartOptions
+        readonly LineChartOptions GGDGetestePersonenPerDagChartOptions = new LineChartOptions
         {
             // Animation = new Animation { Duration = 0 },
             Legend = new Legend { Display = false },
             Scales = new Scales
             {
-                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.PositiefGetestePersonenPerDag_X } } },
-                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.PositiefGetestePersonenPerDag_Y } } }
+                XAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDGetestePersonenPerDag_X } } },
+                YAxes = new List<Axis>
+                {
+                    new Axis
+                    {
+                        Id = "positief",
+                        Position = "left",
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "`${value / 1000.0} K`"
+                        },
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 1,
+                            FontColor = AppColors.ChartDarkBlue,
+                            LabelString = $"{Resources.GGDPositiefGetestePersonenPerDag_Y}"
+                        }
+                    },
+                    new Axis
+                    {
+                        Id = "totaal",
+                        Position = "right",
+                        GridLines = new AxisGridLines
+                        {
+                            Display = false
+                        },
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "`${value / 1000.0} K`"
+                        },
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 1,
+                            LabelString = $"{Resources.GGDGetestePersonenPerDag_Y}"
+                        }
+                    }
+                }
+            }
+        };
+
+        readonly object GGDGetestePersonenPerDagChartOptionsAsObject = new
+        {
+            Legend = new { Display = false },
+            Scales = new
+            {
+                XAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.GGDGetestePersonenPerDag_X } } },
+                YAxes = new List<Axis>
+                {
+                    new Axis
+                    {
+                        Id = "positief",
+                        Position = "left",
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "(value / 1000)",
+                            FontColor = AppColors.ChartDarkBlue
+                        },
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 1,
+                            FontColor = AppColors.ChartDarkBlue,
+                            LabelString = $"{Resources.GGDPositiefGetestePersonenPerDag_Y}"
+                        }
+                    },
+                    new Axis
+                    {
+                        Id = "totaal",
+                        Position = "right",
+                        GridLines = new AxisGridLines
+                        {
+                            Display = false
+                        },
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "(value / 1000)",
+                            FontColor = AppColors.ChartGray                            
+                        },
+                        ScaleLabel = new AxisScaleLabel
+                        {
+                            Display = true,
+                            Padding = 1,
+                            FontColor = AppColors.ChartGray,
+                            LabelString = $"{Resources.GGDGetestePersonenPerDag_Y}"
+                        }
+                    }
+                }
             }
         };
 
@@ -47,8 +135,8 @@ namespace CoronaDashboard.Pages
             Legend = new Legend { Display = false },
             Scales = new Scales
             {
-                XAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_X } } },
-                YAxes = new List<Axis> { new Axis { Display = true, ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_Y } } }
+                XAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_X } } },
+                YAxes = new List<Axis> { new Axis { ScaleLabel = new AxisScaleLabel { LabelString = Resources.IntakeCount_Y } } }
             }
         };
 
@@ -71,13 +159,13 @@ namespace CoronaDashboard.Pages
         }
 
         CardHeader IntakeCountHeader;
-        ElementReference PositiefGetestePersonenPerDagHeaderRef;
+        ElementReference GGDGetestePersonenPerDagHeaderRef;
         ElementReference IntakeCountHeaderRef;
         ElementReference DiedAndSurvivorsCumulativeHeaderRef;
         ElementReference AgeDistributionHeaderRef;
         ElementReference BehandelduurDistributionHeaderRef;
 
-        LineChart<double?> PositiefGetestePersonenPerDagLineChart;
+        LineChart<double?> GGDGetestePersonenPerDagLineChart;
         LineChart<double?> IntakeCountLineChart;
         LineChart<double> DiedAndSurvivorsCumulativeLineChart;
         BarChart<int> AgeDistributionBarChart;
@@ -95,7 +183,7 @@ namespace CoronaDashboard.Pages
 
         // @string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal, PositiefGetestePersonenPerDagDetails.CountToday, PositiefGetestePersonenPerDagDetails.CountTotal)
 
-        string PositiefGetestePersonenPerDagToday => string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal,
+        string PositiefGetestePersonenPerDagToday => string.Format(Resources.GGDPositiefGetestePersonenPerDag_TodayAndTotal,
             PositiefGetestePersonenPerDagDetails.Today,
             PositiefGetestePersonenPerDagDetails.CountToday,
             PositiefGetestePersonenPerDagDetails.CountTotal);
@@ -121,14 +209,14 @@ namespace CoronaDashboard.Pages
             int header1Height = await JavaScriptInteropService.GetClientHeight(IntakeCountHeaderRef);
             int header1Top = await JavaScriptInteropService.GetTop(IntakeCountHeaderRef);
 
-            int header2Top = await JavaScriptInteropService.GetTop(PositiefGetestePersonenPerDagHeaderRef);
+            int header2Top = await JavaScriptInteropService.GetTop(GGDGetestePersonenPerDagHeaderRef);
             if (header2Top == header1Top)
             {
-                await JavaScriptInteropService.SetClientHeight(PositiefGetestePersonenPerDagHeaderRef, header1Height);
+                await JavaScriptInteropService.SetClientHeight(GGDGetestePersonenPerDagHeaderRef, header1Height);
             }
             else
             {
-                await JavaScriptInteropService.SetClientHeight(PositiefGetestePersonenPerDagHeaderRef);
+                await JavaScriptInteropService.SetClientHeight(GGDGetestePersonenPerDagHeaderRef);
             }
 
             int header4Height = await JavaScriptInteropService.GetClientHeight(AgeDistributionHeaderRef);
@@ -177,7 +265,7 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    PositiefGetestePersonenPerDagDetails = await ChartService.GetTestedGGDTotalAsync(PositiefGetestePersonenPerDagLineChart);
+                    PositiefGetestePersonenPerDagDetails = await ChartService.GetTestedGGDAsync(GGDGetestePersonenPerDagLineChart);
                     StateHasChanged();
                 }),
 

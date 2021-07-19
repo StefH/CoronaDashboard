@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using CoronaDashboard.DataAccess.Models;
 using CoronaDashboard.Models;
 using CoronaDashboard.Models.Rijksoverheid;
 
@@ -9,12 +10,13 @@ namespace CoronaDashboard.DataAccess.Mappers
 {
     public class DataMapper : IDataMapper
     {
-        public IReadOnlyCollection<DateValueEntry<double>> MapTestedGGDDailyTotal(TestedGGDDailyTotal data)
+        public IReadOnlyCollection<TestedGGD> MapTestedGGD(TestedGGDDailyTotal data)
         {
-            return data.Values.Select(i => new DateValueEntry<double>
+            return data.Values.Select(i => new TestedGGD
             {
                 Date = DateTimeOffset.FromUnixTimeSeconds(i.DateUnix).DateTime,
-                Value = i.Infected
+                Positive = i.Infected,
+                Total = i.TestedTotal
             }).OrderBy(d => d.Date).ToList();
         }
 
