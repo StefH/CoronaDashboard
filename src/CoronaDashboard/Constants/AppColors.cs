@@ -4,6 +4,8 @@ namespace CoronaDashboard.Constants
 {
     public static class AppColors
     {
+        public static string Gray = "#808080";
+
         public static string LightGray = "#D3D3D3";
 
         public static string Red = "#DC4040";
@@ -17,6 +19,8 @@ namespace CoronaDashboard.Constants
         public static string DarkBlue = "#3296C8";
 
         public static ChartColor ChartDarkBlue;
+
+        public static ChartColor ChartGray;
 
         public static ChartColor ChartLightGray;
 
@@ -33,6 +37,8 @@ namespace CoronaDashboard.Constants
             ChartDarkBlue = ChartColor.FromHtmlColorCode(DarkBlue);
 
             ChartLightGray = ChartColor.FromHtmlColorCode(LightGray);
+
+            ChartGray = ChartColor.FromHtmlColorCode(Gray);
 
             ChartRed = ChartColor.FromHtmlColorCode(Red);
 

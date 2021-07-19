@@ -46,7 +46,7 @@ namespace CoronaDashboard.Services
             var total = new LineChartDataset<double?>
             {
                 Fill = false,
-                BorderColor = new List<string> { AppColors.ChartLightGray },
+                BorderColor = new List<string> { AppColors.ChartGray },
                 Data = grouped.Select(d => d.Total).ToList(),
                 YAxisID = "totaal",
                 BorderWidth = 2,

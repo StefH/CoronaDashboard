@@ -91,6 +91,11 @@ namespace CoronaDashboard.Pages
                     {
                         Id = "positief",
                         Position = "left",
+                        Ticks = new AxisTicks
+                        {
+                            CallbackJavaScript = "(value / 1000)",
+                            FontColor = AppColors.ChartDarkBlue
+                        },
                         ScaleLabel = new AxisScaleLabel
                         {
                             Display = true,
@@ -109,12 +114,14 @@ namespace CoronaDashboard.Pages
                         },
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "(value / 1000.0)"
+                            CallbackJavaScript = "(value / 1000)",
+                            FontColor = AppColors.ChartGray                            
                         },
                         ScaleLabel = new AxisScaleLabel
                         {
                             Display = true,
                             Padding = 1,
+                            FontColor = AppColors.ChartGray,
                             LabelString = $"{Resources.GGDGetestePersonenPerDag_Y}"
                         }
                     }
