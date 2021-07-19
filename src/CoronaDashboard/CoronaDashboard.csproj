@@ -41,8 +41,11 @@
 		<ProjectReference Include="..\..\src-blazorise\Source\Blazorise.Bootstrap\Blazorise.Bootstrap.csproj" />
 		<ProjectReference Include="..\..\src-blazorise\Source\Blazorise\Blazorise.csproj" />
 		<ProjectReference Include="..\..\src-blazorise\Source\Extensions\Blazorise.Charts\Blazorise.Charts.csproj" />
-		<ProjectReference Include="..\CoronaDashboard.DataAccess\CoronaDashboard.DataAccess.csproj" />
 	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoronaDashboard.DataAccess\CoronaDashboard.DataAccess.csproj" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<Content Update="wwwroot\blazor.webassembly.js">

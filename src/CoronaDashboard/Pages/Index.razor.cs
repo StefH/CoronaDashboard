@@ -46,7 +46,8 @@ namespace CoronaDashboard.Pages
                         Position = "left",
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "`${value / 1000} K`"
+                            Display = true,
+                            CallbackJavaScript = "`${value / 1000.0} K`"
                         },
                         ScaleLabel = new AxisScaleLabel
                         {
@@ -66,7 +67,8 @@ namespace CoronaDashboard.Pages
                         },
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "`${value / 1000} K`"
+                            Display = true,
+                            CallbackJavaScript = "`${value / 1000.0} K`"
                         },
                         ScaleLabel = new AxisScaleLabel
                         {

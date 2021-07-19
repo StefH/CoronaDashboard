@@ -16,12 +16,17 @@ window.blazoriseCharts = {
         // search for canvas element
         const canvas = document.getElementById(canvasId);
 
+        console.info(options);
+
         if (canvas) {
             function processTicksCallback(scales, axis) {
+                console.log(scales);
+
                 if (scales && Array.isArray(scales[axis])) {
                     scales[axis].forEach(a => {
                         if (a.ticks && a.ticks.callbackJavaScript) {
                             a.ticks.callback = function (value) {
+                                console.log(a.ticks.callbackJavaScript);
                                 return eval(a.ticks.callbackJavaScript)
                             }
                         }
