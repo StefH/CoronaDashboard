@@ -37,11 +37,17 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<ProjectReference Include="..\..\src-blazorise\Source\Blazorise.Bootstrap\Blazorise.Bootstrap.csproj" />
 		<ProjectReference Include="..\..\src-blazorise\Source\Blazorise\Blazorise.csproj" />
 		<ProjectReference Include="..\..\src-blazorise\Source\Extensions\Blazorise.Charts\Blazorise.Charts.csproj" />
-	</ItemGroup>
+	</ItemGroup>-->
+
+  <ItemGroup>
+    <PackageReference Include="Blazorise" Version="0.9.4" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.4" />
+    <PackageReference Include="Blazorise.Charts" Version="0.9.4" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoronaDashboard.DataAccess\CoronaDashboard.DataAccess.csproj" />
