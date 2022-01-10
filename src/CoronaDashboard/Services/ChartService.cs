@@ -25,7 +25,7 @@ namespace CoronaDashboard.Services
             _blazoriseInteropServices = blazoriseInteropServices;
         }
 
-        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDAsync(LineChart<double?> chart)
+        public async Task<GGDDetails> GetTestedGGDAsync(LineChart<double?> chart)
         {
             var allData = await _dataService.GetTestedGGDAsync();
             var grouped = GroupByDays(allData, _groupByDays);
@@ -36,7 +36,7 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => (double?)(d.Positive)).ToList(),
+                Data = grouped.Select(d => (double?)d.Positive).ToList(),
                 YAxisID = "positief",
                 BorderWidth = 2,
                 PointRadius = 2
@@ -53,12 +53,26 @@ namespace CoronaDashboard.Services
             };
 
             double positiveLastValue = allData.Last().Positive;
-            var points = Enumerable.Range(0, grouped.Count - 1).Select(x => (double?)null).ToList();
-            points.Add(positiveLastValue);
+            double? testedLastValue = allData.Last().Tested;
 
-            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
+            var points = Enumerable.Range(0, grouped.Count - 2).Select(x => (double?)null).ToList();
+            points.Add(positiveLastValue);
+            points.Add(testedLastValue);
+
+            var pointColors = Enumerable.Range(0, grouped.Count - 2).Select(x => (string)null).ToList();
             pointColors.Add(AppColors.ChartRed);
+            pointColors.Add(AppColors.ChartBlack);
+
             var positiveLastPoint = new LineChartDataset<double?>
+            {
+                Fill = false,
+                PointBackgroundColor = pointColors,
+                PointBorderColor = pointColors,
+                Data = points,
+                PointRadius = 2
+            };
+
+            var totalLastPoint = new LineChartDataset<double?>
             {
                 Fill = false,
                 PointBackgroundColor = pointColors,
@@ -69,14 +83,16 @@ namespace CoronaDashboard.Services
 
             await chart.AddLabelsDatasetsAndUpdate(
                 GetLabelsWithYear(grouped.Select(g => g.Date)).ToArray(),
-                positive, total, positiveLastPoint);
+                positive, total, positiveLastPoint, totalLastPoint);
 
-            return new DateRangeWithTodayValueDetails
+            return new GGDDetails
             {
                 Today = DateUtils.ToTodayOrDayWithWithLongMonth(allData.Last().Date),
                 Dates = $"{DateUtils.ToDayWithShortMonthAndYear(allData.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(allData.Last().Date)}",
-                CountToday = positiveLastValue.ToString(),
-                CountTotal = allData.Sum(x => x.Positive).ToString()
+                PositiveToday = $"{positiveLastValue}",
+                TestedToday = testedLastValue is not null ? $"{testedLastValue}" : string.Empty,
+                PositiveTotal = $"{allData.Sum(x => x.Positive)}",
+                TestedTotal = $"{allData.Sum(x => x.Tested ?? 0)}"
             };
         }
 
@@ -271,7 +287,7 @@ namespace CoronaDashboard.Services
 
             TestedGGD Map(IGrouping<long, TestedGGD> grouping)
             {
-                var totals = grouping.Where(t => t.Tested != null).Select(t => t.Tested.Value);
+                var totals = grouping.Where(t => t.Tested is not null).Select(t => t.Tested.Value);
                 double? averageTotal = totals.Any() ? Math.Round(totals.Average(), 1) : null;
 
                 return new TestedGGD

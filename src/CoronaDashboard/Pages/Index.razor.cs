@@ -72,7 +72,7 @@ namespace CoronaDashboard.Pages
                         {
                             Display = true,
                             Padding = 1,
-                            LabelString = $"{Resources.GGDGetestePersonenPerDag_TodayAndTotal}"
+                            LabelString = $"{Resources.GGDGetestePersonenPerDag_Y}"
                         }
                     }
                 }
@@ -172,17 +172,12 @@ namespace CoronaDashboard.Pages
         BarChart<int> BehandelduurDistributionBarChart;
 
         DateRangeWithTodayValueDetails IntakeCountDetails = new() { Dates = AppConstants.D3, CountToday = AppConstants.D3 };
-        DateRangeWithTodayValueDetails PositiefGetestePersonenPerDagDetails = new()
+        GGDDetails GGDDetails = new()
         {
             Dates = AppConstants.D3, 
-            CountToday = AppConstants.D3, 
-            CountTotal = AppConstants.D3
-        };
-        DateRangeWithTodayValueDetails GetestePersonenPerDagDetails = new()
-        {
-            Dates = AppConstants.D3,
-            CountToday = AppConstants.D3,
-            CountTotal = AppConstants.D3
+            PositiveToday = AppConstants.D3,
+            TestedToday = AppConstants.D3,
+            PositiveTotal = AppConstants.D3
         };
         DiedAndSurvivorsCumulativeDetails DiedAndSurvivorsCumulativeDetails = new()
         {
@@ -195,14 +190,14 @@ namespace CoronaDashboard.Pages
         // @string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal, PositiefGetestePersonenPerDagDetails.CountToday, PositiefGetestePersonenPerDagDetails.CountTotal)
 
         string PositiefGetestePersonenPerDagToday => string.Format(Resources.GGDPositiefGetestePersonenPerDag_TodayAndTotal,
-            PositiefGetestePersonenPerDagDetails.Today,
-            PositiefGetestePersonenPerDagDetails.CountToday,
-            PositiefGetestePersonenPerDagDetails.CountTotal);
+            GGDDetails.Today,
+            GGDDetails.PositiveToday,
+            GGDDetails.PositiveTotal);
 
         string GetestePersonenPerDagToday => string.Format(Resources.GGDGetestePersonenPerDag_TodayAndTotal,
-            GetestePersonenPerDagDetails.Today,
-            GetestePersonenPerDagDetails.CountToday,
-            GetestePersonenPerDagDetails.CountTotal);
+            GGDDetails.Today,
+            GGDDetails.TestedToday,
+            GGDDetails.TestedTotal);
 
         string IntakeCountToday => string.Format(Resources.IntakeCount_Today,
             IntakeCountDetails.Today,
@@ -281,7 +276,7 @@ namespace CoronaDashboard.Pages
             {
                 Task.Run(async () =>
                 {
-                    PositiefGetestePersonenPerDagDetails = await ChartService.GetTestedGGDAsync(GGDGetestePersonenPerDagLineChart);
+                    GGDDetails = await ChartService.GetTestedGGDAsync(GGDGetestePersonenPerDagLineChart);
                     StateHasChanged();
                 }),
 

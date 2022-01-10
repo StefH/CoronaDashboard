@@ -133,7 +133,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 - 2021 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;source&lt;/a&gt;).
+        ///   Looks up a localized string similar to Copyright © Stef Heyenrath 2020 - 2022 (&lt;a href=&quot;https://github.com/StefH/CoronaDashboard&quot;&gt;source&lt;/a&gt;).
         /// </summary>
         internal static string Copyright {
             get {
@@ -219,6 +219,15 @@ namespace CoronaDashboard.Localization {
         internal static string GGDGetestePersonenPerDag_X {
             get {
                 return ResourceManager.GetString("GGDGetestePersonenPerDag_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totale testen.
+        /// </summary>
+        internal static string GGDGetestePersonenPerDag_Y {
+            get {
+                return ResourceManager.GetString("GGDGetestePersonenPerDag_Y", resourceCulture);
             }
         }
         

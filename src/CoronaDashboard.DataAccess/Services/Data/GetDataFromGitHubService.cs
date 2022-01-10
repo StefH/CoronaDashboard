@@ -59,7 +59,7 @@ namespace CoronaDashboard.DataAccess.Services.Data
             {
                 Date = csv.Date,
                 Positive = csv.PositiveTests,
-                Tested= csv.TestedTotal
+                Tested = csv.TestedTotal
             }).ToList();
         }
     }
