@@ -15,7 +15,7 @@ namespace CoronaDashboard.DataAccess.Mappers
             {
                 Date = DateTimeOffset.FromUnixTimeSeconds(i.DateUnix).DateTime,
                 Positive = i.Infected,
-                Total = i.TestedTotal
+                Tested = i.TestedTotal
             }).OrderBy(d => d.Date).ToList();
         }
 

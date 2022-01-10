@@ -8,6 +8,6 @@ namespace CoronaDashboard.DataAccess.Models
 
         public double Positive { get; set; }
 
-        public double? Total { get; set; }
+        public double? Tested { get; set; }
     }
 }
