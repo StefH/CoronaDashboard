@@ -12,7 +12,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace CoronaDashboard.Services.Data
+namespace CoronaDashboard.DataAccess.Services.Data
 {
     public abstract class GetDataFromGitHubService
     {

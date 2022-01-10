@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using CoronaDashboard.DataAccess.Models;
-using CoronaDashboard.Models;
-using CoronaDashboard.Models.Rijksoverheid;
+using CoronaDashboard.DataAccess.Models.Rijksoverheid;
 
 namespace CoronaDashboard.DataAccess.Mappers
 {

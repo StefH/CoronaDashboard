@@ -4,15 +4,15 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorApp.Api.Models;
-using CoronaDashboard.Models;
-using CoronaDashboard.Models.Rijksoverheid;
+using CoronaDashboard.DataAccess.Models;
+using CoronaDashboard.DataAccess.Models.Rijksoverheid;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
-namespace BlazorApp.Api
+namespace BlazorApp.Api.Functions
 {
     public class ApiFunctions
     {

@@ -170,14 +170,15 @@
   <data name="GGDGetestePersonenPerDag_Header" xml:space="preserve">
     <value>Aantal positieve en aantal geteste personen voor COVID-19</value>
   </data>
+  <data name="GGDGetestePersonenPerDag_TodayAndTotal" xml:space="preserve">
+    <value>Getest {0}: {1}, totaal getest: {2}</value>
+    <comment>Use string formatter</comment>
+  </data>
   <data name="GGDGetestePersonenPerDag_X" xml:space="preserve">
     <value>Datum</value>
   </data>
-  <data name="GGDGetestePersonenPerDag_Y" xml:space="preserve">
-    <value>Totale testen</value>
-  </data>
   <data name="GGDPositiefGetestePersonenPerDag_TodayAndTotal" xml:space="preserve">
-    <value>Aantal positief {0}: {1}, aantal totaal: {2}</value>
+    <value>Positief {0}: {1}, totaal positief: {2}</value>
     <comment>Use string formatter</comment>
   </data>
   <data name="GGDPositiefGetestePersonenPerDag_Y" xml:space="preserve">

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
 using CoronaDashboard.DataAccess.Models;
-using CoronaDashboard.DataAccess.Services;
+using CoronaDashboard.DataAccess.Services.Data;
 using CoronaDashboard.Localization;
-using CoronaDashboard.Models;
 using CoronaDashboard.Utils;
 using Microsoft.Extensions.Options;
 

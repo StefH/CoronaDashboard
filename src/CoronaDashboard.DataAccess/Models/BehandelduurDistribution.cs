@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CoronaDashboard.Models
+namespace CoronaDashboard.DataAccess.Models
 {
     public class BehandelduurDistribution
     {

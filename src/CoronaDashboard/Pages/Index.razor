@@ -8,14 +8,13 @@
             </div>
             <CardBody>
                 <CardText><LineChart @ref="GGDGetestePersonenPerDagLineChart" TItem="double?" Options="@GGDGetestePersonenPerDagChartOptions" /></CardText>
-                @*<CardText><LineChart @ref="GGDGetestePersonenPerDagLineChart" TItem="double?" OptionsObject="@GGDGetestePersonenPerDagChartOptionsAsObject" /></CardText>*@
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.GGDPositiefGetestePersonenPerDag_Y
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Gray">██</span>
-                    @Resources.GGDGetestePersonenPerDag_Y
+                    @GetestePersonenPerDagToday
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>

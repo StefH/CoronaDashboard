@@ -205,6 +205,15 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getest {0}: {1}, totaal getest: {2}.
+        /// </summary>
+        internal static string GGDGetestePersonenPerDag_TodayAndTotal {
+            get {
+                return ResourceManager.GetString("GGDGetestePersonenPerDag_TodayAndTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datum.
         /// </summary>
         internal static string GGDGetestePersonenPerDag_X {
@@ -214,16 +223,7 @@ namespace CoronaDashboard.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Totale testen.
-        /// </summary>
-        internal static string GGDGetestePersonenPerDag_Y {
-            get {
-                return ResourceManager.GetString("GGDGetestePersonenPerDag_Y", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aantal positief {0}: {1}, aantal totaal: {2}.
+        ///   Looks up a localized string similar to Positief {0}: {1}, totaal positief: {2}.
         /// </summary>
         internal static string GGDPositiefGetestePersonenPerDag_TodayAndTotal {
             get {

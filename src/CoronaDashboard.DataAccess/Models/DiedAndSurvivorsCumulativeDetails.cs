@@ -1,4 +1,4 @@
-﻿namespace CoronaDashboard.Models
+﻿namespace CoronaDashboard.DataAccess.Models
 {
     public class DiedAndSurvivorsCumulativeDetails
     {

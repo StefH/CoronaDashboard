@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CoronaDashboard;
 using CoronaDashboard.DataAccess.Mappers;
-using CoronaDashboard.Services.Data;
+using CoronaDashboard.DataAccess.Services.Data;
 using Microsoft.Extensions.Options;
 using Moq;
 
