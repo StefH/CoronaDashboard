@@ -2,6 +2,7 @@
 Een [Corona Dashboard](https://stefh.github.io/CoronaDashboard/) gebaseerd op cijfers van Stichting NICE en het RIVM gemaakt met Blazor en Blazorise.
 
 ### Referenties
+- [GitHub - Marino van Zelst](https://github.com/mzelst)
 - [Stichting NICE](https://stichting-nice.nl)
 - [RIVM](https://data.overheid.nl/dataset/12972-covid-19-besmettelijke-personen-per-dag)
 - [rijksoverheid.nl](https://coronadashboard.rijksoverheid.nl)
