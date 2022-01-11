@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoronaDashboard.Models
+namespace CoronaDashboard.DataAccess.Models
 {
     public class DateValueEntry<T>
     {

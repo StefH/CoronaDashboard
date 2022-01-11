@@ -8,14 +8,13 @@
             </div>
             <CardBody>
                 <CardText><LineChart @ref="GGDGetestePersonenPerDagLineChart" TItem="double?" Options="@GGDGetestePersonenPerDagChartOptions" /></CardText>
-                @*<CardText><LineChart @ref="GGDGetestePersonenPerDagLineChart" TItem="double?" OptionsObject="@GGDGetestePersonenPerDagChartOptionsAsObject" /></CardText>*@
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.DarkBlue">██</span>
                     @Resources.GGDPositiefGetestePersonenPerDag_Y
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Gray">██</span>
-                    @Resources.GGDGetestePersonenPerDag_Y
+                    @GetestePersonenPerDagToday
                 </CardText>
                 <CardText Alignment="TextAlignment.Left" style="font-size: 0.8em">
                     <span style="color: @AppColors.Red">██</span>
@@ -25,7 +24,7 @@
                 <CardText Style="font-size: 0.9em">@string.Format(Resources.GGDGetestePersonenPerDag_BodyText1, GroupByDays)</CardText>
             </CardBody>
             <CardFooter>
-                <CardText Color="TextColor.Muted"><small>Periode: @PositiefGetestePersonenPerDagDetails.Dates</small></CardText>
+                <CardText Color="TextColor.Muted"><small>Periode: @GGDDetails.Dates</small></CardText>
                 <CardText Color="TextColor.Muted"><small>Bron data: <a href="https://coronadashboard.rijksoverheid.nl/landelijk/positief-geteste-mensen">rijksoverheid.nl</a></small></CardText>
             </CardFooter>
         </Card>

@@ -44,14 +44,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Retrieve-And-Store-Covid19-
 		LogicApps\Retrieve-And-Store-Covid19-Data-NL\ParseJson.json = LogicApps\Retrieve-And-Store-Covid19-Data-NL\ParseJson.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src-blazorise", "src-blazorise", "{D020057B-735E-4549-8D7D-E82329C14277}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorise", "src-blazorise\Source\Blazorise\Blazorise.csproj", "{EEA4C3E7-9E5A-4160-A690-B3FBD058D39A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorise.Bootstrap", "src-blazorise\Source\Blazorise.Bootstrap\Blazorise.Bootstrap.csproj", "{BE2CC30E-B37C-4EE9-815E-AA6E496A9052}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorise.Charts", "src-blazorise\Source\Extensions\Blazorise.Charts\Blazorise.Charts.csproj", "{92955AB7-BD9D-441C-B98C-FA33D5561753}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,18 +70,6 @@ Global
 		{37462020-A165-42FC-B883-31F01BB11939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37462020-A165-42FC-B883-31F01BB11939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37462020-A165-42FC-B883-31F01BB11939}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEA4C3E7-9E5A-4160-A690-B3FBD058D39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEA4C3E7-9E5A-4160-A690-B3FBD058D39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEA4C3E7-9E5A-4160-A690-B3FBD058D39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEA4C3E7-9E5A-4160-A690-B3FBD058D39A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE2CC30E-B37C-4EE9-815E-AA6E496A9052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE2CC30E-B37C-4EE9-815E-AA6E496A9052}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE2CC30E-B37C-4EE9-815E-AA6E496A9052}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE2CC30E-B37C-4EE9-815E-AA6E496A9052}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92955AB7-BD9D-441C-B98C-FA33D5561753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92955AB7-BD9D-441C-B98C-FA33D5561753}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92955AB7-BD9D-441C-B98C-FA33D5561753}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92955AB7-BD9D-441C-B98C-FA33D5561753}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,9 +81,6 @@ Global
 		{148DA923-21A2-4F95-BF79-95A1F2E8247F} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
 		{37462020-A165-42FC-B883-31F01BB11939} = {4E8FBA79-46BE-4C57-AFF5-E3442F4BF2C5}
 		{83BB5BFB-6C14-4DAC-A953-C9308B048454} = {7ABE67A5-9E02-44F8-9895-24154A9D63AC}
-		{EEA4C3E7-9E5A-4160-A690-B3FBD058D39A} = {D020057B-735E-4549-8D7D-E82329C14277}
-		{BE2CC30E-B37C-4EE9-815E-AA6E496A9052} = {D020057B-735E-4549-8D7D-E82329C14277}
-		{92955AB7-BD9D-441C-B98C-FA33D5561753} = {D020057B-735E-4549-8D7D-E82329C14277}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C027DADB-BF11-4991-9D14-30D4A14A4C38}

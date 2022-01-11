@@ -5,13 +5,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Mappers;
 using CoronaDashboard.DataAccess.Models;
+using CoronaDashboard.DataAccess.Models.Rijksoverheid;
 using CoronaDashboard.DataAccess.Options;
-using CoronaDashboard.DataAccess.Services;
-using CoronaDashboard.Models;
-using CoronaDashboard.Models.Rijksoverheid;
 using Microsoft.Extensions.Options;
 
-namespace CoronaDashboard.Services.Data
+namespace CoronaDashboard.DataAccess.Services.Data
 {
     public class GetDataFromViaAzureFunctionService : GetDataFromGitHubService, IDataService
     {

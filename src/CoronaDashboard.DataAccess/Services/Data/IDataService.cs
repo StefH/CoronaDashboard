@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoronaDashboard.DataAccess.Models;
-using CoronaDashboard.Models;
 
-namespace CoronaDashboard.DataAccess.Services
+namespace CoronaDashboard.DataAccess.Services.Data
 {
     public interface IDataService
     {

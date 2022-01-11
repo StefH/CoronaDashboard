@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 using Blazorise.Charts;
 using CoronaDashboard.Constants;
 using CoronaDashboard.DataAccess.Models;
-using CoronaDashboard.DataAccess.Services;
+using CoronaDashboard.DataAccess.Services.Data;
 using CoronaDashboard.Localization;
-using CoronaDashboard.Models;
 using CoronaDashboard.Utils;
 using Microsoft.Extensions.Options;
 
@@ -26,7 +25,7 @@ namespace CoronaDashboard.Services
             _blazoriseInteropServices = blazoriseInteropServices;
         }
 
-        public async Task<DateRangeWithTodayValueDetails> GetTestedGGDAsync(LineChart<double?> chart)
+        public async Task<GGDDetails> GetTestedGGDAsync(LineChart<double?> chart)
         {
             var allData = await _dataService.GetTestedGGDAsync();
             var grouped = GroupByDays(allData, _groupByDays);
@@ -37,47 +36,72 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => (double?)(d.Positive)).ToList(),
-                YAxisID = "positief",
+                Data = grouped.Select(d => (double?)d.Positive).ToList(),
+                YAxisID = ChartConstants.GGDPositive,
                 BorderWidth = 2,
                 PointRadius = 2
             };
 
-            var total = new LineChartDataset<double?>
+            var tested = new LineChartDataset<double?>
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartGray },
-                Data = grouped.Select(d => d.Total).ToList(),
-                YAxisID = "totaal",
+                Data = grouped.Select(d => d.Tested).ToList(),
+                YAxisID = ChartConstants.GGDTested,
                 BorderWidth = 2,
                 PointRadius = 2
             };
 
-            double positiveLastValue = allData.Last().Positive;
-            var points = Enumerable.Range(0, grouped.Count - 1).Select(x => (double?)null).ToList();
-            points.Add(positiveLastValue);
+            var positiveLastData = allData.Last();
+            var testedLastData = allData.Last(x => x.Tested != null);
 
-            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
-            pointColors.Add(AppColors.ChartRed);
+            var positivePoints = Enumerable.Range(0, grouped.Count - 1).Select(_ => (double?)null).ToList();
+            positivePoints.Add(positiveLastData.Positive);
+
+            var positivePointColors = Enumerable.Range(0, grouped.Count - 1).Select(_ => (string)null).ToList();
+            positivePointColors.Add(AppColors.ChartRed);
+
+            var testedPoints = Enumerable.Range(0, grouped.Count - 1).Select(_ => (double?)null).ToList();
+            testedPoints.Add(testedLastData.Tested);
+
+            var testedPointColors = Enumerable.Range(0, grouped.Count - 1).Select(_ => (string)null).ToList();
+            testedPointColors.Add(AppColors.ChartBlack);
+
             var positiveLastPoint = new LineChartDataset<double?>
             {
                 Fill = false,
-                PointBackgroundColor = pointColors,
-                PointBorderColor = pointColors,
-                Data = points,
+                PointBackgroundColor = positivePointColors,
+                PointBorderColor = positivePointColors,
+                Data = positivePoints,
+                YAxisID = ChartConstants.GGDPositive,
+                PointRadius = 2
+            };
+
+            var testedLastPoint = new LineChartDataset<double?>
+            {
+                Fill = false,
+                PointBackgroundColor = testedPointColors,
+                PointBorderColor = testedPointColors,
+                Data = testedPoints,
+                YAxisID = ChartConstants.GGDTested,
                 PointRadius = 2
             };
 
             await chart.AddLabelsDatasetsAndUpdate(
                 GetLabelsWithYear(grouped.Select(g => g.Date)).ToArray(),
-                positive, total, positiveLastPoint);
+                positive, tested, positiveLastPoint, testedLastPoint);
 
-            return new DateRangeWithTodayValueDetails
+            return new GGDDetails
             {
-                Today = DateUtils.ToTodayOrDayWithWithLongMonth(allData.Last().Date),
                 Dates = $"{DateUtils.ToDayWithShortMonthAndYear(allData.First().Date)} t/m {DateUtils.ToDayWithShortMonthAndYear(allData.Last().Date)}",
-                CountToday = positiveLastValue.ToString(),
-                CountTotal = allData.Sum(x => x.Positive).ToString()
+
+                Positive = $"{positiveLastData.Positive}",
+                PositiveDate = DateUtils.ToTodayOrDayWithWithLongMonth(allData.Last().Date),
+                PositiveTotal = $"{allData.Sum(x => x.Positive)}",
+
+                Tested = $"{testedLastData.Tested}",
+                TestedDate = DateUtils.ToTodayOrDayWithWithLongMonth(testedLastData.Date),
+                TestedTotal = $"{allData.Sum(x => x.Tested ?? 0)}"
             };
         }
 
@@ -98,10 +122,10 @@ namespace CoronaDashboard.Services
             };
 
             int lastValue = data.Last().Value;
-            var points = Enumerable.Range(0, grouped.Count - 1).Select(x => (double?)null).ToList();
+            var points = Enumerable.Range(0, grouped.Count - 1).Select(_ => (double?)null).ToList();
             points.Add(lastValue);
 
-            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(x => (string)null).ToList();
+            var pointColors = Enumerable.Range(0, grouped.Count - 1).Select(_ => (string)null).ToList();
             pointColors.Add(AppColors.ChartRed);
             var lastPoint = new LineChartDataset<double?>
             {
@@ -182,28 +206,28 @@ namespace CoronaDashboard.Services
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartLightGray).ToArray(),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(_ => (string)AppColors.ChartLightGray).ToArray(),
                 Data = age.Overleden
             };
 
             var ic = new BarChartDataset<int>
             {
                 Label = Resources.Label_IC,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartYellow).ToArray(),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(_ => (string)AppColors.ChartYellow).ToArray(),
                 Data = age.NogOpgenomen
             };
 
             var verpleegafdeling = new BarChartDataset<int>
             {
                 Label = Resources.Label_Verpleegafdeling,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartBlue).ToArray(),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(_ => (string)AppColors.ChartBlue).ToArray(),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
 
             var gezond = new BarChartDataset<int>
             {
                 Label = Resources.Label_Gezond,
-                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(x => (string)AppColors.ChartGreen).ToArray(),
+                BackgroundColor = age.LabelsLeeftijdsverdeling.Select(_ => (string)AppColors.ChartGreen).ToArray(),
                 Data = age.ICVerlaten
             };
 
@@ -219,28 +243,28 @@ namespace CoronaDashboard.Services
             var overleden = new BarChartDataset<int>
             {
                 Label = Resources.Label_Overleden,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartLightGray).ToArray(),
+                BackgroundColor = age.LabelsDagen.Select(_ => (string)AppColors.ChartLightGray).ToArray(),
                 Data = age.Overleden
             };
 
             var ic = new BarChartDataset<int>
             {
                 Label = Resources.Label_IC,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartYellow).ToArray(),
+                BackgroundColor = age.LabelsDagen.Select(_ => (string)AppColors.ChartYellow).ToArray(),
                 Data = age.NogOpgenomen
             };
 
             var verpleegafdeling = new BarChartDataset<int>
             {
                 Label = Resources.Label_Verpleegafdeling,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartBlue).ToArray(),
+                BackgroundColor = age.LabelsDagen.Select(_ => (string)AppColors.ChartBlue).ToArray(),
                 Data = age.ICVerlatenNogOpVerpleegafdeling
             };
 
             var gezond = new BarChartDataset<int>
             {
                 Label = Resources.Label_Gezond,
-                BackgroundColor = age.LabelsDagen.Select(x => (string)AppColors.ChartGreen).ToArray(),
+                BackgroundColor = age.LabelsDagen.Select(_ => (string)AppColors.ChartGreen).ToArray(),
                 Data = age.ICVerlaten
             };
 
@@ -272,14 +296,14 @@ namespace CoronaDashboard.Services
 
             TestedGGD Map(IGrouping<long, TestedGGD> grouping)
             {
-                var totals = grouping.Where(t => t.Total != null).Select(t => t.Total.Value);
+                var totals = grouping.Where(t => t.Tested is not null).Select(t => t.Tested.Value);
                 double? averageTotal = totals.Any() ? Math.Round(totals.Average(), 1) : null;
 
                 return new TestedGGD
                 {
                     Date = grouping.Select(t => t.Date).Max(),
                     Positive = Math.Round(grouping.Select(t => t.Positive).Average(), 1),
-                    Total = averageTotal
+                    Tested = averageTotal
                 };
             }
 

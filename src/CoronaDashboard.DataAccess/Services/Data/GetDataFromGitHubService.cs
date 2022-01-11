@@ -12,13 +12,13 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace CoronaDashboard.Services.Data
+namespace CoronaDashboard.DataAccess.Services.Data
 {
     public abstract class GetDataFromGitHubService
     {
         private readonly Lazy<Task<List<AllDataCsv>>> _allData;
 
-        public GetDataFromGitHubService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient)
+        protected GetDataFromGitHubService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture);
 
@@ -32,26 +32,6 @@ namespace CoronaDashboard.Services.Data
             });
         }
 
-        //public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
-        //{
-        //    return new AgeDistribution();
-        //}
-
-        //public async Task<BehandelduurDistribution> GetBehandelduurDistributionAsync()
-        //{
-        //    return new BehandelduurDistribution();
-        //}
-
-        //public async Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
-        //{
-        //    return new DiedAndSurvivorsCumulative();
-        //}
-
-        //public async Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
-        //{
-        //    return new List<DateValueEntry<int>>();
-        //}
-
         public async Task<IReadOnlyCollection<TestedGGD>> GetTestedGGDAsync()
         {
             var data = await _allData.Value;
@@ -59,7 +39,7 @@ namespace CoronaDashboard.Services.Data
             {
                 Date = csv.Date,
                 Positive = csv.PositiveTests,
-                Total = csv.TestedTotal
+                Tested = csv.TestedTotal
             }).ToList();
         }
     }

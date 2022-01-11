@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace CoronaDashboard.Models.Rijksoverheid
+namespace CoronaDashboard.DataAccess.Models.Rijksoverheid
 {
     public class Covid19RootObject
     {

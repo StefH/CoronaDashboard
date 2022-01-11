@@ -1,8 +1,10 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Blazorise.Charts;
 using CoronaDashboard;
 using CoronaDashboard.DataAccess.Mappers;
-using CoronaDashboard.Services.Data;
+using CoronaDashboard.DataAccess.Services.Data;
+using CoronaDashboard.Services;
 using Microsoft.Extensions.Options;
 using Moq;
 
@@ -30,6 +32,12 @@ namespace ConsoleApp
             var getBehandelduurDistributionAsync = await dataService.GetBehandelduurDistributionAsync();
 
             var testedGGD = await dataService.GetTestedGGDAsync();
+
+            var dataMapper = new DataMapper();
+            var chartService = new ChartService(optionsMock.Object, dataService, new BlazoriseInteropServices(null));
+
+            var chart = new LineChart<double?>();
+            var ggd = await chartService.GetTestedGGDAsync(chart);
 
             int x = 0;
         }
