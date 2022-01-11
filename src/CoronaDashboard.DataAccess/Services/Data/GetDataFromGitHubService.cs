@@ -18,7 +18,7 @@ namespace CoronaDashboard.DataAccess.Services.Data
     {
         private readonly Lazy<Task<List<AllDataCsv>>> _allData;
 
-        public GetDataFromGitHubService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient)
+        protected GetDataFromGitHubService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture);
 
@@ -31,26 +31,6 @@ namespace CoronaDashboard.DataAccess.Services.Data
                 return csvReader.GetRecords<AllDataCsv>().ToList();
             });
         }
-
-        //public async Task<AgeDistribution> GetAgeDistributionStatusAsync()
-        //{
-        //    return new AgeDistribution();
-        //}
-
-        //public async Task<BehandelduurDistribution> GetBehandelduurDistributionAsync()
-        //{
-        //    return new BehandelduurDistribution();
-        //}
-
-        //public async Task<DiedAndSurvivorsCumulative> GetDiedAndSurvivorsCumulativeAsync()
-        //{
-        //    return new DiedAndSurvivorsCumulative();
-        //}
-
-        //public async Task<List<DateValueEntry<int>>> GetIntakeCountAsync()
-        //{
-        //    return new List<DateValueEntry<int>>();
-        //}
 
         public async Task<IReadOnlyCollection<TestedGGD>> GetTestedGGDAsync()
         {

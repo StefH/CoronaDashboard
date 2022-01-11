@@ -13,16 +13,12 @@ namespace CoronaDashboard.Pages
 {
     public partial class Index
     {
-        private const string Dot = "●";
         private int GroupByDays = 5;
 
         [Inject]
         IOptions<CoronaDashboardOptions> CoronaDashboardOptions
         {
-            set
-            {
-                GroupByDays = value.Value.GroupByDays;
-            }
+            set => GroupByDays = value.Value.GroupByDays;
         }
 
         [Inject]
@@ -42,7 +38,7 @@ namespace CoronaDashboard.Pages
                 {
                     new()
                     {
-                        Id = "positief",
+                        Id = ChartConstants.GGDPositive,
                         Position = "left",
                         Ticks = new AxisTicks
                         {
@@ -58,7 +54,7 @@ namespace CoronaDashboard.Pages
                     },
                     new()
                     {
-                        Id = "totaal",
+                        Id = ChartConstants.GGDTested,
                         Position = "right",
                         GridLines = new AxisGridLines
                         {
@@ -89,7 +85,7 @@ namespace CoronaDashboard.Pages
                 {
                     new()
                     {
-                        Id = "positief",
+                        Id = ChartConstants.GGDPositive,
                         Position = "left",
                         Ticks = new AxisTicks
                         {
@@ -106,7 +102,7 @@ namespace CoronaDashboard.Pages
                     },
                     new()
                     {
-                        Id = "totaal",
+                        Id = ChartConstants.GGDTested,
                         Position = "right",
                         GridLines = new AxisGridLines
                         {
@@ -174,10 +170,15 @@ namespace CoronaDashboard.Pages
         DateRangeWithTodayValueDetails IntakeCountDetails = new() { Dates = AppConstants.D3, CountToday = AppConstants.D3 };
         GGDDetails GGDDetails = new()
         {
-            Dates = AppConstants.D3, 
-            PositiveToday = AppConstants.D3,
-            TestedToday = AppConstants.D3,
-            PositiveTotal = AppConstants.D3
+            Dates = AppConstants.D3,
+
+            PositiveDate = AppConstants.D3,
+            Positive = AppConstants.D3,
+            PositiveTotal = AppConstants.D3,
+
+            TestedDate = AppConstants.D3,
+            Tested = AppConstants.D3,
+            TestedTotal = AppConstants.D3
         };
         DiedAndSurvivorsCumulativeDetails DiedAndSurvivorsCumulativeDetails = new()
         {
@@ -187,16 +188,14 @@ namespace CoronaDashboard.Pages
             CountNogOpVerpleegafdeling = AppConstants.D3
         };
 
-        // @string.Format(Resources.PositiefGetestePersonenPerDag_TodayAndTotal, PositiefGetestePersonenPerDagDetails.CountToday, PositiefGetestePersonenPerDagDetails.CountTotal)
-
         string PositiefGetestePersonenPerDagToday => string.Format(Resources.GGDPositiefGetestePersonenPerDag_TodayAndTotal,
-            GGDDetails.Today,
-            GGDDetails.PositiveToday,
+            GGDDetails.PositiveDate,
+            GGDDetails.Positive,
             GGDDetails.PositiveTotal);
 
         string GetestePersonenPerDagToday => string.Format(Resources.GGDGetestePersonenPerDag_TodayAndTotal,
-            GGDDetails.Today,
-            GGDDetails.TestedToday,
+            GGDDetails.TestedDate,
+            GGDDetails.Tested,
             GGDDetails.TestedTotal);
 
         string IntakeCountToday => string.Format(Resources.IntakeCount_Today,
