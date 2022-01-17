@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<!--<RazorLangVersion>3.0</RazorLangVersion>-->
+        <!--<LangVersion>9.0</LangVersion>-->
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 		<!-- https://docs.microsoft.com/en-us/aspnet/core/blazor/globalization-localization?view=aspnetcore-5.0 -->
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CsvHelper" Version="27.1.1" />
+		<PackageReference Include="CsvHelper" Version="27.2.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.0" />
@@ -44,9 +44,9 @@
 	</ItemGroup>-->
 
   <ItemGroup>
-    <PackageReference Include="Blazorise" Version="0.9.4" />
-    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.4" />
-    <PackageReference Include="Blazorise.Charts" Version="0.9.4" />
+    <PackageReference Include="Blazorise" Version="0.9.5.4" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.5.4" />
+    <PackageReference Include="Blazorise.Charts" Version="0.9.5.4" />
   </ItemGroup>
 
   <ItemGroup>
