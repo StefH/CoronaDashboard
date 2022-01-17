@@ -72,7 +72,7 @@ namespace CoronaDashboard.Services
 
             var testedPointColors = Enumerable.Range(0, testedCount).Select(_ => (string)null).ToList();
             testedPointColors.Add(AppColors.ChartBlack);
-            
+
             for (int i = 0; i < testedDifference; i++)
             {
                 testedPoints.Add(null);
