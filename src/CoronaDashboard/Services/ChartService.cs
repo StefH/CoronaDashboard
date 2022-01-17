@@ -54,6 +54,12 @@ namespace CoronaDashboard.Services
 
             var positiveLastData = allData.Last();
             var testedLastData = allData.Last(x => x.Tested != null);
+            int testedCount = grouped.Count(g => g.Date <= testedLastData.Date);
+            int testedDifference = grouped.Count - testedCount;
+            if (testedDifference == 1)
+            {
+                testedCount -= 1;
+            }
 
             var positivePoints = Enumerable.Range(0, grouped.Count - 1).Select(_ => (double?)null).ToList();
             positivePoints.Add(positiveLastData.Positive);
@@ -61,11 +67,17 @@ namespace CoronaDashboard.Services
             var positivePointColors = Enumerable.Range(0, grouped.Count - 1).Select(_ => (string)null).ToList();
             positivePointColors.Add(AppColors.ChartRed);
 
-            var testedPoints = Enumerable.Range(0, grouped.Count - 1).Select(_ => (double?)null).ToList();
+            var testedPoints = Enumerable.Range(0, testedCount).Select(_ => (double?)null).ToList();
             testedPoints.Add(testedLastData.Tested);
 
-            var testedPointColors = Enumerable.Range(0, grouped.Count - 1).Select(_ => (string)null).ToList();
+            var testedPointColors = Enumerable.Range(0, testedCount).Select(_ => (string)null).ToList();
             testedPointColors.Add(AppColors.ChartBlack);
+            
+            for (int i = 0; i < testedDifference; i++)
+            {
+                testedPoints.Add(null);
+                testedPointColors.Add(null);
+            }
 
             var positiveLastPoint = new LineChartDataset<double?>
             {
