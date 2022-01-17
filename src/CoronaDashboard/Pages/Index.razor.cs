@@ -42,7 +42,7 @@ namespace CoronaDashboard.Pages
                         Position = "left",
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "`${value / 1000.0} K`"
+                            Callback = (value, index, values) => $"{value / 1000.0} K"
                         },
                         ScaleLabel = new AxisScaleLabel
                         {
@@ -62,7 +62,7 @@ namespace CoronaDashboard.Pages
                         },
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "`${value / 1000.0} K`"
+                            Callback = (value, index, values) => $"{value / 1000.0} K"
                         },
                         ScaleLabel = new AxisScaleLabel
                         {
@@ -89,7 +89,7 @@ namespace CoronaDashboard.Pages
                         Position = "left",
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "(value / 1000)",
+                            Callback = (value, index, values) => $"{value / 1000.0} K",
                             FontColor = AppColors.ChartDarkBlue
                         },
                         ScaleLabel = new AxisScaleLabel
@@ -110,8 +110,8 @@ namespace CoronaDashboard.Pages
                         },
                         Ticks = new AxisTicks
                         {
-                            CallbackJavaScript = "(value / 1000)",
-                            FontColor = AppColors.ChartGray                            
+                            Callback = (value, index, values) => $"{value / 1000.0} K",
+                            FontColor = AppColors.ChartGray
                         },
                         ScaleLabel = new AxisScaleLabel
                         {
