@@ -38,9 +38,31 @@ namespace CoronaDashboard.DataAccess.Services.Data
             return data.Select(csv => new TestedGGD
             {
                 Date = csv.Date,
-                Positive = csv.PositiveTests,
+                Positive = FixPositiveTests(csv.PositiveTests),
                 Tested = csv.TestedTotal
             }).ToList();
+        }
+
+        /// <summary>
+        /// Fix for:
+        /// 2022-02-04 	5052043 	0 	22406 	363924
+        /// 2022-02-05 	4797157 	0 	21323 	-254886
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static double FixPositiveTests(double value)
+        {
+            if (value < 0)
+            {
+                return 100000;
+            }
+
+            if (value > 150000)
+            {
+                return 100000;
+            }
+
+            return value;
         }
     }
 }
