@@ -190,13 +190,11 @@ namespace CoronaDashboard.Pages
 
         string PositiefGetestePersonenPerDagToday => string.Format(Resources.GGDPositiefGetestePersonenPerDag_TodayAndTotal,
             GGDDetails.PositiveDate,
-            GGDDetails.Positive,
-            GGDDetails.PositiveTotal);
+            GGDDetails.Positive);
 
         string GetestePersonenPerDagToday => string.Format(Resources.GGDGetestePersonenPerDag_TodayAndTotal,
             GGDDetails.TestedDate,
-            GGDDetails.Tested,
-            GGDDetails.TestedTotal);
+            GGDDetails.Tested);
 
         string IntakeCountToday => string.Format(Resources.IntakeCount_Today,
             IntakeCountDetails.Today,
