@@ -42,7 +42,7 @@ jobs:
       uses: stefh/ghaction-CompressFiles@v2
       with:
         path: ${{ env.PUBLISH_DIR }}
-        deterministicCompression: true
+        deterministicCompression: 'true'
     
     - name: GitHub Pages
       if: success()
