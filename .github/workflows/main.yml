@@ -27,7 +27,6 @@ jobs:
         base_href: /CoronaDashboard/
         
     - name: Patch blazor.webassembly.js
-      if: '1==2'
       uses: jacobtomlinson/gha-find-replace@master
       with:
         find: "return{name:e,url:t,response:this\\.cacheIfUsed\\?this\\.loadResourceWithCaching\\(this\\.cacheIfUsed,e,t,n,r\\):this\\.loadResourceWithoutCaching\\(e,t,n,r\\)}}"
@@ -40,10 +39,9 @@ jobs:
         wwwroot-path: ${{ env.PUBLISH_DIR }}
     
     - name: CompressFiles
-      uses: stefh/ghaction-CompressFiles@v2
+      uses: stefh/ghaction-CompressFiles@v1
       with:
         path: ${{ env.PUBLISH_DIR }}
-        deterministicCompression: 'true'
     
     - name: GitHub Pages
       if: success()

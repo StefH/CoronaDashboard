@@ -38,56 +38,29 @@
     </app>
 
     <script type="text/javascript">
-        // https://github.com/dotnet/aspnetcore/issues/25165
-        if (location.hostname === 'localhost') {
-            caches.keys().then(function (keyList) {
-                return Promise.all(keyList.map(function (key) {
-                    return caches.delete(key);
-                }));
-            });
-        }
-    </script>
-
-    <script type="text/javascript">
-        //const max = 100.0;
-        //const progressbar = document.getElementById('progressbar');
-
-        //var totalResources = 0;
-        //(async function () {
-        //    await fetch('_framework/blazor.boot.json')
-        //        .then((response) => response.json())
-        //        .then(data => {
-        //            totalResources =
-        //                Object.keys(data.resources.assembly).length +
-        //                Object.keys(data.resources.runtime).length +
-        //                -1; // exclude "dotnet.5.0.0.js"
-        //        });
-        //})();
-
-        //var i = 0;
-        //window.loadResourceCallback = (name, response) => {
-        //    i++;
-        //    const value = parseInt((i * max) / totalResources);
-        //    const pct = value + '%';
-
-        //    progressbar.style.width = pct;
-        //    console.log(i + '/' + totalResources + ' (' + pct + ') ' + name);
-        //}
-    </script>
-
-    <script type="text/javascript">
+        const max = 100.0;
         const progressbar = document.getElementById('progressbar');
-        let i = 1; // this is 'blazor.boot.json'
-        window.loadResourceCallback = (total, name, response) => {
-            if (!name.includes('blazor.boot.json') && total > 1) {
-                i++;
 
-                const value = parseInt((i * 100.0) / total);
-                const pct = value + '%';
+        var totalResources = 0;
+        (async function () {
+            await fetch('_framework/blazor.boot.json')
+                .then((response) => response.json())
+                .then(data => {
+                    totalResources =
+                        Object.keys(data.resources.assembly).length +
+                        Object.keys(data.resources.runtime).length +
+                        -1; // exclude "dotnet.5.0.0.js"
+                });
+        })();
 
-                progressbar.style.width = pct;
-                console.log(i + '/' + total + ' (' + pct + ') ' + name);
-            }
+        var i = 0;
+        window.loadResourceCallback = (name, response) => {
+            i++;
+            const value = parseInt((i * max) / totalResources);
+            const pct = value + '%';
+
+            progressbar.style.width = pct;
+            console.log(i + '/' + totalResources + ' (' + pct + ') ' + name);
         }
     </script>
 
@@ -148,53 +121,53 @@
     <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
-        // Workaround for serving compressed content from GitHub Pages
-        // For framework resources, use the precompressed .br files for faster downloads
-        // This is needed only because GitHub pages doesn't natively support Brotli (or even gzip for .dll files)
-        const allResourcesBeingLoaded = [];
+        if (navigator && navigator.serviceWorker) {
+            //navigator.serviceWorker
+            //    .register('version.js')
+            //    .then(() => {
+            //        console.log('version.js registered');
+            //    });
 
-        Blazor.start({
-            loadBootResource: function (type, name, defaultUri, integrity) {
-                console.log(`loadBootResource: ${name} ${defaultUri}`);
+            //navigator.serviceWorker
+            //    .register('service-worker.js')
+            //    .then(() => {
+            //        console.log('service-worker.js registered');
+            //    });
+        }
 
-                if (type === "dotnetjs") {
-                    return defaultUri;
+        if (location.hostname === 'stefh.github.io') {
+            // Workaround for serving compressed content from GitHub Pages
+            // For framework resources, use the precompressed .br files for faster downloads
+            // This is needed only because GitHub pages doesn't natively support Brotli (or even gzip for .dll files)
+            Blazor.start({
+                loadBootResource: function (type, name, defaultUri, integrity) {
+                    console.log(`loadBootResource: ${name} ${defaultUri}`);
+
+                    if (type !== 'dotnetjs') {
+                        const defaultUriBr = `${defaultUri}.br`;
+
+                        return (async function () {
+                            console.log(`fetching: ${defaultUriBr}`);
+                            const response = await fetch(defaultUriBr, { cache: 'no-cache' });
+                            if (!response.ok) {
+                                throw new Error(response.statusText);
+                            }
+
+                            const originalResponseBuffer = await response.arrayBuffer();
+                            const originalResponseArray = new Int8Array(originalResponseBuffer);
+                            const decompressedResponseArray = BrotliDecode(originalResponseArray);
+
+                            console.log(`fetched: ${defaultUriBr} ${originalResponseArray.length}/${decompressedResponseArray.length} bytes`);
+
+                            const contentType = type === 'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+                            return new Response(decompressedResponseArray, { headers: { 'content-type': contentType } });
+                        })();
+                    }
                 }
-
-                if (location.hostname !== 'localhost') {
-                    const defaultUriBr = defaultUri + '.br';
-
-                    return (async function () {
-                        console.log(`fetching: ${defaultUriBr}`);
-                        const response = await fetch(defaultUriBr, { cache: 'no-cache' });
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        const originalResponseBuffer = await response.arrayBuffer();
-                        const originalResponseArray = new Int8Array(originalResponseBuffer);
-                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
-
-                        console.log(`fetched: ${defaultUriBr} ${originalResponseArray.length}/${decompressedResponseArray.length}`);
-
-                        const contentType = type === 'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-                        return new Response(decompressedResponseArray, { headers: { 'content-type': contentType } });
-                    })();
-                } else {
-                    // https://github.com/dotnet/aspnetcore/issues/25165
-                    const f = fetch(defaultUri, {
-                        cache: 'no-cache',
-                        integrity: integrity,
-                        headers: { 'MyCustomHeader': 'Stef Heyenrath' }
-                    });
-
-                    allResourcesBeingLoaded.push(f);
-                    f.then((r) => {
-                        window.loadResourceCallback(allResourcesBeingLoaded.length, r.url);
-                    });
-                    return f;
-                }
-            }
-        });
+            });
+        } else {
+            Blazor.start();
+        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

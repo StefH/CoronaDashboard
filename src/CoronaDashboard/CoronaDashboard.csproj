@@ -53,4 +53,10 @@
     <ProjectReference Include="..\CoronaDashboard.DataAccess\CoronaDashboard.DataAccess.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Update="wwwroot\blazor.webassembly.js">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
 </Project>
