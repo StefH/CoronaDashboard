@@ -198,7 +198,10 @@
                     return defaultUri;
                 }
 
-                const isLocalHostOrGitHub = location.hostname === 'localhost' || location.hostname === 'stefh.github.io';
+                const isLocalHost = location.hostname === 'localhost';
+                const isGitHub = location.hostname === 'stefh.github.io';
+                const isAzure = location.hostname === 'coronadashboard.heyenrath.nl';
+                const isLocalHostOrGitHub = isLocalHost || isGitHub;
 
                 const defaultUriBr = !isLocalHostOrGitHub ? `${defaultUri}.br` : defaultUri;
 
@@ -209,19 +212,19 @@
                     headers: { 'MyCustomHeader': `Stef Heyenrath ${Date.now()}` }
                 };
 
-                if (!isLocalHostOrGitHub) {
+                if (isAzure) {
                     fetchOptions[integrity] = integrity;
                 }
 
-                const fetchPromise = fetch(defaultUriBr, );
+                const fetchPromise = fetch(defaultUriBr,);
 
                 allResourcesBeingLoaded.push(fetchPromise);
 
-                fetchPromise.then((response) => {
-                    window.loadResourceCallback(allResourcesBeingLoaded.length, response.url);
-                });
+                if (isAzure) {
+                    fetchPromise.then((response) => {
+                        window.loadResourceCallback(allResourcesBeingLoaded.length, response.url);
+                    });
 
-                if (!isLocalHostOrGitHub) {
                     return fetchPromise;
                 }
 
@@ -233,6 +236,7 @@
                             const decompressedResponseArray = isLocalHostOrGitHub ? originalResponseArray : BrotliDecode(originalResponseArray);
 
                             console.log(`fetched: ${defaultUriBr} ${originalResponseArray.length}/${decompressedResponseArray.length}`);
+                            window.loadResourceCallback(allResourcesBeingLoaded.length, response.url);
 
                             const contentType = type === 'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
                             resolve(new Response(decompressedResponseArray, { headers: { 'content-type': contentType } }));
