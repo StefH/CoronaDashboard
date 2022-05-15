@@ -203,7 +203,7 @@
                 const isAzure = location.hostname === 'coronadashboard.heyenrath.nl';
                 const isLocalHostOrGitHub = isLocalHost || isGitHub;
 
-                const defaultUriBr = !isLocalHostOrGitHub ? `${defaultUri}.br` : defaultUri;
+                const defaultUriBr = isGitHub ? `${defaultUri}.br` : defaultUri;
 
                 console.log(`fetching: ${defaultUriBr}`);
 
