@@ -198,9 +198,9 @@
                     return defaultUri;
                 }
 
-                const isLocalHost = location.hostname === 'localhost';
+                const isLocalHostOrGitHub = location.hostname === 'localhost' || location.hostname === 'stefh.github.io';
 
-                const defaultUriBr = !isLocalHost ? `${defaultUri}.br` : defaultUri;
+                const defaultUriBr = !isLocalHostOrGitHub ? `${defaultUri}.br` : defaultUri;
 
                 console.log(`fetching: ${defaultUriBr}`);
 
@@ -221,7 +221,7 @@
                         const originalResponseBufferPromise = response.arrayBuffer();
                         originalResponseBufferPromise.then((originalResponseBuffer) => {
                             const originalResponseArray = new Int8Array(originalResponseBuffer);
-                            const decompressedResponseArray = isLocalHost ? originalResponseArray : BrotliDecode(originalResponseArray);
+                            const decompressedResponseArray = isLocalHostOrGitHub ? originalResponseArray : BrotliDecode(originalResponseArray);
 
                             console.log(`fetched: ${defaultUriBr} ${originalResponseArray.length}/${decompressedResponseArray.length}`);
 
