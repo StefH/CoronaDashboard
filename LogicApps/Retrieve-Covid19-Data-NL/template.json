@@ -1,0 +1,130 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_Retrieve_Covid19_Data_NL_name": {
+            "defaultValue": "Retrieve-Covid19-Data-NL",
+            "type": "String"
+        },
+        "integrationAccounts_stef_integration_account_externalid": {
+            "defaultValue": "/subscriptions/2de19637-27a3-42a8-812f-2c2a7f7f935c/resourceGroups/stef-rg-api-management/providers/Microsoft.Logic/integrationAccounts/stef-integration-account",
+            "type": "String"
+        },
+        "connections_documentdb_externalid": {
+            "defaultValue": "/subscriptions/2de19637-27a3-42a8-812f-2c2a7f7f935c/resourceGroups/covid19/providers/Microsoft.Web/connections/documentdb",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_Retrieve_Covid19_Data_NL_name')]",
+            "location": "westeurope",
+            "properties": {
+                "state": "Enabled",
+                "integrationAccount": {
+                    "id": "[parameters('integrationAccounts_stef_integration_account_externalid')]"
+                },
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {
+                                    "properties": {
+                                        "dataset": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        }
+                                    },
+                                    "type": [
+                                        "object",
+                                        "null"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Define_SQL_Select": {
+                            "runAfter": {},
+                            "type": "JavaScriptCode",
+                            "inputs": {
+                                "code": "var body = workflowContext.trigger.outputs.body;\r\n\r\nif (body && body.dataset) {\r\n    return ' c.' + body.dataset + ' '\r\n}\r\n\r\nreturn ' * ';"
+                            }
+                        },
+                        "Get_First_Document": {
+                            "runAfter": {
+                                "Query_documents_V3": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "JavaScriptCode",
+                            "inputs": {
+                                "code": "var items = workflowContext.actions.Query_documents_V3.outputs.body.value;\r\n\r\nif (!items || !items.length) {\r\n    return null;\r\n}\r\n\r\nreturn items[0];"
+                            }
+                        },
+                        "Query_documents_V3": {
+                            "runAfter": {
+                                "Define_SQL_Select": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['documentdb']['connectionId']"
+                                    }
+                                },
+                                "method": "get",
+                                "path": "/v3/dbs/@{encodeURIComponent('Covid19')}/colls/@{encodeURIComponent('coronadashboard-rijksoverheid-NL')}/query",
+                                "queries": {
+                                    "queryText": "SELECT TOP 1 @{outputs('Define_SQL_Select')?['body']}FROM c ORDER BY c.last_generated_DateTime DESC "
+                                }
+                            }
+                        },
+                        "Response": {
+                            "runAfter": {
+                                "Get_First_Document": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "body": "@outputs('Get_First_Document')?['body']",
+                                "statusCode": 200
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "documentdb": {
+                                "connectionId": "[parameters('connections_documentdb_externalid')]",
+                                "connectionName": "documentdb",
+                                "id": "/subscriptions/2de19637-27a3-42a8-812f-2c2a7f7f935c/providers/Microsoft.Web/locations/westeurope/managedApis/documentdb"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
