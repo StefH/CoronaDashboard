@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "connections_documentdb_name": {
+            "defaultValue": "documentdb",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "name": "[parameters('connections_documentdb_name')]",
+            "location": "westeurope",
+            "kind": "V1",
+            "properties": {
+                "displayName": "stef-cosmos-db-sql",
+                "statuses": [
+                    {
+                        "status": "Connected"
+                    }
+                ],
+                "customParameterValues": {},
+                "nonSecretParameterValues": {
+                    "databaseAccount": "stef"
+                },
+                "createdTime": "2020-11-09T08:16:24.6867092Z",
+                "changedTime": "2020-11-09T08:16:24.6867092Z",
+                "api": {
+                    "name": "[parameters('connections_documentdb_name')]",
+                    "displayName": "Azure Cosmos DB",
+                    "description": "Azure Cosmos DB is a globally distributed multi-model database service designed to enable you to elastically and independently scale throughput and storage across any number of geographical regions with a comprehensive SLA.",
+                    "iconUri": "[concat('https://connectoricons-prod.azureedge.net/releases/v1.0.1583/1.0.1583.2865/', parameters('connections_documentdb_name'), '/icon.png')]",
+                    "brandColor": "#1C3A56",
+                    "id": "[concat('/subscriptions/2de19637-27a3-42a8-812f-2c2a7f7f935c/providers/Microsoft.Web/locations/westeurope/managedApis/', parameters('connections_documentdb_name'))]",
+                    "type": "Microsoft.Web/locations/managedApis"
+                },
+                "testLinks": [
+                    {
+                        "requestUri": "[concat('https://management.azure.com:443/subscriptions/2de19637-27a3-42a8-812f-2c2a7f7f935c/resourceGroups/covid19/providers/Microsoft.Web/connections/', parameters('connections_documentdb_name'), '/extensions/proxy/testConnection?api-version=2016-06-01')]",
+                        "method": "get"
+                    }
+                ]
+            }
+        }
+    ]
+}
