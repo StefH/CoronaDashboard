@@ -36,7 +36,7 @@ namespace CoronaDashboard.Services
             {
                 Fill = false,
                 BorderColor = new List<string> { AppColors.ChartDarkBlue },
-                Data = grouped.Select(d => (double?)d.Positive).ToList(),
+                Data = grouped.Select(d => d.Positive).ToList(),
                 YAxisID = ChartConstants.GGDPositive,
                 BorderWidth = 2,
                 PointRadius = 2
@@ -308,13 +308,15 @@ namespace CoronaDashboard.Services
 
             TestedGGD Map(IGrouping<long, TestedGGD> grouping)
             {
-                var totals = grouping.Where(t => t.Tested is not null).Select(t => t.Tested.Value);
+                var totals = grouping.Where(t => t.Tested is not null).Select(t => t.Tested.Value).ToArray();
                 double? averageTotal = totals.Any() ? Math.Round(totals.Average(), 1) : null;
+
+                double? average = grouping.Select(t => t.Positive).Average();
 
                 return new TestedGGD
                 {
                     Date = grouping.Select(t => t.Date).Max(),
-                    Positive = Math.Round(grouping.Select(t => t.Positive).Average(), 1),
+                    Positive = average is not null ? Math.Round(average.Value, 1) : null,
                     Tested = averageTotal
                 };
             }

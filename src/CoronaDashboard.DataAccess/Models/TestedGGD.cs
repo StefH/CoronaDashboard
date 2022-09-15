@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace CoronaDashboard.DataAccess.Models
+namespace CoronaDashboard.DataAccess.Models;
+
+public class TestedGGD
 {
-    public class TestedGGD
-    {
-        public DateTime Date { get; set; }
+    public DateTime Date { get; set; }
 
-        public double Positive { get; set; }
+    public double? Positive { get; set; }
 
-        public double? Tested { get; set; }
-    }
+    public double? Tested { get; set; }
 }
