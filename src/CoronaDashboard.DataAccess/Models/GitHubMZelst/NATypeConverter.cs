@@ -3,25 +3,24 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace CoronaDashboard.DataAccess.Models.GitHubMZelst
+namespace CoronaDashboard.DataAccess.Models.GitHubMZelst;
+
+internal class NATypeConverter : ITypeConverter
 {
-    internal class NATypeConverter : ITypeConverter
+    private const string NA = "NA";
+
+    public object? ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
     {
-        private const string NA = "NA";
-
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        if (NA.Equals(text, StringComparison.InvariantCultureIgnoreCase) || !int.TryParse(text, out int value))
         {
-            if (NA.Equals(text, StringComparison.InvariantCultureIgnoreCase) || !int.TryParse(text, out int value))
-            {
-                return null;
-            }
-
-            return value;
+            return null;
         }
 
-        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-            throw new NotImplementedException();
-        }
+        return value;
+    }
+
+    public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+    {
+        throw new NotImplementedException();
     }
 }

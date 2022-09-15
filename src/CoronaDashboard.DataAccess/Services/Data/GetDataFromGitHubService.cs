@@ -12,57 +12,56 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace CoronaDashboard.DataAccess.Services.Data
+namespace CoronaDashboard.DataAccess.Services.Data;
+
+public abstract class GetDataFromGitHubService
 {
-    public abstract class GetDataFromGitHubService
+    private readonly Lazy<Task<List<AllDataCsv>>> _allData;
+
+    protected GetDataFromGitHubService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient)
     {
-        private readonly Lazy<Task<List<AllDataCsv>>> _allData;
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture);
 
-        protected GetDataFromGitHubService(IOptions<CoronaDashboardDataAccessOptions> options, HttpClient httpClient)
+        _allData = new Lazy<Task<List<AllDataCsv>>>(async () =>
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture);
+            var @string = await httpClient.GetStringAsync(options.Value.GitHubMZelstAllDataUrl);
+            using var stringReader = new StringReader(@string);
+            using var csvReader = new CsvReader(stringReader, config);
 
-            _allData = new Lazy<Task<List<AllDataCsv>>>(async () =>
-            {
-                var @string = await httpClient.GetStringAsync(options.Value.GitHubMZelstAllDataUrl);
-                using var stringReader = new StringReader(@string);
-                using var csvReader = new CsvReader(stringReader, config);
+            return csvReader.GetRecords<AllDataCsv>().ToList();
+        });
+    }
 
-                return csvReader.GetRecords<AllDataCsv>().ToList();
-            });
+    public async Task<IReadOnlyCollection<TestedGGD>> GetTestedGGDAsync()
+    {
+        var data = await _allData.Value;
+        return data.Select(csv => new TestedGGD
+        {
+            Date = csv.Date,
+            Positive = FixPositiveTests(csv.PositiveTests),
+            Tested = csv.TestedTotal
+        }).ToList();
+    }
+
+    /// <summary>
+    /// Fix for:
+    /// 2022-02-04 	5052043 	0 	22406 	363924
+    /// 2022-02-05 	4797157 	0 	21323 	-254886
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    private static double? FixPositiveTests(double? value)
+    {
+        if (value < 0)
+        {
+            return 100000;
         }
 
-        public async Task<IReadOnlyCollection<TestedGGD>> GetTestedGGDAsync()
+        if (value > 150000)
         {
-            var data = await _allData.Value;
-            return data.Select(csv => new TestedGGD
-            {
-                Date = csv.Date,
-                Positive = FixPositiveTests(csv.PositiveTests),
-                Tested = csv.TestedTotal
-            }).ToList();
+            return 100000;
         }
 
-        /// <summary>
-        /// Fix for:
-        /// 2022-02-04 	5052043 	0 	22406 	363924
-        /// 2022-02-05 	4797157 	0 	21323 	-254886
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private static double FixPositiveTests(double value)
-        {
-            if (value < 0)
-            {
-                return 100000;
-            }
-
-            if (value > 150000)
-            {
-                return 100000;
-            }
-
-            return value;
-        }
+        return value;
     }
 }

@@ -1,13 +1,12 @@
-﻿namespace CoronaDashboard.DataAccess.Models
+﻿namespace CoronaDashboard.DataAccess.Models;
+
+public class DiedAndSurvivorsCumulativeDetails
 {
-    public class DiedAndSurvivorsCumulativeDetails
-    {
-        public string Dates { get; set; }
+    public string Dates { get; set; }
 
-        public string CountOverleden { get; set; }
+    public string CountOverleden { get; set; }
 
-        public string CountVerlaten { get; set; }
+    public string CountVerlaten { get; set; }
 
-        public string CountNogOpVerpleegafdeling { get; set; }
-    }
+    public string CountNogOpVerpleegafdeling { get; set; }
 }
