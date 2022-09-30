@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <!--<LangVersion>9.0</LangVersion>-->
+        <TargetFramework>net6.0</TargetFramework>
         <!--<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>-->
         <!-- https://docs.microsoft.com/en-us/aspnet/core/blazor/globalization-localization?view=aspnetcore-5.0 -->
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
@@ -10,12 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!--<PackageReference Include="CsvHelper" Version="27.2.1" />-->
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.0" />
-        <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
-        <PackageReference Include="System.Text.Json" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+        <PackageReference Include="System.Text.Json" Version="6.0.0" />
     </ItemGroup>
 
     <!--<ItemGroup>
