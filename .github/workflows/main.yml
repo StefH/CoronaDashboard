@@ -21,7 +21,7 @@ jobs:
       run: dotnet publish -c Release src/CoronaDashboard
 
     - name: Rewrite base href
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
       with:
         html_path: ${{ env.PUBLISH_DIR }}/index.html
         base_href: /CoronaDashboard/
