@@ -21,7 +21,7 @@ jobs:
       run: dotnet publish -c Release src/CoronaDashboard
 
     - name: Rewrite base href
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
       with:
         html_path: ${{ env.PUBLISH_DIR }}/index.html
         base_href: /CoronaDashboard/
@@ -29,7 +29,7 @@ jobs:
     - name: Patch blazor.webassembly.js
       uses: jacobtomlinson/gha-find-replace@master
       with:
-        find: "return{name:e,url:t,response:this\\.cacheIfUsed\\?this\\.loadResourceWithCaching\\(this\\.cacheIfUsed,e,t,n,r\\):this\\.loadResourceWithoutCaching\\(e,t,n,r\\)}}"
+        find: "STEF_NO_NEEDED_return{name:e,url:t,response:this\\.cacheIfUsed\\?this\\.loadResourceWithCaching\\(this\\.cacheIfUsed,e,t,n,r\\):this\\.loadResourceWithoutCaching\\(e,t,n,r\\)}}"
         replace: "var x={name:e,url:t,response:this.cacheIfUsed?this.loadResourceWithCaching(this.cacheIfUsed,e,t,n,r):this.loadResourceWithoutCaching(e,t,n,r)}; x.response.then((y) => { window.loadResourceCallback(e, y); }); return x;}"
         include: "blazor.webassembly.js"
 
