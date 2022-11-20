@@ -201,7 +201,7 @@
                 const isLocalHost = location.hostname === 'localhost';
                 const isGitHub = location.hostname === 'stefh.github.io';
                 const isAzure = location.hostname === 'coronadashboard.heyenrath.nl';
-                const isLocalHostOrGitHub = isLocalHost || isGitHub;
+                // const isLocalHostOrGitHub = isLocalHost || isGitHub;
 
                 const defaultUriBr = isGitHub ? `${defaultUri}.br` : defaultUri;
 
@@ -233,7 +233,7 @@
                         const originalResponseBufferPromise = response.arrayBuffer();
                         originalResponseBufferPromise.then((originalResponseBuffer) => {
                             const originalResponseArray = new Int8Array(originalResponseBuffer);
-                            const decompressedResponseArray = isLocalHostOrGitHub ? originalResponseArray : BrotliDecode(originalResponseArray);
+                            const decompressedResponseArray = isLocalHost ? originalResponseArray : BrotliDecode(originalResponseArray);
 
                             console.log(`fetched: ${defaultUriBr} ${originalResponseArray.length}/${decompressedResponseArray.length}`);
                             window.loadResourceCallback(allResourcesBeingLoaded.length, response.url);
